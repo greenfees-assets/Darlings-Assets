@@ -58,9 +58,36 @@
   }
 
   /* ── ANNOUNCEMENT BANNER ── */
-  /* Calibre has extra space above baseline — use padding-top to push text down */
+  /* Calibre has extra space above baseline — pad-top 0.15em on all Calibre text elements */
   .calibre-fix {
     display: inline-block;
+    padding-top: 0.15em;
+  }
+  /* All other elements using Calibre directly (no calibre-fix wrapper) */
+  .banner,
+  .nav-link,
+  .breadcrumb,
+  .image-caption-text,
+  .product-desc,
+  .selector-label,
+  .optional-pill,
+  .dimensions-link,
+  .cta-btn,
+  .delivery-note,
+  .finance-note,
+  .bottom-link-left,
+  .confirm-btn-primary,
+  .confirm-btn-secondary,
+  .confirm-optional-pill,
+  .confirm-bar-link,
+  .size-cell-price,
+  .size-cell-dims,
+  .drawer-reset,
+  .filter-label,
+  .filter-results-text,
+  .fabric-section-desc,
+  .colour-search input,
+  .colour-results-category {
     padding-top: 0.15em;
   }
 
