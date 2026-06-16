@@ -1199,11 +1199,11 @@
         </div>
 
         <!-- Foot Colour -->
-        <div class="selector-row">
-          <div class="selector-thumb round"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Foot_DarkOak.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;"></div>
+        <div class="selector-row" onclick="openDrawer('foot-drawer')" style="cursor:pointer;">
+          <div class="selector-thumb round" id="foot-thumb-wrap"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Foot_DarkOak.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;"></div>
           <div class="selector-text">
             <div class="selector-label">Choose Foot Colour</div>
-            <div class="selector-value">Choose a foot colour</div>
+            <div class="selector-value" id="foot-selector-value">Choose a foot colour</div>
           </div>
           <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
             <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1432,6 +1432,8 @@ function switchSegment(el, panel) {
 }
 
 function openDrawer(id) {
+  // Any config drawer interaction switches to 3d config mode
+  if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') activateConfig();
   document.getElementById(id).classList.add('open');
 }
 function closeDrawer(id, event) {
@@ -1444,6 +1446,32 @@ function closeDrawerDirect(id) {
   // Hide confirm bars when drawer closes
   if (id === 'fabric-drawer') document.getElementById('fabric-confirm-bar').classList.remove('visible');
   if (id === 'size-drawer') document.getElementById('size-confirm-bar').classList.remove('visible');
+  if (id === 'foot-drawer') document.getElementById('foot-confirm-bar').classList.remove('visible');
+}
+
+// Foot images map
+const footImages = {
+  'Dark Oak':   'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png',
+  'Light Oak':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png',
+  'Grey Wash':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png',
+  'Medium Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png',
+  'Washed Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png',
+  'Ebony':      'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png'
+};
+
+function selectFoot(el, name) {
+  document.querySelectorAll('#foot-drawer .size-cell').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const v = document.getElementById('foot-selector-value');
+  if (v) v.textContent = name;
+  const thumbImg = document.getElementById('foot-thumb-img');
+  if (thumbImg && footImages[name]) thumbImg.src = footImages[name];
+  document.getElementById('foot-confirm-bar').classList.add('visible');
+}
+
+function confirmFoot() {
+  document.getElementById('foot-confirm-bar').classList.remove('visible');
+  closeDrawerDirect('foot-drawer');
 }
 function selectSize(el, name) {
   el.closest('.size-grid').querySelectorAll('.size-cell').forEach(c => c.classList.remove('selected'));
@@ -1503,7 +1531,29 @@ window.addEventListener('DOMContentLoaded', function() {
   if (thumbs[1]) thumbs[1].classList.add('active');
 });
 
+// Fired the first time the user interacts with the 3d thumb or any config option
+let configured = false;
+function activateConfig() {
+  if (configured) return;
+  configured = true;
+  // Switch main image to Pearl 3d render
+  const mainImg = document.getElementById('main-img');
+  if (mainImg) {
+    mainImg.src = main3dSrc;
+    mainImg.parentElement.style.background = 'transparent';
+  }
+  // Activate 3d thumbnail
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[0]) thumbs[0].classList.add('active');
+  // Update caption
+  const caption = document.querySelector('.image-caption-text');
+  if (caption) caption.textContent = 'Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+}
+
 function switchMain(type, el) {
+  // First interaction with 3d thumb triggers config mode
+  if (type === '3d') activateConfig();
   const mainImg = document.getElementById('main-img');
   const thumbs = document.querySelectorAll('.thumb');
   thumbs.forEach(t => t.classList.remove('active'));
@@ -1633,6 +1683,96 @@ function switchMain(type, el) {
       </div>
     </div><!-- end drawer -->
   </div><!-- end drawer-overlay (size-drawer) -->
+
+
+<!-- FOOT DRAWER -->
+<div class="drawer-overlay" id="foot-drawer" onclick="closeDrawer('foot-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Choose foot colour</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('foot-drawer')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+
+      <p style="font-family:var(--font-tiempos);font-size:14px;color:var(--mid);text-align:center;line-height:1.5;padding:0 24px 24px;">A choice of foot styles to enhance or compliment<br>your fabric selection — free of charge.</p>
+
+      <div class="size-grid">
+
+        <div class="size-cell" onclick="selectFoot(this, 'Dark Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Dark Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Light Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Light Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Grey Wash')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Grey Wash</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Medium Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Medium Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Washed Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Washed Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Ebony')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png" style="width:120px;height:auto;">
+          </div>
+          <div class="size-cell-name">Ebony</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- end drawer-body -->
+    <!-- FOOT CONFIRM BAR -->
+    <div class="confirm-bar" id="foot-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmFoot()"><span class="calibre-fix">Confirm</span></button>
+      </div>
+    </div>
+  </div><!-- end drawer -->
+</div><!-- end drawer-overlay (foot-drawer) -->
 
 
 <!-- FABRIC DRAWER -->
