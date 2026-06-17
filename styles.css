@@ -189,7 +189,7 @@
     gap: 8px;
     padding: 16px 0 17px;
     font-family: var(--font-calibre);
-    font-size: 13px;
+    font-size: 14px;
     color: var(--mid);
     line-height: 1;
   }
@@ -208,7 +208,7 @@
     gap: 6px;
     color: var(--mid);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   /* ── TWO COLUMN LAYOUT ── */
@@ -1204,7 +1204,7 @@
 
 .range-card__options {
   font-family: var(--font-calibre);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   color: var(--blue-grey);
   margin: 0;

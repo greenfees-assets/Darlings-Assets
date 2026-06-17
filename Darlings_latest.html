@@ -260,7 +260,7 @@
       <!-- CARD 3: Large Corner Sofa -->
       <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Large Corner Sofa, £5,621">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png"
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20236.png"
                alt="Knightsbridge Large Corner Sofa" loading="lazy">
         </div>
         <div class="range-card__body">
@@ -402,11 +402,15 @@ function selectFabric(el, sectionName) {
     document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
+    const caption = document.querySelector('.image-caption-text');
+    if (caption) caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.';
   } else {
     currentFabric = 'pearl';
     document.getElementById('main-img').src = main3dSrc;
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
+    const caption = document.querySelector('.image-caption-text');
+    if (caption) caption.textContent = 'The Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
   }
   // Update fabric selector row value and thumb
   const fabricSelectorValue = document.getElementById('fabric-selector-value');
