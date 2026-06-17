@@ -1115,9 +1115,9 @@
   height: 44px;
 }
 
-/* Track outer clips overflow to create peek effect */
+/* Track outer clips overflow — hidden prevents page stretch, cards outside viewport accessible via arrows */
 .range-carousel-track-outer {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .range-carousel-track {
@@ -1149,9 +1149,9 @@
   flex: 1;
   background: transparent;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px 24px 0;
+  padding: 0 24px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -1170,7 +1170,7 @@
 
 .range-card__category {
   font-family: var(--font-calibre);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1198,7 +1198,7 @@
 
 .range-card__options {
   font-family: var(--font-calibre);
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 400;
   color: var(--blue-grey);
   margin: 0;
