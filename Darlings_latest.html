@@ -419,10 +419,10 @@ function selectFabric(el, sectionName) {
     fabricSelectorValue.textContent = colourName ? sectionName + ' - ' + colourName : sectionName;
   }
   const fabricSelectorThumb = document.getElementById('fabric-selector-thumb-img');
-  if (fabricSelectorThumb) {
-    const swatchImg = el.querySelector('img');
-    if (swatchImg) fabricSelectorThumb.src = swatchImg.src;
-  }
+  const swatchBtnThumb = document.getElementById('swatch-btn-thumb');
+  const swatchImg = el.querySelector('img');
+  if (fabricSelectorThumb && swatchImg) fabricSelectorThumb.src = swatchImg.src;
+  if (swatchBtnThumb && swatchImg) swatchBtnThumb.src = swatchImg.src;
   // Show fabric confirm bar
   document.getElementById('fabric-confirm-bar').classList.add('visible');
 }
@@ -578,10 +578,10 @@ function closeDrawerDirect(id) {
 
 // Foot images map
 const footImages = {
-  'Dark Oak':   'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png',
-  'Light Oak':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png',
-  'Grey Wash':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png',
-  'Medium Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png',
+  'Dark Oak':   'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png',
+  'Light Oak':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png',
+  'Grey Wash':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png',
+  'Medium Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png',
   'Washed Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png',
   'Ebony':      'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png'
 };
@@ -593,11 +593,34 @@ function selectFoot(el, name) {
   if (v) v.textContent = name;
   const thumbImg = document.getElementById('foot-thumb-img');
   if (thumbImg && footImages[name]) thumbImg.src = footImages[name];
+  currentFoot = name;
+  // Live 3D preview
+  if (currentFabric === 'stromboli') {
+    const sizeRow = document.querySelectorAll('.selector-row')[1];
+    const sizeName = sizeRow ? (sizeRow.querySelector('.selector-value') || {}).textContent || '' : '';
+    const isMedium = sizeName.includes('Medium');
+    if (isMedium && name === 'Light Oak') {
+      document.getElementById('main-img').src = mediumSofaStromboliLightFeetSrc;
+    } else {
+      document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
+    }
+  }
   document.getElementById('foot-confirm-bar').classList.add('visible');
 }
 
 function confirmFoot() {
   document.getElementById('foot-confirm-bar').classList.remove('visible');
+  // Swap 3D model if Stromboli is active
+  if (currentFabric === 'stromboli') {
+    const sizeRow = document.querySelectorAll('.selector-row')[1];
+    const sizeName = sizeRow ? (sizeRow.querySelector('.selector-value') || {}).textContent || '' : '';
+    const isMedium = sizeName.includes('Medium');
+    if (isMedium && currentFoot === 'Light Oak') {
+      document.getElementById('main-img').src = mediumSofaStromboliLightFeetSrc;
+    } else {
+      document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
+    }
+  }
   closeDrawerDirect('foot-drawer');
 }
 function selectSize(el, name) {
@@ -627,7 +650,9 @@ const mainLifestyleSrc = "https://raw.githubusercontent.com/greenfees-assets/Dar
 const main3dSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Pearl.png";
 const largeSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large_sofa_Stromboli.png";
 const mediumSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli.png";
+const mediumSofaStromboliLightFeetSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli_Lightfeet.png";
 let currentFabric = "pearl"; // track active fabric for size changes
+let currentFoot = "Dark Oak"; // track active foot colour
 
 function confirmFabric() {
   document.getElementById('fabric-confirm-bar').classList.remove('visible');
@@ -850,7 +875,7 @@ function switchMain(type, el) {
 
         <div class="size-cell" onclick="selectFoot(this, 'Dark Oak')">
           <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png" style="width:120px;height:auto;">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:120px;height:auto;">
           </div>
           <div class="size-cell-name">Dark Oak</div>
           <div class="size-cell-meta">
@@ -860,7 +885,7 @@ function switchMain(type, el) {
 
         <div class="size-cell" onclick="selectFoot(this, 'Light Oak')">
           <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:120px;height:auto;">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png" style="width:120px;height:auto;">
           </div>
           <div class="size-cell-name">Light Oak</div>
           <div class="size-cell-meta">
@@ -870,7 +895,7 @@ function switchMain(type, el) {
 
         <div class="size-cell" onclick="selectFoot(this, 'Grey Wash')">
           <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png" style="width:120px;height:auto;">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png" style="width:120px;height:auto;">
           </div>
           <div class="size-cell-name">Grey Wash</div>
           <div class="size-cell-meta">
@@ -880,7 +905,7 @@ function switchMain(type, el) {
 
         <div class="size-cell" onclick="selectFoot(this, 'Medium Oak')">
           <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png" style="width:120px;height:auto;">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png" style="width:120px;height:auto;">
           </div>
           <div class="size-cell-name">Medium Oak</div>
           <div class="size-cell-meta">
