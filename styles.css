@@ -1057,3 +1057,154 @@
     justify-content: center;
     pointer-events: none;
   }
+
+/* ═══════════════════════════════════════════════
+   MORE FROM THIS RANGE — CAROUSEL
+   ═══════════════════════════════════════════════ */
+
+.range-carousel-section {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
+.range-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px 20px;
+}
+
+.range-carousel-title {
+  font-family: var(--font-tiempos);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--dark);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.range-carousel-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--keyline);
+  background: var(--white);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s, opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.carousel-arrow:hover {
+  border-color: var(--dark);
+}
+
+.carousel-arrow[data-disabled="true"] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.carousel-arrow.prev svg {
+  transform: rotate(180deg);
+}
+
+/* Track outer clips overflow to create peek effect */
+.range-carousel-track-outer {
+  overflow: hidden;
+  padding: 0 48px;
+}
+
+.range-carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ~3.25 cards visible — width relative to viewport minus padding */
+.range-card {
+  flex: 0 0 calc((100vw - 96px - 60px) / 3.25);
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.range-card__image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f5f4f2;
+  overflow: hidden;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.range-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.range-card__body {
+  padding: 0 4px;
+}
+
+.range-card__category {
+  font-family: var(--font-calibre);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-grey);
+  margin: 0 0 6px;
+}
+
+.range-card__name {
+  font-family: var(--font-tiempos);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--dark);
+  line-height: 1.15;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.range-card__price {
+  font-family: var(--font-tiempos);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--dark);
+  margin: 0 0 10px;
+}
+
+.range-card__options {
+  font-family: var(--font-calibre);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--blue-grey);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .range-card { flex: 0 0 calc((100vw - 48px - 40px) / 2.15); }
+  .range-carousel-header,
+  .range-carousel-track-outer { padding-left: 24px; padding-right: 24px; }
+}
+
+@media (max-width: 560px) {
+  .range-card { flex: 0 0 calc(100vw - 32px - 20px); }
+  .range-carousel-header,
+  .range-carousel-track-outer { padding-left: 16px; padding-right: 16px; }
+  .range-carousel-title { font-size: 22px; }
+}
