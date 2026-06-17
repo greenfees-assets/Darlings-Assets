@@ -218,14 +218,10 @@
     <h2 class="range-carousel-title">More from this range</h2>
     <div class="range-carousel-arrows" aria-label="Carousel navigation">
       <button class="carousel-arrow prev" aria-label="Previous products" id="carousel-prev" data-disabled="true">
-        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" aria-hidden="true">
-          <path d="M1.5 1L8.5 8L1.5 15" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img id="carousel-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="" aria-hidden="true">
       </button>
       <button class="carousel-arrow next" aria-label="Next products" id="carousel-next">
-        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" aria-hidden="true">
-          <path d="M1.5 1L8.5 8L1.5 15" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img id="carousel-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="" aria-hidden="true">
       </button>
     </div>
   </div>
@@ -236,7 +232,7 @@
       <!-- CARD 1: Footstool -->
       <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Footstool, £989">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_1.png"
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20170.png"
                alt="Knightsbridge Footstool" loading="lazy">
         </div>
         <div class="range-card__body">
@@ -250,7 +246,7 @@
       <!-- CARD 2: Sofa Bed -->
       <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Sofa Bed, £3,802">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_2.png"
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20171.png"
                alt="Knightsbridge Sofa Bed" loading="lazy">
         </div>
         <div class="range-card__body">
@@ -264,7 +260,7 @@
       <!-- CARD 3: Large Corner Sofa -->
       <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Large Corner Sofa, £5,621">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_3.png"
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png"
                alt="Knightsbridge Large Corner Sofa" loading="lazy">
         </div>
         <div class="range-card__body">
@@ -278,7 +274,7 @@
       <!-- CARD 4: Large Sofa -->
       <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Large Sofa, £3,021">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_4.png"
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png"
                alt="Knightsbridge Large Sofa" loading="lazy">
         </div>
         <div class="range-card__body">
@@ -289,17 +285,17 @@
         </div>
       </a>
 
-      <!-- CARD 5: Medium Sofa -->
-      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Medium Sofa, £2,476">
+      <!-- CARD 5: Small Chaise Sofa -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Small Chaise Sofa, £3,628">
         <div class="range-card__image-wrap">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_1.png"
-               alt="Knightsbridge Medium Sofa" loading="lazy">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20175.png"
+               alt="Knightsbridge Small Chaise Sofa" loading="lazy">
         </div>
         <div class="range-card__body">
           <p class="range-card__category">Knightsbridge</p>
-          <p class="range-card__name">Medium Sofa</p>
-          <p class="range-card__price">£2,476</p>
-          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__name">Small Chaise Sofa</p>
+          <p class="range-card__price">£3,628</p>
+          <p class="range-card__options">+ 285 more fabric options</p>
         </div>
       </a>
 
@@ -340,11 +336,21 @@
     return Math.max(0, totalCards() - getVisibleCount());
   }
 
+  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
+  const ICONS = {
+    prev: { active: BASE + 'Carosel_left(active).svg', deactive: BASE + 'Carosel_left(deactive).svg' },
+    next: { active: BASE + 'Carosel_right(active).svg', deactive: BASE + 'Carosel_right(deactive).svg' }
+  };
+
   function update() {
     const offset = index * getCardWidth();
     track.style.transform = `translateX(-${offset}px)`;
-    btnPrev.dataset.disabled = index <= 0 ? 'true' : 'false';
-    btnNext.dataset.disabled = index >= maxIndex() ? 'true' : 'false';
+    const atStart = index <= 0;
+    const atEnd = index >= maxIndex();
+    btnPrev.dataset.disabled = atStart ? 'true' : 'false';
+    btnNext.dataset.disabled = atEnd ? 'true' : 'false';
+    document.getElementById('carousel-prev-icon').src = atStart ? ICONS.prev.deactive : ICONS.prev.active;
+    document.getElementById('carousel-next-icon').src = atEnd ? ICONS.next.deactive : ICONS.next.active;
   }
 
   btnPrev.addEventListener('click', function() {

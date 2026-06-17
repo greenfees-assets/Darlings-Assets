@@ -1065,13 +1065,17 @@
 .range-carousel-section {
   margin-top: 50px;
   margin-bottom: 60px;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 50px;
 }
 
 .range-carousel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 48px 20px;
+  padding-bottom: 20px;
 }
 
 .range-carousel-title {
@@ -1089,64 +1093,67 @@
 }
 
 .carousel-arrow {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--keyline);
-  background: var(--white);
-  border-radius: 0;
+  width: auto;
+  height: auto;
+  border: none;
+  background: none;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 0.15s, opacity 0.15s;
   flex-shrink: 0;
 }
 
-.carousel-arrow:hover {
-  border-color: var(--dark);
-}
-
 .carousel-arrow[data-disabled="true"] {
-  opacity: 0.3;
   pointer-events: none;
 }
 
-.carousel-arrow.prev svg {
-  transform: rotate(180deg);
+.carousel-arrow img {
+  display: block;
+  width: 44px;
+  height: 44px;
 }
 
 /* Track outer clips overflow to create peek effect */
 .range-carousel-track-outer {
-  overflow: hidden;
-  padding: 0 48px;
+  overflow: visible;
 }
 
 .range-carousel-track {
   display: flex;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 24px;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
 /* ~3.25 cards visible — width relative to viewport minus padding */
 .range-card {
-  flex: 0 0 calc((100vw - 96px - 60px) / 3.25);
-  min-width: 0;
+  flex: 0 0 400px;
+  width: 400px;
+  height: 440px;
+  min-width: 400px;
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--keyline);
+  border-radius: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .range-card__image-wrap {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  background: #f5f4f2;
-  overflow: hidden;
-  margin-bottom: 14px;
+  flex: 1;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px 24px 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .range-card__image-wrap img {
@@ -1157,7 +1164,8 @@
 }
 
 .range-card__body {
-  padding: 0 4px;
+  padding: 20px 24px 28px;
+  text-align: center;
 }
 
 .range-card__category {
@@ -1172,8 +1180,8 @@
 
 .range-card__name {
   font-family: var(--font-tiempos);
-  font-size: 22px;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 500;
   color: var(--dark);
   line-height: 1.15;
   margin: 0 0 4px;
@@ -1182,10 +1190,10 @@
 
 .range-card__price {
   font-family: var(--font-tiempos);
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 500;
   color: var(--dark);
-  margin: 0 0 10px;
+  margin: 0 0 14px;
 }
 
 .range-card__options {
@@ -1197,14 +1205,12 @@
 }
 
 @media (max-width: 900px) {
-  .range-card { flex: 0 0 calc((100vw - 48px - 40px) / 2.15); }
-  .range-carousel-header,
-  .range-carousel-track-outer { padding-left: 24px; padding-right: 24px; }
+  .range-card { flex: 0 0 calc((100vw - 100px - 40px) / 2.15); }
+  .range-carousel-section { padding: 0 24px; }
 }
 
 @media (max-width: 560px) {
   .range-card { flex: 0 0 calc(100vw - 32px - 20px); }
-  .range-carousel-header,
-  .range-carousel-track-outer { padding-left: 16px; padding-right: 16px; }
+  .range-carousel-section { padding: 0 16px; }
   .range-carousel-title { font-size: 22px; }
 }
