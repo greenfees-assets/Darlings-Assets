@@ -116,10 +116,10 @@
 
         <!-- Fabric -->
         <div class="selector-row" onclick="openDrawer('fabric-drawer')" style="cursor:pointer;">
-          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Fabric_GreyGosling.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          <div class="selector-thumb"><img id="fabric-selector-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Fabric_GreyGosling.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           <div class="selector-text">
             <div class="selector-label">Choose from 125 Fabrics</div>
-            <div class="selector-value">Choose a fabric</div>
+            <div class="selector-value" id="fabric-selector-value">Choose a fabric</div>
           </div>
           <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
             <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -140,7 +140,7 @@
 
         <!-- Foot Colour -->
         <div class="selector-row" onclick="openDrawer('foot-drawer')" style="cursor:pointer;">
-          <div class="selector-thumb round" id="foot-thumb-wrap"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Foot_DarkOak.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;"></div>
+          <div class="selector-thumb round" id="foot-thumb-wrap" style="background:#E5E5E5;width:36px;height:36px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:28px;height:28px;object-fit:contain;display:block;"></div>
           <div class="selector-text">
             <div class="selector-label">Choose Foot Colour</div>
             <div class="selector-value" id="foot-selector-value">Choose a foot colour</div>
@@ -408,11 +408,16 @@ function selectFabric(el, sectionName) {
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
   }
-  // Update fabric selector row value
-  const fabricRow = document.querySelectorAll('.selector-row')[0];
-  if (fabricRow) {
-    const v = fabricRow.querySelector('.selector-value');
-    if (v) v.textContent = sectionName;
+  // Update fabric selector row value and thumb
+  const fabricSelectorValue = document.getElementById('fabric-selector-value');
+  if (fabricSelectorValue) {
+    const colourName = el.dataset.colour;
+    fabricSelectorValue.textContent = colourName ? sectionName + ' - ' + colourName : sectionName;
+  }
+  const fabricSelectorThumb = document.getElementById('fabric-selector-thumb-img');
+  if (fabricSelectorThumb) {
+    const swatchImg = el.querySelector('img');
+    if (swatchImg) fabricSelectorThumb.src = swatchImg.src;
   }
   // Show fabric confirm bar
   document.getElementById('fabric-confirm-bar').classList.add('visible');
@@ -543,13 +548,24 @@ function openDrawer(id) {
   if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') activateConfig();
   document.getElementById(id).classList.add('open');
 }
+function animateDrawerClose(id) {
+  const overlay = document.getElementById(id);
+  const drawer = overlay ? overlay.querySelector('.drawer') : null;
+  if (!drawer) { overlay && overlay.classList.remove('open'); return; }
+  drawer.style.animation = 'slideOut 0.25s ease forwards';
+  drawer.addEventListener('animationend', function handler() {
+    drawer.removeEventListener('animationend', handler);
+    drawer.style.animation = '';
+    overlay.classList.remove('open');
+  });
+}
 function closeDrawer(id, event) {
   if (event.target === event.currentTarget) {
-    document.getElementById(id).classList.remove('open');
+    animateDrawerClose(id);
   }
 }
 function closeDrawerDirect(id) {
-  document.getElementById(id).classList.remove('open');
+  animateDrawerClose(id);
   // Hide confirm bars when drawer closes
   if (id === 'fabric-drawer') document.getElementById('fabric-confirm-bar').classList.remove('visible');
   if (id === 'size-drawer') document.getElementById('size-confirm-bar').classList.remove('visible');
@@ -993,7 +1009,7 @@ function switchMain(type, el) {
           <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
           
         </div>
-        <div class="swatch-cell" data-fabric="stromboli" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+        <div class="swatch-cell" data-fabric="stromboli" data-colour="Stromboli" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
           <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
           
         </div>

@@ -561,7 +561,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.3);
+    background: transparent;
     z-index: 100;
     justify-content: flex-end;
   }
@@ -575,11 +575,16 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    animation: slideIn 0.25s ease;
+    animation: slideIn 0.29s ease;
+    border-left: 1px solid var(--keyline);
   }
   @keyframes slideIn {
     from { transform: translateX(100%); }
     to { transform: translateX(0); }
+  }
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
   }
   .drawer-header {
     height: 64px;
@@ -641,7 +646,7 @@
     background: var(--black);
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     height: 52px;
     font-family: var(--font-calibre);
     font-size: 18px;
@@ -659,7 +664,7 @@
     background: #fff;
     color: var(--dark);
     border: 1.5px solid #C8C8C8;
-    border-radius: 8px;
+    border-radius: 4px;
     height: 52px;
     font-family: var(--font-calibre);
     font-size: 18px;
