@@ -366,7 +366,8 @@
 </script>
 
 <!-- SCRIPTS: CONFIGURATOR -->
-<script>(el, sectionName) {
+<script>
+function selectFabric(el, sectionName) {
   // Remove all selected states
   document.querySelectorAll('#fabric-drawer .swatch-cell').forEach(c => {
     c.classList.remove('selected');
