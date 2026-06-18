@@ -56,8 +56,7 @@
     </div>
   </div>
 </nav>
-
-<!-- PAGE -->
+<!-- END NAV -->
 <div class="page-wrapper">
 
   <!-- BREADCRUMB -->
@@ -211,7 +210,7 @@
 
 
 
-<!-- ── MORE FROM THIS RANGE CAROUSEL ── -->
+<!-- MORE FROM THIS RANGE CAROUSEL -->
 <section class="range-carousel-section" aria-label="More from this range">
 
   <div class="range-carousel-header">
@@ -291,8 +290,8 @@
   </div>
 </section>
 
+<!-- SCRIPTS: CAROUSEL -->
 <script>
-// ── CAROUSEL ──
 (function() {
   const track = document.getElementById('range-carousel');
   const btnPrev = document.getElementById('carousel-prev');
@@ -366,10 +365,8 @@
 })();
 </script>
 
-<script>
-
-
-function selectFabric(el, sectionName) {
+<!-- SCRIPTS: CONFIGURATOR -->
+<script>(el, sectionName) {
   // Remove all selected states
   document.querySelectorAll('#fabric-drawer .swatch-cell').forEach(c => {
     c.classList.remove('selected');
