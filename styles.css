@@ -1171,7 +1171,7 @@
 }
 
 .range-card__body {
-  padding: 20px 24px 28px;
+  padding: 4px 24px 44px;
   text-align: center;
 }
 
@@ -1205,9 +1205,9 @@
 
 .range-card__options {
   font-family: var(--font-calibre);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--blue-grey);
+  color: var(--mid);
   margin: 0;
 }
 
