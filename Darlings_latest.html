@@ -385,7 +385,7 @@ function selectFabric(el, sectionName) {
     const sizeRow = document.querySelectorAll('.selector-row')[1];
     const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
                      sizeRow.querySelector('.selector-value').textContent.includes('Medium');
-    document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
+    document.getElementById('main-img').src = get3dSrc();
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
     const caption = document.querySelector('.image-caption-text');
@@ -548,7 +548,18 @@ function openDrawer(id) {
   // Any config drawer interaction always switches to 3d config mode
   if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') {
     activateConfig(); // marks configured=true the first time
-    switchTo3D();     // always switch to 3D whenever a drawer opens
+    const mainImg = document.getElementById('main-img');
+    if (mainImg) {
+      if (currentFabric === 'stromboli') {
+        mainImg.src = get3dSrc();
+        mainImg.parentElement.style.background = 'transparent';
+        const thumbs = document.querySelectorAll('.thumb');
+        thumbs.forEach(t => t.classList.remove('active'));
+        if (thumbs[0]) thumbs[0].classList.add('active');
+      } else {
+        switchTo3D();
+      }
+    }
   }
   document.getElementById(id).classList.add('open');
   // If reopening fabric drawer and a fabric is already confirmed, show confirm bar
@@ -600,14 +611,7 @@ function selectFoot(el, name) {
   currentFoot = name;
   // Live 3D preview
   if (currentFabric === 'stromboli') {
-    const sizeRow = document.querySelectorAll('.selector-row')[1];
-    const sizeName = sizeRow ? (sizeRow.querySelector('.selector-value') || {}).textContent || '' : '';
-    const isMedium = sizeName.includes('Medium');
-    if (isMedium && name === 'Light Oak') {
-      document.getElementById('main-img').src = mediumSofaStromboliLightFeetSrc;
-    } else {
-      document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
-    }
+    document.getElementById('main-img').src = get3dSrc();
   }
   document.getElementById('foot-confirm-bar').classList.add('visible');
 }
@@ -616,14 +620,7 @@ function confirmFoot() {
   document.getElementById('foot-confirm-bar').classList.remove('visible');
   // Swap 3D model if Stromboli is active
   if (currentFabric === 'stromboli') {
-    const sizeRow = document.querySelectorAll('.selector-row')[1];
-    const sizeName = sizeRow ? (sizeRow.querySelector('.selector-value') || {}).textContent || '' : '';
-    const isMedium = sizeName.includes('Medium');
-    if (isMedium && currentFoot === 'Light Oak') {
-      document.getElementById('main-img').src = mediumSofaStromboliLightFeetSrc;
-    } else {
-      document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
-    }
+    document.getElementById('main-img').src = get3dSrc();
   }
   closeDrawerDirect('foot-drawer');
 }
@@ -641,8 +638,7 @@ function selectSize(el, name) {
   }
   // Swap 3D model if Stromboli is active
   if (currentFabric === 'stromboli') {
-    const isMedium = name.includes('Medium');
-    document.getElementById('main-img').src = isMedium ? mediumSofaStromboliSrc : largeSofaStromboliSrc;
+    document.getElementById('main-img').src = get3dSrc();
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
   }
@@ -655,6 +651,11 @@ const main3dSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-A
 const largeSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large_sofa_Stromboli.png";
 const mediumSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli.png";
 const mediumSofaStromboliLightFeetSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli_Lightfeet.png";
+// Stromboli + Cavalry piping variants
+const largeSofaStromboliCavalrySrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Strombolil_Piping_SR_Cavalry.png";
+const largeSofaStromboliCavalryLightOakSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Stomboli_Piping_Cavalry_light_oak.png";
+const mediumSofaStromboliCavalrySrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Med_Sofa_Strombolil_Piping_SR_Cavalry.png";
+const mediumSofaStromboliCavalryLightOakSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Med_Sofa_Strombolil_Piping_SR_Cavalry_LightOak.png";
 let currentFabric = "pearl"; // track active fabric for size changes
 let currentFoot = "Dark Oak"; // track active foot colour
 
@@ -665,6 +666,29 @@ function confirmFabric() {
 
 let currentPiping = 'same'; // default: same as body fabric
 let confirmedPiping = null; // null = not yet confirmed/added
+
+// Central resolver: returns the correct 3D preview src for current fabric/size/foot/piping state
+function get3dSrc() {
+  if (currentFabric !== 'stromboli') return main3dSrc;
+  const sizeRow = document.querySelector('.selector-row[onclick*="size-drawer"]');
+  const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
+                   sizeRow.querySelector('.selector-value').textContent.includes('Medium');
+  const pipingKey = confirmedPiping && confirmedPiping !== 'same' ? confirmedPiping : null;
+
+  if (pipingKey === 'sr-cavalry') {
+    if (isMedium) {
+      return currentFoot === 'Light Oak' ? mediumSofaStromboliCavalryLightOakSrc : mediumSofaStromboliCavalrySrc;
+    } else {
+      return currentFoot === 'Light Oak' ? largeSofaStromboliCavalryLightOakSrc : largeSofaStromboliCavalrySrc;
+    }
+  }
+
+  // No piping — standard Stromboli
+  if (isMedium) {
+    return currentFoot === 'Light Oak' ? mediumSofaStromboliLightFeetSrc : mediumSofaStromboliSrc;
+  }
+  return largeSofaStromboliSrc;
+}
 
 function addContrastPiping() {
   // Hide fabric confirm bar and close fabric drawer instantly (no animation)
@@ -707,7 +731,7 @@ function selectPiping(cell, pipingKey, label) {
     });
     currentPiping = 'same';
     confirmedPiping = null;
-    if (mainImg) mainImg.src = largeSofaStromboliSrc;
+    if (mainImg) mainImg.src = get3dSrc();
     // Re-select the "same" cell so drawer has a valid selection
     const sameCell = document.getElementById('piping-swatch-same');
     if (sameCell) {
@@ -737,12 +761,16 @@ function selectPiping(cell, pipingKey, label) {
   cell.appendChild(tick);
   currentPiping = pipingKey;
 
-  // Update 3D image
+  // Update 3D image live preview
   if (pipingKey === 'sr-cavalry' && mainImg) {
-    mainImg.src = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Strombolil_Piping_SR_Cavalry.png';
+    // Temporarily set confirmedPiping so get3dSrc() resolves piping variant
+    const prevConfirmed = confirmedPiping;
+    confirmedPiping = 'sr-cavalry';
+    mainImg.src = get3dSrc();
+    confirmedPiping = prevConfirmed;
     showPipingToast();
   } else if (pipingKey === 'same' && mainImg) {
-    mainImg.src = largeSofaStromboliSrc;
+    mainImg.src = get3dSrc();
   }
 
   document.getElementById('piping-confirm-bar').classList.add('visible');
@@ -777,6 +805,9 @@ function confirmPiping() {
   document.getElementById('piping-confirm-bar').classList.remove('visible');
   // Record what was confirmed
   confirmedPiping = currentPiping;
+  // Update 3D preview to reflect confirmed piping + current size + current foot
+  const mainImg = document.getElementById('main-img');
+  if (mainImg && currentFabric === 'stromboli') mainImg.src = get3dSrc();
   // Update fabric confirm bar button label
   updateContrastPipingButtonLabel();
   // Update caption to reflect piping choice
@@ -891,9 +922,11 @@ function restorePipingState(pipingKey) {
 
 function resetPiping() {
   resetPipingState();
-  // Revert 3D to Stromboli
+  confirmedPiping = null;
+  currentPiping = 'same';
+  // Revert 3D to Stromboli (no piping)
   const mainImg = document.getElementById('main-img');
-  if (mainImg) mainImg.src = largeSofaStromboliSrc;
+  if (mainImg) mainImg.src = get3dSrc();
 }
 
 function confirmSize() {
