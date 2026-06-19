@@ -533,9 +533,23 @@ function switchSegment(el, panel) {
   if (target) target.style.display = 'block';
 }
 
+function switchTo3D() {
+  const mainImg = document.getElementById('main-img');
+  if (!mainImg) return;
+  mainImg.src = main3dSrc;
+  mainImg.parentElement.style.background = 'transparent';
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[0]) thumbs[0].classList.add('active');
+  const caption = document.querySelector('.image-caption-text');
+  if (caption) caption.textContent = 'Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+}
 function openDrawer(id) {
-  // Any config drawer interaction switches to 3d config mode
-  if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') activateConfig();
+  // Any config drawer interaction always switches to 3d config mode
+  if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') {
+    activateConfig(); // marks configured=true the first time
+    switchTo3D();     // always switch to 3D whenever a drawer opens
+  }
   document.getElementById(id).classList.add('open');
   // If reopening fabric drawer and a fabric is already confirmed, show confirm bar
   if (id === 'fabric-drawer' && currentFabric) {
