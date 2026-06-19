@@ -537,6 +537,10 @@ function openDrawer(id) {
   // Any config drawer interaction switches to 3d config mode
   if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') activateConfig();
   document.getElementById(id).classList.add('open');
+  // If reopening fabric drawer and a fabric is already confirmed, show confirm bar
+  if (id === 'fabric-drawer' && currentFabric) {
+    document.getElementById('fabric-confirm-bar').classList.add('visible');
+  }
 }
 function animateDrawerClose(id) {
   const overlay = document.getElementById(id);
@@ -646,6 +650,7 @@ function confirmFabric() {
 }
 
 let currentPiping = 'same'; // default: same as body fabric
+let confirmedPiping = null; // null = not yet confirmed/added
 
 function addContrastPiping() {
   // Hide fabric confirm bar and close fabric drawer instantly (no animation)
@@ -653,17 +658,21 @@ function addContrastPiping() {
   const fabricOverlay = document.getElementById('fabric-drawer');
   fabricOverlay.classList.remove('open');
 
-  // Reset piping drawer to default state (Stromboli pre-selected, tick injected)
-  resetPipingState();
-
-  // Fade in piping drawer
+  // Open piping drawer
   const pipingOverlay = document.getElementById('piping-drawer');
   pipingOverlay.classList.add('open');
-  // Force reflow so transition fires
   pipingOverlay.getBoundingClientRect();
   pipingOverlay.classList.add('visible');
 
-  // Show confirm bar immediately (Stromboli is pre-selected)
+  if (confirmedPiping && confirmedPiping !== 'same') {
+    // Editing: restore the confirmed selection state
+    restorePipingState(confirmedPiping);
+  } else {
+    // Fresh add: reset to default (same as body fabric)
+    resetPipingState();
+  }
+
+  // Show confirm bar (a selection is always active)
   document.getElementById('piping-confirm-bar').classList.add('visible');
 }
 
@@ -672,7 +681,36 @@ function showContrastPipingInfo() {
 }
 
 function selectPiping(cell, pipingKey, label) {
-  // Remove all selected states and tick divs
+  const mainImg = document.getElementById('main-img');
+
+  // If editing and user clicks the already-confirmed swatch — remove piping
+  if (confirmedPiping && confirmedPiping !== 'same' && pipingKey === confirmedPiping && cell.classList.contains('selected')) {
+    // Deselect — clear all, fall back to "same as body fabric" selected
+    document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+      c.classList.remove('selected');
+      const tick = c.querySelector('.swatch-tick');
+      if (tick) tick.remove();
+    });
+    currentPiping = 'same';
+    confirmedPiping = null;
+    if (mainImg) mainImg.src = largeSofaStromboliSrc;
+    // Re-select the "same" cell so drawer has a valid selection
+    const sameCell = document.getElementById('piping-swatch-same');
+    if (sameCell) {
+      sameCell.classList.add('selected');
+      const t = document.createElement('div');
+      t.className = 'swatch-tick';
+      t.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+      sameCell.appendChild(t);
+    }
+    updateContrastPipingButtonLabel();
+    updateCaptionWithPiping();
+    showPipingRemovalToast();
+    // Stay on piping drawer — user may want to pick a different swatch
+    return;
+  }
+
+  // Normal selection
   document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
     c.classList.remove('selected');
     const tick = c.querySelector('.swatch-tick');
@@ -685,10 +723,10 @@ function selectPiping(cell, pipingKey, label) {
   cell.appendChild(tick);
   currentPiping = pipingKey;
 
-  // Update 3D image for Cavalry selection
-  const mainImg = document.getElementById('main-img');
+  // Update 3D image
   if (pipingKey === 'sr-cavalry' && mainImg) {
     mainImg.src = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Strombolil_Piping_SR_Cavalry.png';
+    showPipingToast();
   } else if (pipingKey === 'same' && mainImg) {
     mainImg.src = largeSofaStromboliSrc;
   }
@@ -696,30 +734,96 @@ function selectPiping(cell, pipingKey, label) {
   document.getElementById('piping-confirm-bar').classList.add('visible');
 }
 
+function showPipingToast() {
+  fireToast(document.getElementById('piping-toast'));
+}
+
+function showPipingRemovalToast() {
+  fireToast(document.getElementById('piping-removal-toast'));
+}
+
+function fireToast(toast) {
+  if (!toast) return;
+  if (toast._timer) clearTimeout(toast._timer);
+  if (toast._hideTimer) clearTimeout(toast._hideTimer);
+  toast.classList.remove('hiding');
+  toast.style.display = 'flex';
+  void toast.offsetWidth;
+  toast.classList.add('visible');
+  toast._timer = setTimeout(function() {
+    toast.classList.add('hiding');
+    toast._hideTimer = setTimeout(function() {
+      toast.classList.remove('visible', 'hiding');
+      toast.style.display = '';
+    }, 500);
+  }, 2500);
+}
+
 function confirmPiping() {
   document.getElementById('piping-confirm-bar').classList.remove('visible');
+  // Record what was confirmed
+  confirmedPiping = currentPiping;
+  // Update fabric confirm bar button label
+  updateContrastPipingButtonLabel();
+  // Update caption to reflect piping choice
+  updateCaptionWithPiping();
   closePipingDrawer();
 }
 
+function updateCaptionWithPiping() {
+  const caption = document.querySelector('.image-caption-text');
+  if (!caption) return;
+  if (confirmedPiping === 'sr-cavalry') {
+    caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Stain Resistant House Fabric Cavalry Contrast Piping and Dark Oak Feet.';
+  } else {
+    // Piping removed or same-as-body — revert to current fabric caption
+    if (currentFabric === 'stromboli') {
+      caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.';
+    } else {
+      caption.textContent = 'The Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+    }
+  }
+}
+
+function updateContrastPipingButtonLabel() {
+  const btn = document.getElementById('contrast-piping-btn');
+  if (!btn) return;
+  const pill = btn.querySelector('.confirm-optional-pill');
+  const label = btn.querySelector('.calibre-fix');
+  if (confirmedPiping && confirmedPiping !== 'same') {
+    // Piping has been added — show "Edit Contrast Piping"
+    if (pill) pill.style.display = 'none';
+    if (label) label.textContent = 'Edit Contrast Piping';
+  } else {
+    // Not added yet
+    if (pill) pill.style.display = '';
+    if (label) label.textContent = 'Add Contrast Piping?';
+  }
+}
+
 function backToPipingFabric() {
-  // Close piping drawer instantly
+  // Quick fade out piping drawer, then instantly show fabric drawer
   const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.style.transition = 'opacity 0.15s ease';
   pipingOverlay.classList.remove('visible');
-  pipingOverlay.classList.remove('open');
   document.getElementById('piping-confirm-bar').classList.remove('visible');
 
-  // Re-show fabric drawer instantly — bypass openDrawer to avoid slideIn animation
-  const fabricOverlay = document.getElementById('fabric-drawer');
-  const fabricDrawer = fabricOverlay.querySelector('.drawer');
-  if (fabricDrawer) fabricDrawer.style.animation = 'none';
-  fabricOverlay.classList.add('open');
-  document.getElementById('fabric-confirm-bar').classList.add('visible');
-  // Re-enable animation after paint so future opens still slide
-  requestAnimationFrame(function() {
+  setTimeout(function() {
+    pipingOverlay.classList.remove('open');
+    pipingOverlay.style.transition = '';
+
+    // Instantly show fabric drawer — no slide animation
+    const fabricOverlay = document.getElementById('fabric-drawer');
+    const fabricDrawer = fabricOverlay.querySelector('.drawer');
+    if (fabricDrawer) fabricDrawer.style.animation = 'none';
+    fabricOverlay.classList.add('open');
+    document.getElementById('fabric-confirm-bar').classList.add('visible');
     requestAnimationFrame(function() {
-      if (fabricDrawer) fabricDrawer.style.animation = '';
+      requestAnimationFrame(function() {
+        if (fabricDrawer) fabricDrawer.style.animation = '';
+      });
     });
-  });
+  }, 150);
 }
 
 function closePipingDrawer() {
@@ -747,6 +851,28 @@ function resetPipingState() {
     tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
     sameCell.appendChild(tick);
   }
+}
+
+function restorePipingState(pipingKey) {
+  // Clear all selections
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  currentPiping = pipingKey;
+  // Find the cell with this pipingKey and re-select it
+  const cells = document.querySelectorAll('#piping-drawer .swatch-cell');
+  cells.forEach(function(c) {
+    const onclick = c.getAttribute('onclick') || '';
+    if (onclick.indexOf("'" + pipingKey + "'") !== -1) {
+      c.classList.add('selected');
+      const tick = document.createElement('div');
+      tick.className = 'swatch-tick';
+      tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+      c.appendChild(tick);
+    }
+  });
 }
 
 function resetPiping() {
@@ -1223,7 +1349,7 @@ function switchMain(type, el) {
     <div class="confirm-bar" id="fabric-confirm-bar">
       <div class="confirm-bar-buttons">
         <button class="confirm-btn-primary" onclick="confirmFabric()"><span class="calibre-fix">Confirm</span></button>
-        <button class="confirm-btn-secondary" onclick="addContrastPiping()">
+        <button id="contrast-piping-btn" class="confirm-btn-secondary" onclick="addContrastPiping()">
           <span class="confirm-optional-pill">optional</span>
           <span class="calibre-fix">Add Contrast Piping?</span>
         </button>
@@ -1279,7 +1405,7 @@ function switchMain(type, el) {
 
       <!-- Same as current body fabric — Stromboli pre-selected -->
       <div class="fabric-section" style="padding-bottom:10px;">
-        <div class="fabric-section-header">
+        <div class="fabric-section-header" style="margin-bottom:12px;">
           <span class="fabric-section-name">Same as current body fabric</span>
           <span class="fabric-section-price">&nbsp;(+£0)</span>
           <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
@@ -1407,6 +1533,34 @@ function switchMain(type, el) {
 
     </div>
     <!-- PIPING CONFIRM BAR -->
+    <!-- Contrast piping selection toast -->
+    <!-- Contrast piping removal toast -->
+    <div class="piping-toast" id="piping-removal-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping removed!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
+    <div class="piping-toast" id="piping-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping added!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
     <div class="confirm-bar" id="piping-confirm-bar">
       <div class="confirm-bar-buttons">
         <button class="confirm-btn-primary" onclick="confirmPiping()"><span class="calibre-fix">Confirm</span></button>
