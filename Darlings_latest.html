@@ -645,14 +645,115 @@ function confirmFabric() {
   closeDrawerDirect('fabric-drawer');
 }
 
+let currentPiping = 'same'; // default: same as body fabric
+
 function addContrastPiping() {
+  // Hide fabric confirm bar and close fabric drawer instantly (no animation)
   document.getElementById('fabric-confirm-bar').classList.remove('visible');
-  closeDrawerDirect('fabric-drawer');
-  // Placeholder — contrast piping drawer/flow to be built
+  const fabricOverlay = document.getElementById('fabric-drawer');
+  fabricOverlay.classList.remove('open');
+
+  // Reset piping drawer to default state (Stromboli pre-selected, tick injected)
+  resetPipingState();
+
+  // Fade in piping drawer
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.classList.add('open');
+  // Force reflow so transition fires
+  pipingOverlay.getBoundingClientRect();
+  pipingOverlay.classList.add('visible');
+
+  // Show confirm bar immediately (Stromboli is pre-selected)
+  document.getElementById('piping-confirm-bar').classList.add('visible');
 }
 
 function showContrastPipingInfo() {
   // Placeholder — info modal to be built
+}
+
+function selectPiping(cell, pipingKey, label) {
+  // Remove all selected states and tick divs
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  cell.classList.add('selected');
+  const tick = document.createElement('div');
+  tick.className = 'swatch-tick';
+  tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+  cell.appendChild(tick);
+  currentPiping = pipingKey;
+
+  // Update 3D image for Cavalry selection
+  const mainImg = document.getElementById('main-img');
+  if (pipingKey === 'sr-cavalry' && mainImg) {
+    mainImg.src = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Strombolil_Piping_SR_Cavalry.png';
+  } else if (pipingKey === 'same' && mainImg) {
+    mainImg.src = largeSofaStromboliSrc;
+  }
+
+  document.getElementById('piping-confirm-bar').classList.add('visible');
+}
+
+function confirmPiping() {
+  document.getElementById('piping-confirm-bar').classList.remove('visible');
+  closePipingDrawer();
+}
+
+function backToPipingFabric() {
+  // Close piping drawer instantly
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.classList.remove('visible');
+  pipingOverlay.classList.remove('open');
+  document.getElementById('piping-confirm-bar').classList.remove('visible');
+
+  // Re-show fabric drawer instantly — bypass openDrawer to avoid slideIn animation
+  const fabricOverlay = document.getElementById('fabric-drawer');
+  const fabricDrawer = fabricOverlay.querySelector('.drawer');
+  if (fabricDrawer) fabricDrawer.style.animation = 'none';
+  fabricOverlay.classList.add('open');
+  document.getElementById('fabric-confirm-bar').classList.add('visible');
+  // Re-enable animation after paint so future opens still slide
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      if (fabricDrawer) fabricDrawer.style.animation = '';
+    });
+  });
+}
+
+function closePipingDrawer() {
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.classList.remove('visible');
+  // Wait for fade-out before hiding
+  setTimeout(function() {
+    pipingOverlay.classList.remove('open');
+    document.getElementById('piping-confirm-bar').classList.remove('visible');
+  }, 160);
+}
+
+function resetPipingState() {
+  currentPiping = 'same';
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  const sameCell = document.getElementById('piping-swatch-same');
+  if (sameCell) {
+    sameCell.classList.add('selected');
+    const tick = document.createElement('div');
+    tick.className = 'swatch-tick';
+    tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+    sameCell.appendChild(tick);
+  }
+}
+
+function resetPiping() {
+  resetPipingState();
+  // Revert 3D to Stromboli
+  const mainImg = document.getElementById('main-img');
+  if (mainImg) mainImg.src = largeSofaStromboliSrc;
 }
 
 function confirmSize() {
@@ -1132,7 +1233,191 @@ function switchMain(type, el) {
   </div>
 </div>
 
+<!-- CONTRAST PIPING DRAWER -->
+<div class="piping-drawer-overlay" id="piping-drawer">
+  <div class="drawer">
+    <div class="drawer-header" style="position:relative;">
+      <button class="drawer-reset" onclick="resetPiping()">Reset</button>
+      <span class="drawer-title" style="flex:1;text-align:center;">Choose contrast piping</span>
+      <button class="drawer-close" onclick="closePipingDrawer()" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-filters">
+      <div class="filter-dropdown-wrap">
+        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
+          <div class="filter-label">Colours</div>
+          <div class="filter-value"><div class="filter-dot-selected" id="piping-colour-dot-selected"></div><span id="piping-colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+        </div>
+        <div class="colour-dropdown-panel" id="piping-colour-panel">
+          <div class="colour-search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search fabric colours" id="piping-colour-search-input" oninput="">
+          </div>
+          <div class="colour-list" id="piping-colour-list">
+            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <div class="filter-label">Fabrics</div>
+        <div class="filter-value"><div class="filter-fabric-swatch" id="piping-fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="piping-fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+      </div>
+    </div>
+    <div class="drawer-body" style="padding:0;overflow-y:auto;flex:1;">
+
+      <!-- Same as current body fabric — Stromboli pre-selected -->
+      <div class="fabric-section" style="padding-bottom:10px;">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Same as current body fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <div class="swatch-grid">
+          <div class="swatch-cell selected" id="piping-swatch-same" onclick="selectPiping(this, 'same', 'Stain Resistant Plush Velvet - Stromboli')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant House Fabric -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant House Fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-1', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-2', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-cavalry', 'Stain Resistant House Fabric - Cavalry')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Plush Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£172)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-1', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-2', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-3', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-4', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-5', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Easy Clean Matte Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-1', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-2', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-3', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-4', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Moleskin Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-1', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-2', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-3', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-4', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Vintage Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Vintage Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-1', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-2', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- PIPING CONFIRM BAR -->
+    <div class="confirm-bar" id="piping-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmPiping()"><span class="calibre-fix">Confirm</span></button>
+        <button class="confirm-btn-secondary" onclick="backToPipingFabric()"><span class="calibre-fix">Back</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- GALLERY OVERLAY -->
+
 <div id="gallery-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
 
   <!-- Close button -->

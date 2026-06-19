@@ -556,7 +556,26 @@
     font-size: 16px;
     color: var(--dark);
   }
-  /* ── DRAWER OVERLAY ── */
+  /* ── PIPING DRAWER OVERLAY — fade in/out, no slide ── */
+  .piping-drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 101;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .piping-drawer-overlay.open {
+    display: flex;
+  }
+  .piping-drawer-overlay.visible {
+    opacity: 1;
+  }
+  .piping-drawer-overlay .drawer {
+    animation: none;
+  }
   .drawer-overlay {
     display: none;
     position: fixed;
