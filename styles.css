@@ -1631,7 +1631,7 @@
 
 .why-we-love-section {
   max-width: 1440px;
-  margin: 60px auto 80px;
+  margin: 110px auto 80px;
   padding: 0 50px;
 }
 
@@ -1684,6 +1684,22 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--mid);
+}
+
+/* ── WHY WE LOVE IT — scroll fade-in ── */
+.wwl-fade {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.wwl-fade.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.wwl-fade--delay1 { transition-delay: 0.2s; }
+.wwl-fade--delay2 { transition-delay: 0.45s; }
+@media (prefers-reduced-motion: reduce) {
+  .wwl-fade { opacity: 1; transform: none; transition: none; }
 }
 
 
@@ -1836,21 +1852,26 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 13px 20px;
   border: none;
-  border-radius: 40px;
-  background: #fff;
+  border-radius: 24px;
+  background: #F2F2F2;
   cursor: pointer;
   font-family: var(--font-tiempos);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 23px;
   color: var(--dark);
 }
 .fav-swatch-btn img {
   width: 20px;
   height: 20px;
   display: block;
+}
+.fav-swatch-btn .fav-swatch-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  object-fit: cover;
 }
 
 /* caption + arrows */
@@ -2324,7 +2345,7 @@
   width: 433px;
   max-width: 100%;
   min-height: 50px;
-  padding: 0 24px;
+  padding: 14px 24px;
   border: 1px solid #000;
   border-radius: 4px;
   background: #fff;
@@ -2334,6 +2355,15 @@
   letter-spacing: 0.98px;
   text-transform: uppercase;
   color: #020202;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.fw-btn:hover {
+  background: #020202;
+  color: #fff;
+  border-color: #020202;
 }
 
 
@@ -2485,7 +2515,7 @@
   width: 433px;
   max-width: 100%;
   min-height: 50px;
-  padding: 0 24px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2495,16 +2525,26 @@
   font-size: 14px;
   letter-spacing: 0.98px;
   text-transform: uppercase;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 .showroom-btn--primary {
   background: #020202;
   color: #fff;
   border: 1px solid #020202;
 }
+.showroom-btn--primary:hover {
+  background: #444;
+  border-color: #444;
+}
 .showroom-btn--secondary {
   background: #fff;
   color: #020202;
   border: 1px solid #000;
+}
+.showroom-btn--secondary:hover {
+  background: #020202;
+  color: #fff;
+  border-color: #020202;
 }
 .showrooms-image {
   width: 773px;
@@ -2581,15 +2621,17 @@
 
 /* footer (reuses .confirm-bar chrome) */
 .finish-footer { padding: 20px 80px 24px; }
-.finish-footer-row { display: flex; gap: 12px; align-items: stretch; }
+.finish-footer-row { display: flex; gap: 12px; align-items: center; }
 .finish-back {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: #fff;
   border: 1px solid #C5C5C5;
   border-radius: 4px;
   height: 50px;
+  line-height: 50px;
   padding: 0 26px;
   font-family: var(--font-calibre);
   font-size: 14px;
@@ -2597,6 +2639,12 @@
   text-transform: uppercase;
   color: var(--dark);
   cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.finish-back:hover {
+  background: #020202;
+  color: #fff;
+  border-color: #020202;
 }
 .finish-action {
   flex: 1;
@@ -2604,16 +2652,22 @@
   border: 1px solid #020202;
   border-radius: 4px;
   height: 50px;
+  line-height: 50px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-calibre);
   font-size: 14px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: #020202;
   cursor: pointer;
-  transition: opacity 0.15s;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 .finish-action.is-add { background: #020202; color: #fff; border-color: #020202; }
-.finish-action:hover { opacity: 0.85; }
+.finish-action:not(.is-add):hover { background: #020202; color: #fff; }
+.finish-action.is-add:hover { background: #444; border-color: #444; }
 
 /* closed-state summary on the configurator row */
 #selector-finish { align-items: flex-start; }

@@ -18,11 +18,11 @@
     4. PDP — CONFIGURATOR   (LEFT: product image / RIGHT: selectors, price, CTA)
     5. MORE FROM THIS RANGE — CAROUSEL
     6. WHY WE LOVE IT
-    7. OUR FAVOURITE FABRICS   (2-slide fabric carousel — Gingersnap / Jean)
+    7. OUR FAVOURITE FABRICS
     8. SOFA DIMENSIONS        (Sofa Specifications 1/3 — static "Seat" state)
     9. THE SOFA BUILD         (Sofa Specifications 2/3)
    10. HOW THE SOFA SITS      (Sofa Specifications 3/3 — video deferred)
-   11. WHY CHOOSE             (full-width looping product video)
+   11. WHY CHOOSE             (hero — still image stands in for the video)
    12. FINANCE & WARRANTY
    13. REASONS WHY            (accordion — row 1 open; expand logic + rows 2-5 copy to come)
    14. VISIT OUR SHOWROOMS
@@ -30,11 +30,10 @@
   DRAWERS / OVERLAYS (markup below the page; logic in SCRIPTS):
     SIZE DRAWER · FOOT DRAWER · FABRIC DRAWER
     CONTRAST PIPING DRAWER (mirrors FABRIC DRAWER) · GALLERY OVERLAY
-    CONTRAST PIPING INFO MODAL · LOCATION DRAWER · FINISHING TOUCHES DRAWER
+    CONTRAST PIPING INFO MODAL · LOCATION DRAWER
 
   SCRIPTS (one consolidated block at the foot of the page, divided by feature):
     CONFIGURATOR · CAROUSEL · GALLERY · LOCATION
-    OUR FAVOURITE FABRICS (carousel) · FINISHING TOUCHES · MICRO-ANIMATIONS
 
   HOW TO EDIT ONE FEATURE
     • Search its NAME in CAPS to jump to its markup.
@@ -205,7 +204,7 @@
 
       <!-- Price Row -->
       <div class="price-row">
-        <div class="dimensions-link">
+        <div class="dimensions-link" role="button" tabindex="0" onclick="document.getElementById('sofa-dimensions').scrollIntoView({behavior:'smooth',block:'start'})" onkeydown="if(event.key==='Enter'){document.getElementById('sofa-dimensions').scrollIntoView({behavior:'smooth',block:'start'})}" style="cursor:pointer;">
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.3488 20.0342C20.6057 20.0342 20.814 20.2424 20.814 20.4993C20.814 20.7276 20.6494 20.9175 20.4324 20.9569L20.3488 20.9644H5.46512C5.20824 20.9644 5 20.7562 5 20.4993C5 20.271 5.16454 20.0811 5.38151 20.0417L5.46512 20.0342H20.3488Z" fill="#242726"/><path d="M17.8234 9.1748C18.0289 9.1748 18.1955 9.3414 18.1955 9.5469C18.1955 9.72671 18.0679 9.87674 17.8984 9.91143L17.8234 9.91899H7.59084C7.38534 9.91899 7.21875 9.7524 7.21875 9.5469C7.21875 9.36708 7.3463 9.21706 7.51585 9.18236L7.59084 9.1748H17.8234Z" fill="#242726"/><path d="M16.4566 8.07834C16.5701 7.9389 16.7638 7.90309 16.9172 7.98323L16.9801 8.02472L18.3228 9.11792C18.5619 9.31254 18.5979 9.6641 18.4032 9.90314L18.3617 9.9486L18.3351 9.97324L16.9883 11.1359C16.8327 11.2702 16.5978 11.253 16.4635 11.0974C16.346 10.9613 16.3445 10.7644 16.4502 10.6273L16.502 10.5726L17.68 9.55437L16.5102 8.60182C16.3708 8.48829 16.335 8.29466 16.4151 8.14126L16.4566 8.07834Z" fill="#242726"/><path d="M8.95898 8.31348L7.61626 9.40668C7.53658 9.47156 7.52457 9.58874 7.58945 9.66842C7.59632 9.67686 7.60391 9.68468 7.61215 9.69179L8.95898 10.8545" stroke="#242726" stroke-width="0.8" stroke-linecap="round"/><path d="M5.46484 20.4996V6" stroke="#242726" stroke-linecap="round"/><path d="M20.3496 20.4996V6" stroke="#242726" stroke-linecap="round"/></svg>
           Sofa Dimensions
         </div>
@@ -337,9 +336,9 @@
 <section class="why-we-love-section" aria-label="Why we love it">
 
   <div class="why-we-love-intro">
-    <p class="why-we-love-eyebrow">The Knightsbridge Range</p>
-    <h2 class="why-we-love-title">Why we love it</h2>
-    <p class="why-we-love-text">Featuring sharp, clean lines, streamlined proportions, and simple tapered legs, the Knightsbridge exudes a polished, refined presence. Plush piped cushions and supportive lumbar pillows add comfort without compromising the sofa&rsquo;s structured, tailored look.</p>
+    <p class="why-we-love-eyebrow wwl-fade">The Knightsbridge Range</p>
+    <h2 class="why-we-love-title wwl-fade wwl-fade--delay1">Why we love it</h2>
+    <p class="why-we-love-text wwl-fade wwl-fade--delay2">Featuring sharp, clean lines, streamlined proportions, and simple tapered legs, the Knightsbridge exudes a polished, refined presence. Plush piped cushions and supportive lumbar pillows add comfort without compromising the sofa&rsquo;s structured, tailored look.</p>
   </div>
 
   <!-- Placeholder until the product video is supplied -->
@@ -406,7 +405,7 @@
             <p class="fav-fabric-colour">Gingersnap</p>
             <p class="fav-fabric-desc">Deep, saturated, endlessly inviting. Cotton velvet catches the light through the day moody in the evening, rich and warm by afternoon sun.</p>
             <button class="fav-swatch-btn" type="button">
-              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Swatch.svg" alt="" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png" alt="Velvet Gingersnap swatch" class="fav-swatch-img">
               <span>Order this free swatch</span>
             </button>
           </div>
@@ -452,7 +451,7 @@
             <p class="fav-fabric-colour">Jean</p>
             <p class="fav-fabric-desc">Soft enough to fool you into thinking it&rsquo;s cotton, tough enough that you&rsquo;ll stop worrying about spills. Beautifully, warm, relaxed comfort from day one.</p>
             <button class="fav-swatch-btn" type="button">
-              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Swatch.svg" alt="" aria-hidden="true">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Jean.jpg" alt="Cotton Jean swatch" class="fav-swatch-img">
               <span>Order this free swatch</span>
             </button>
           </div>
@@ -499,7 +498,7 @@
     • Link icons  — jonny-assets/knightsbridge-pdp__dimensions--icon-download.png / --icon-print.png
     • Chevron     — DropdownArrow.svg (shared)
 -->
-<section class="dim-section" aria-label="Sofa dimensions">
+<section class="dim-section" id="sofa-dimensions" aria-label="Sofa dimensions">
 
   <!-- LEFT: size selector + dimensions table + caption + actions -->
   <div class="dim-info">
@@ -779,8 +778,7 @@
   </div>
 
   <div class="reason">
-    <!-- TODO: glasses / spectacles icon not yet committed to repo — placeholder. Swap for an <img class="reason-icon"> once the asset lands. -->
-    <span class="reason-icon reason-icon--placeholder" aria-hidden="true"></span>
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/DedicatedService.png" alt="" aria-hidden="true">
     <div class="reason-main">
       <div class="reason-text">
         <p class="reason-title">Dedicated personal service</p>
@@ -2644,6 +2642,21 @@ function ftRenderSummary() {
     void img.offsetWidth;                    // restart the animation
     img.classList.add('img-ease');
   });
+})();
+
+// ════ WHY WE LOVE IT — scroll fade-in ════
+(function () {
+  const els = document.querySelectorAll('.wwl-fade');
+  if (!els.length) return;
+  const obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  els.forEach(function (el) { obs.observe(el); });
 })();
 </script>
 
