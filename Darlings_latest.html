@@ -7,20 +7,56 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!--
+  ============================================================
+  KNIGHTSBRIDGE PDP — PROTOTYPE  ·  Darlings of Chelsea
+  ------------------------------------------------------------
+  PAGE SECTIONS (document order):
+    1. ANNOUNCEMENT BANNER
+    2. NAV
+    3. BREADCRUMB
+    4. PDP — CONFIGURATOR   (LEFT: product image / RIGHT: selectors, price, CTA)
+    5. MORE FROM THIS RANGE — CAROUSEL
+    6. WHY WE LOVE IT
+    7. OUR FAVOURITE FABRICS   (2-slide fabric carousel — Gingersnap / Jean)
+    8. SOFA DIMENSIONS        (Sofa Specifications 1/3 — static "Seat" state)
+    9. THE SOFA BUILD         (Sofa Specifications 2/3)
+   10. HOW THE SOFA SITS      (Sofa Specifications 3/3 — video deferred)
+   11. WHY CHOOSE             (full-width looping product video)
+   12. FINANCE & WARRANTY
+   13. REASONS WHY            (accordion — row 1 open; expand logic + rows 2-5 copy to come)
+   14. VISIT OUR SHOWROOMS
 
-<!-- ANNOUNCEMENT BANNER -->
+  DRAWERS / OVERLAYS (markup below the page; logic in SCRIPTS):
+    SIZE DRAWER · FOOT DRAWER · FABRIC DRAWER
+    CONTRAST PIPING DRAWER (mirrors FABRIC DRAWER) · GALLERY OVERLAY
+    CONTRAST PIPING INFO MODAL · LOCATION DRAWER · FINISHING TOUCHES DRAWER
+
+  SCRIPTS (one consolidated block at the foot of the page, divided by feature):
+    CONFIGURATOR · CAROUSEL · GALLERY · LOCATION
+    OUR FAVOURITE FABRICS (carousel) · FINISHING TOUCHES · MICRO-ANIMATIONS
+
+  HOW TO EDIT ONE FEATURE
+    • Search its NAME in CAPS to jump to its markup.
+    • Search the same name in the SCRIPTS block for its logic.
+    • All visual rules live in styles.css (search the same name there).
+    • FEATURE-MAP.md = jump-list with line numbers · HANDOVER.md = conventions, placeholders & open work.
+  ============================================================
+-->
+
+<!-- ===== ANNOUNCEMENT BANNER ===== -->
 <div class="banner">
-  <div class="banner-center" style="position:absolute;left:50%;transform:translateX(-50%);font-weight:400;">
+  <div class="banner-center">
     <span class="calibre-fix"><strong style="font-weight:500;">35% off</strong>&nbsp;·&nbsp;Sale Ends in 9 days 13 hours 11 mins</span>
   </div>
   <div class="banner-right">
     <span class="calibre-fix"><a href="#">Tel: 01252 372 949</a></span>
-    <span class="calibre-fix" style="color:var(--mid);">|</span>
+    <span class="calibre-fix">|</span>
     <span class="calibre-fix"><a href="#">Find a Store</a></span>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- ===== NAV ===== -->
 <nav>
   <div class="nav-left">
     <a href="#" class="nav-link">Sofas</a>
@@ -56,10 +92,10 @@
     </div>
   </div>
 </nav>
-<!-- END NAV -->
+<!-- ===== END NAV ===== -->
 <div class="page-wrapper">
 
-  <!-- BREADCRUMB -->
+  <!-- ===== BREADCRUMB ===== -->
   <div class="breadcrumb">
     <a href="#" class="breadcrumb-back">
       <svg width="6" height="10" viewBox="0 0 6 10" fill="none">
@@ -71,13 +107,13 @@
     <span class="calibre-fix">Knightsbridge Range</span>
   </div>
 
-  <!-- TWO COLUMN -->
+  <!-- ===== PDP — CONFIGURATOR (main product block) ===== -->
   <div class="pdp-grid">
 
-    <!-- LEFT: IMAGE -->
+    <!-- ----- LEFT: PRODUCT IMAGE ----- -->
     <div class="image-col">
       <div class="main-image-wrap">
-        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Main_Image.jpg" id="main-img" alt="Knightsbridge Sofa" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Main_Image.jpg" id="main-img" alt="Knightsbridge Sofa">
 
         <div class="image-actions">
           <button class="image-action-btn" aria-label="Expand" onclick="openGallery()"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.29001 16.967C3.43465 17.1116 3.65917 17.1277 3.82156 17.0152L3.87926 16.967L8.13413 12.7121C8.29684 12.5494 8.29684 12.2856 8.13413 12.1229C7.98949 11.9782 7.76497 11.9622 7.60258 12.0747L7.54487 12.1229L3.29001 16.3777C3.12729 16.5405 3.12729 16.8043 3.29001 16.967Z" fill="#242726"/><path d="M3.16797 13.3492V17.089L6.86768 17.0437C7.09778 17.0409 7.28203 16.8521 7.27925 16.622C7.27671 16.4175 7.12724 16.2492 6.93245 16.2163L6.85748 16.2105L4.0013 16.2457V13.3492C4.0013 13.1446 3.85391 12.9745 3.65953 12.9392L3.58464 12.9325C3.38009 12.9325 3.20996 13.0799 3.17468 13.2743L3.16797 13.3492Z" fill="#242726"/><path d="M16.5557 3.78953C16.4111 3.6449 16.1865 3.62882 16.0241 3.74132L15.9664 3.78953L11.7116 8.0444C11.5489 8.20712 11.5489 8.47093 11.7116 8.63365C11.8562 8.77829 12.0807 8.79436 12.2431 8.68187L12.3008 8.63365L16.5557 4.37879C16.7184 4.21607 16.7184 3.95225 16.5557 3.78953Z" fill="#242726"/><path d="M16.6777 7.40224V3.66237L12.978 3.70766C12.7479 3.71048 12.5637 3.8993 12.5665 4.1294C12.569 4.33393 12.7185 4.50224 12.9133 4.53514L12.9882 4.54093L15.8445 4.505L15.8444 7.40224C15.8444 7.60679 15.9918 7.77692 16.1862 7.8122L16.2611 7.81891C16.4656 7.81891 16.6357 7.67151 16.671 7.47714L16.6777 7.40224Z" fill="#242726"/></svg></button>
@@ -86,7 +122,7 @@
         </div>
 
         <button class="swatches-btn">
-          <img id="swatch-btn-thumb" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" alt="Swatch" style="width:20px;height:20px;object-fit:cover;border-radius:3px;flex-shrink:0;">
+          <img id="swatch-btn-thumb" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" alt="Swatch">
           <span class="calibre-fix">Order this free swatch</span>
         </button>
       </div>
@@ -99,14 +135,14 @@
 
       <!-- Thumbnails -->
       <div class="thumbnails">
-        <div class="thumb active" onclick="switchMain('3d', this)" style="cursor:pointer;"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/3dthumb.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="thumb" onclick="switchMain('main', this)" style="cursor:pointer;"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="thumb" onclick="switchMain('main', this)" style="cursor:pointer;"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div class="thumb" onclick="switchMain('main', this)" style="cursor:pointer;"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb3.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="thumb active" onclick="switchMain('3d', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/3dthumb.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb1.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb2.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb3.jpg"></div>
       </div>
     </div>
 
-    <!-- RIGHT: CONFIGURATOR -->
+    <!-- ----- RIGHT: CONFIGURATOR ----- -->
     <div class="config-col">
       <h1 class="product-title">Knightsbridge Range</h1>
       <p class="product-desc">Embodying classic British refinement with a modern sensibility. An ideal sofa for those who appreciate heritage and sophistication.</p>
@@ -114,8 +150,8 @@
       <div class="selectors">
 
         <!-- Fabric -->
-        <div class="selector-row" onclick="openDrawer('fabric-drawer')" style="cursor:pointer;">
-          <div class="selector-thumb"><img id="fabric-selector-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Fabric_GreyGosling.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="selector-row" id="selector-fabric" onclick="openDrawer('fabric-drawer')">
+          <div class="selector-thumb"><img id="fabric-selector-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Fabric_GreyGosling.jpg"></div>
           <div class="selector-text">
             <div class="selector-label">Choose from 125 Fabrics</div>
             <div class="selector-value" id="fabric-selector-value">Choose a fabric</div>
@@ -126,8 +162,8 @@
         </div>
 
         <!-- Size -->
-        <div class="selector-row" onclick="openDrawer('size-drawer')">
-          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Size_MedSofa.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="selector-row" id="selector-size" onclick="openDrawer('size-drawer')">
+          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Size_MedSofa.jpg"></div>
           <div class="selector-text">
             <div class="selector-label">Choose from 8 Sizes</div>
             <div class="selector-value">Choose a size</div>
@@ -138,8 +174,8 @@
         </div>
 
         <!-- Foot Colour -->
-        <div class="selector-row" onclick="openDrawer('foot-drawer')" style="cursor:pointer;">
-          <div class="selector-thumb round" id="foot-thumb-wrap" style="background:#E5E5E5;width:36px;height:36px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:28px;height:28px;object-fit:contain;display:block;"></div>
+        <div class="selector-row" id="selector-foot" onclick="openDrawer('foot-drawer')">
+          <div class="selector-thumb round" id="foot-thumb-wrap"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png"></div>
           <div class="selector-text">
             <div class="selector-label">Choose Foot Colour</div>
             <div class="selector-value" id="foot-selector-value">Choose a foot colour</div>
@@ -150,14 +186,15 @@
         </div>
 
         <!-- Finishing Touches -->
-        <div class="selector-row">
-          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Extras_CushionFilling.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="selector-row" id="selector-finish" onclick="openFinishDrawer()">
+          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Extras_CushionFilling.jpg"></div>
           <div class="selector-text">
             <div class="selector-label">
               Add Finishing Touches
               <span class="optional-pill">optional</span>
             </div>
             <div class="selector-value">Cushion fillings and more</div>
+            <div class="finish-summary"></div>
           </div>
           <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
             <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -193,7 +230,7 @@
           </div>
           <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="#787878" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="bottom-link-row" onclick="openLocationDrawer()" style="cursor:pointer;">
+        <div class="bottom-link-row" onclick="openLocationDrawer()">
           <div class="bottom-link-left">
             <span class="bottom-link-icon"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Store.png" width="28" height="28" style="display:block;"></span>
             View it at one of our showrooms
@@ -205,12 +242,11 @@
     </div>
   </div>
 </div>
-</div>
 
 
 
 
-<!-- MORE FROM THIS RANGE CAROUSEL -->
+<!-- ===== MORE FROM THIS RANGE — CAROUSEL ===== -->
 <section class="range-carousel-section" aria-label="More from this range">
 
   <div class="range-carousel-header">
@@ -290,83 +326,1430 @@
   </div>
 </section>
 
-<!-- SCRIPTS: CAROUSEL -->
+
+<!-- ===== WHY WE LOVE IT ===== -->
+<!--
+  Editorial intro for the range: eyebrow + serif heading + body copy, then a
+  placeholder for the product video. When the real video is ready, replace the
+  contents of .why-we-love-video with the <video>/embed — nothing else changes.
+  Markup here · logic: none · styles in styles.css (search "WHY WE LOVE IT").
+-->
+<section class="why-we-love-section" aria-label="Why we love it">
+
+  <div class="why-we-love-intro">
+    <p class="why-we-love-eyebrow">The Knightsbridge Range</p>
+    <h2 class="why-we-love-title">Why we love it</h2>
+    <p class="why-we-love-text">Featuring sharp, clean lines, streamlined proportions, and simple tapered legs, the Knightsbridge exudes a polished, refined presence. Plush piped cushions and supportive lumbar pillows add comfort without compromising the sofa&rsquo;s structured, tailored look.</p>
+  </div>
+
+  <!-- Placeholder until the product video is supplied -->
+  <div class="why-we-love-video">
+    <span class="calibre-fix">Video coming soon</span>
+  </div>
+
+</section>
+<!-- ===== END WHY WE LOVE IT ===== -->
+
+
+<!-- ===== OUR FAVOURITE FABRICS ===== -->
+<!--
+  Editorial fabric carousel. Each .fav-slide is explicit parallel markup (two
+  rounded cards: left = lifestyle photo + dots overlay, right = fabric panel with
+  overlaid pick tag / heading / colour / description / swatch button; caption +
+  prev/next arrows below). One slide shows at a time; the arrows step (logic in
+  the script block). Dots are per-slide indicators, so their active state is baked
+  into each slide. Add fabric N by appending another .fav-slide + a matching dot.
+  Markup here · styles in styles.css (search "OUR FAVOURITE FABRICS").
+
+  ASSETS (jonny-assets/)
+    SLIDE 1 · Gingersnap
+      • Photo  — knightsbridge-pdp__fabrics--lifestyle-velvet-amber-chair.png (clean 887x582)
+      • Video  — knightsbridge-pdp__fabrics--swatch-velvet-gingersnap-video.mp4 (object-fit: cover)
+      • Poster — knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png
+    SLIDE 2 · Jean
+      • Photo  — knightsbridge-pdp__fabrics--lifestyle-cotton-jean-image.png
+      • Video  — knightsbridge-pdp__fabrics--swatch-cotton-jean-video.mp4
+                 (interim/watermarked stock clip — fine for prototype; object-fit: cover)
+      • Panel  — .fav-panel--jean denim kept as fallback colour behind the video
+      • Caption — placeholder (TODO: real model / piping / feet)
+    Shared — Swatch.svg · Carosel_*(active).svg
+-->
+<section class="fav-section" aria-label="Our favourite fabrics">
+
+  <div class="fav-head">
+    <p class="fav-eyebrow">The Knightsbridge in</p>
+    <h2 class="fav-title">Our Favourite Fabrics</h2>
+  </div>
+
+  <div class="fav-carousel">
+
+    <!-- ── SLIDE 1 · Gingersnap ───────────────────────────────────── -->
+    <div class="fav-slide is-active" data-fav-slide="0">
+
+      <div class="fav-cards">
+        <div class="fav-photo">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-velvet-amber-chair.png"
+               alt="Knightsbridge Love Seat in ginger velvet, styled in a period room" loading="lazy">
+          <div class="fav-dots">
+            <span class="fav-dot is-active"></span>
+            <span class="fav-dot"></span>
+          </div>
+        </div>
+        <div class="fav-panel">
+          <video class="fav-panel-media"
+                 src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap-video.mp4"
+                 poster="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png"
+                 autoplay muted loop playsinline aria-hidden="true"></video>
+          <div class="fav-panel-content">
+            <span class="fav-tag">Darlings Pick</span>
+            <h3 class="fav-fabric-name">Stain Resistant<br>Cotton Velvet</h3>
+            <p class="fav-fabric-colour">Gingersnap</p>
+            <p class="fav-fabric-desc">Deep, saturated, endlessly inviting. Cotton velvet catches the light through the day moody in the evening, rich and warm by afternoon sun.</p>
+            <button class="fav-swatch-btn" type="button">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Swatch.svg" alt="" aria-hidden="true">
+              <span>Order this free swatch</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fav-caption-row">
+        <div class="fav-caption">
+          <div class="info-circle">i</div>
+          <p class="fav-caption-text"><span class="fav-caption-strong">The Knightsbridge Love Seat</span> in Stain Resistant Plush Velvet Ginger Snap with Linen Look Velvet Loch Contrast Piping with Dark Oak Feet.</p>
+        </div>
+        <div class="fav-arrows">
+          <button class="fav-arrow fav-arrow--prev" type="button" aria-label="Previous fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(active).svg" alt=""></button>
+          <button class="fav-arrow fav-arrow--next" type="button" aria-label="Next fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt=""></button>
+        </div>
+      </div>
+
+    </div>
+    <!-- ── END SLIDE 1 ── -->
+
+    <!-- ── SLIDE 2 · Jean ─────────────────────────────────────────── -->
+    <div class="fav-slide" data-fav-slide="1">
+
+      <div class="fav-cards">
+        <div class="fav-photo">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-cotton-jean-image.png"
+               alt="Knightsbridge sofa in Soft As Cotton Jean, styled in a bright living room" loading="lazy">
+          <div class="fav-dots">
+            <span class="fav-dot"></span>
+            <span class="fav-dot is-active"></span>
+          </div>
+        </div>
+        <!-- Interim Jean swatch clip (prototype): watermark/res aren't a concern
+             for now — object-fit: cover frames it to the panel. The .fav-panel--jean
+             denim stays as the load/fallback colour behind it. -->
+        <div class="fav-panel fav-panel--jean">
+          <video class="fav-panel-media"
+                 src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-cotton-jean-video.mp4"
+                 autoplay muted loop playsinline aria-hidden="true"></video>
+          <div class="fav-panel-content">
+            <span class="fav-tag">Best Seller</span>
+            <h3 class="fav-fabric-name">Stain Resistant<br>Soft As Cotton</h3>
+            <p class="fav-fabric-colour">Jean</p>
+            <p class="fav-fabric-desc">Soft enough to fool you into thinking it&rsquo;s cotton, tough enough that you&rsquo;ll stop worrying about spills. Beautifully, warm, relaxed comfort from day one.</p>
+            <button class="fav-swatch-btn" type="button">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Swatch.svg" alt="" aria-hidden="true">
+              <span>Order this free swatch</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fav-caption-row">
+        <div class="fav-caption">
+          <div class="info-circle">i</div>
+          <!-- TODO: confirm full caption from Jonny (exact model / contrast piping /
+               feet for the Jean lifestyle shot). Minimal placeholder for now. -->
+          <p class="fav-caption-text"><span class="fav-caption-strong">The Knightsbridge</span> in Stain Resistant Soft As Cotton Jean.</p>
+        </div>
+        <div class="fav-arrows">
+          <button class="fav-arrow fav-arrow--prev" type="button" aria-label="Previous fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(active).svg" alt=""></button>
+          <button class="fav-arrow fav-arrow--next" type="button" aria-label="Next fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt=""></button>
+        </div>
+      </div>
+
+    </div>
+    <!-- ── END SLIDE 2 ── -->
+
+  </div>
+
+</section>
+<!-- ===== END OUR FAVOURITE FABRICS ===== -->
+
+
+<!-- ===== SOFA DIMENSIONS ===== -->
+<!--
+  First of the three Sofa Specifications sub-sections (Dimensions / Build /
+  How it sits). Two columns: left = size dropdown + dimensions table + caption +
+  download/print; right = annotated sofa render with a centred External / Arms /
+  Seat control beneath it.
+
+  Static "Seat" state only. The External/Arms/Seat control and the size dropdown
+  are presentational — switching logic is a later task and is intentionally NOT
+  wired (no onclick handlers added to the script block).
+  Markup here · styles in styles.css (search "SOFA DIMENSIONS").
+
+  ASSETS
+    • Sofa render — jonny-assets/knightsbridge-pdp__dimensions--sofa-annotated.png
+                    (596x472; leader lines + H/K/F pills baked in for the Seat state)
+    • Link icons  — jonny-assets/knightsbridge-pdp__dimensions--icon-download.png / --icon-print.png
+    • Chevron     — DropdownArrow.svg (shared)
+-->
+<section class="dim-section" aria-label="Sofa dimensions">
+
+  <!-- LEFT: size selector + dimensions table + caption + actions -->
+  <div class="dim-info">
+    <h2 class="dim-title">Sofa Dimensions</h2>
+
+    <div class="dim-select">
+      <span>Knightsbridge Medium Sofa</span>
+      <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/DropdownArrow.svg" alt="" aria-hidden="true">
+    </div>
+
+    <table class="dim-table">
+      <tbody>
+        <tr>
+          <th class="dim-row-label" scope="row">External (cm)</th>
+          <td>A 213</td><td>B 95</td><td>C 95</td>
+        </tr>
+        <tr class="dim-row-hl">
+          <th class="dim-row-label" scope="row">Seat (cm)</th>
+          <td>H 187</td><td>K 60</td><td>F 56</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Arm (cm)</th>
+          <td>J14</td><td></td><td>G 86</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Legs (cm)</th>
+          <td></td><td></td><td>D 20</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Frame Height (exc. feet)</th>
+          <td></td><td></td><td>P 62</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="dim-note">Measurements may vary by up to 3-5%</p>
+
+    <div class="dim-actions">
+      <button class="dim-action" type="button">
+        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-download.png" alt="" aria-hidden="true">
+        <span>Download</span>
+      </button>
+      <button class="dim-action" type="button">
+        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-print.png" alt="" aria-hidden="true">
+        <span>Print</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- RIGHT: annotated render + view control (Seat active) -->
+  <div class="dim-visual">
+    <img class="dim-sofa"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--sofa-annotated.png"
+         alt="Knightsbridge Medium Sofa with seat dimensions: height 187cm, seat depth 60cm, seat height 56cm" loading="lazy">
+    <div class="dim-tabs" role="tablist" aria-label="Dimension view">
+      <span class="dim-tab">External</span>
+      <span class="dim-tab">Arms</span>
+      <span class="dim-tab is-active">Seat</span>
+    </div>
+  </div>
+
+</section>
+<!-- ===== END SOFA DIMENSIONS ===== -->
+
+
+<!-- ===== THE SOFA BUILD ===== -->
+<!--
+  Second Sofa Specifications sub-section. Mirror of Sofa Dimensions: annotated
+  cutaway image on the LEFT, numbered build list on the RIGHT.
+  Markup here · styles in styles.css (search "THE SOFA BUILD").
+
+  ASSETS
+    • Cutaway — jonny-assets/knightsbridge-pdp__build--exploded-diagram.png
+                (770x577; 1-5 callouts + Darlings' Lifetime badge baked in.
+                 mix-blend-multiply matches the Figma frame on the white page.)
+-->
+<section class="build-section" aria-label="The sofa build">
+
+  <img class="build-sofa"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__build--exploded-diagram.png"
+       alt="Cutaway of the Knightsbridge sofa showing its hardwood frame, feet, stabiliser bars, webbing and foam-core cushions" loading="lazy">
+
+  <div class="build-list">
+    <div class="build-intro">
+      <h2 class="build-title">The Sofa Build</h2>
+      <p class="build-lead">A sustainably sourced hard-wood frame.</p>
+    </div>
+    <ol class="build-steps">
+      <li class="build-step">
+        <span class="build-num">1.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Traditional hard-wood construction.</p>
+          <p class="build-step-desc">Pinned, screwed and glued</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">2.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Solid wood feet</p>
+          <p class="build-step-desc">Includes a choice of wood colour finishes</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">3.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Stabiliser Bars</p>
+          <p class="build-step-desc">Providing extra support for the sofa</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">4.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Traditionally fixed upholstery webbing</p>
+          <p class="build-step-desc">For maximum seating comfort/support</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">5.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Foam Core Cushions with microfibre wrap.</p>
+          <p class="build-step-desc">Comfort and support. Springs back into shape. Some pluming required.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+</section>
+<!-- ===== END THE SOFA BUILD ===== -->
+
+
+<!-- ===== HOW THE SOFA SITS ===== -->
+<!--
+  Third Sofa Specifications sub-section. Copy on the LEFT; video thumbnail with
+  a Sophie / Amanda / Chris switcher beneath it on the RIGHT.
+
+  The switcher is presentational (Sophie active) and the video is a static
+  thumbnail — play/switch logic is a later task, intentionally NOT wired.
+  (The Figma frame layers the switcher behind the video; the flattened PDF
+  confirms it sits below, matching the Sofa Dimensions tabs.)
+  Markup here · styles in styles.css (search "HOW THE SOFA SITS").
+
+  ASSETS
+    • Video still — jonny-assets/knightsbridge-pdp__how-it-sits--video-thumbnail.png
+                    (773x516; play button + rounded corners baked in)
+-->
+<section class="sits-section" aria-label="How the sofa sits">
+
+  <div class="sits-copy">
+    <h2 class="sits-title">How the Sofa Sits</h2>
+    <p class="sits-text">We&rsquo;ve filmed three people of varying heights sitting in this exact sofa in order to give you a better idea of how the experience might feel.</p>
+  </div>
+
+  <div class="sits-media">
+    <div class="sits-video">
+      <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__how-it-sits--video-thumbnail.png"
+           alt="Woman seated on the Knightsbridge sofa in a styled room" loading="lazy">
+    </div>
+    <div class="sits-people" aria-label="Choose a person">
+      <span class="sits-person is-active">Sophie: 5&rsquo; 3&rdquo;</span>
+      <span class="sits-person">Amanda: 5&rsquo; 8&rdquo;</span>
+      <span class="sits-person">Chris 6&rsquo; 2&rdquo;</span>
+    </div>
+  </div>
+
+</section>
+<!-- ===== END HOW THE SOFA SITS ===== -->
+
+
+<!-- ===== WHY CHOOSE ===== -->
+<!--
+  Full-width hero banner: media background (1340x674, rounded) with centred
+  white overlay copy. This is only the hero — the trust columns and the
+  finance / warranty / handcrafted cards from the design are separate frames.
+
+  Hero background is the looping product video (autoplay / muted / loop /
+  playsinline). The pattern-cutting still (exact 1340x674) is wired as the
+  <video> poster — shown before the video paints and as a fallback. The overlay
+  is unchanged.
+  Markup here · styles in styles.css (search "WHY CHOOSE").
+
+  ASSETS
+    • Video  — jonny-assets/knightsbridge-pdp__why-darlings-video.mp4
+    • Poster — jonny-assets/knightsbridge-pdp__trust--handcrafted-pattern-cutting.png
+-->
+<section class="why-choose-section" aria-label="Why choose Darlings">
+  <div class="why-choose-hero">
+    <video class="why-choose-media"
+           src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__why-darlings-video.mp4"
+           poster="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--handcrafted-pattern-cutting.png"
+           autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="why-choose-overlay">
+      <h2 class="why-choose-title">Why choose Darlings?</h2>
+      <p class="why-choose-text">We craft every sofa by hand in the UK, and we&rsquo;ve been doing it for over 20 years. Here&rsquo;s why thousands trust Darlings to get it right.</p>
+    </div>
+  </div>
+</section>
+<!-- ===== END WHY CHOOSE ===== -->
+
+
+<!-- ===== FINANCE & WARRANTY ===== -->
+<!--
+  Two equal cards: Finance (left) and Warranty (right). Each is image → heading
+  → body → outlined button. Buttons are presentational (no onclick) — calculator
+  / find-out-more links are a later task.
+  Markup here · styles in styles.css (search "FINANCE & WARRANTY").
+
+  ASSETS
+    • Finance image  — jonny-assets/knightsbridge-pdp__trust--handcrafted-interior-dark.png (660x313)
+    • Warranty image — jonny-assets/knightsbridge-pdp__trust--warranty-spill-red-wine.png (655x313)
+-->
+<section class="fw-section" aria-label="Finance and warranty">
+
+  <div class="fw-card">
+    <img class="fw-image"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--handcrafted-interior-dark.png"
+         alt="A Darlings sofa in a dark, panelled interior" loading="lazy">
+    <h3 class="fw-title">0% Interest-free Finance Available</h3>
+    <p class="fw-text">Available both in-store and online for orders over &pound;500, it&rsquo;s a simple and convenient way to manage your payments.</p>
+    <button class="fw-btn" type="button">Try our calculator</button>
+  </div>
+
+  <div class="fw-card">
+    <img class="fw-image"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--warranty-spill-red-wine.png"
+         alt="A hand reaching for a tipped glass of red wine spilling onto a sofa" loading="lazy">
+    <h3 class="fw-title">5-year Extended Warranty</h3>
+    <p class="fw-text">Add an extended warranty protection to cover everything from spills to accidental damage.</p>
+    <button class="fw-btn" type="button">Find out more</button>
+  </div>
+
+</section>
+<!-- ===== END FINANCE & WARRANTY ===== -->
+
+
+<!-- ===== REASONS WHY ===== -->
+<!--
+  Left lifestyle image + right 5-row accordion. STATIC STATE matching the frame:
+  row 1 (Handcrafted in Britain) is expanded with its body copy + minus toggle;
+  rows 2-5 are collapsed (title + plus toggle). The +/- toggles are presentational
+  (no onclick) — expand/collapse JS and the body copy for rows 2-5 are a later task.
+  135px top gap from Finance & Warranty (collapses with that section's 72px bottom).
+  Markup here · styles in styles.css (search "REASONS WHY").
+
+  ASSETS
+    • Left image    — jonny-assets/knightsbridge-pdp__fabrics--lifestyle-tufted-blue.png (453x472)
+    • Row icons     — dimensions--icon-sofa-outline / dimensions--icon-tape-measure /
+                      trust--icon-delivery / trust--icon-guarantee  (60x60)
+    • Row 3 icon    — MISSING (glasses): placeholder in place, see TODO below
+-->
+<section class="reasons-section" aria-label="Reasons to choose Darlings">
+
+  <img class="reasons-image"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-tufted-blue.png"
+       alt="A blue tufted Darlings sofa in a styled living room" loading="lazy">
+
+  <div class="reasons-accordion">
+
+  <div class="reason is-open">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-sofa-outline.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Handcrafted in Britain</p>
+        <p class="reason-body">Each sofa is handmade to order in UK workshops using solid hardwood frames and traditional techniques. No shortcuts. No mass production.</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="true" aria-label="Collapse Handcrafted in Britain"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-tape-measure.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Tailored to you</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Tailored to you"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <!-- TODO: glasses / spectacles icon not yet committed to repo — placeholder. Swap for an <img class="reason-icon"> once the asset lands. -->
+    <span class="reason-icon reason-icon--placeholder" aria-hidden="true"></span>
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Dedicated personal service</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Dedicated personal service"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--icon-delivery.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Hassle-free delivery &amp; returns</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Hassle-free delivery & returns"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--icon-guarantee.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Built to last, backed by guarantee</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Built to last, backed by guarantee"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+<!-- ===== END REASONS WHY ===== -->
+
+
+<!-- ===== VISIT OUR SHOWROOMS ===== -->
+<!--
+  Text column (left) + showroom photo (right). Column is bottom-aligned with the
+  image (align-items:flex-end) so the buttons sit on the image's lower edge, as in
+  the frame. 121px top gap from Reasons-Why (collapses with that section's 72px bottom).
+  Location names are underlined links; href="#" are PLACEHOLDERS — swap for real
+  store URLs later. Buttons are presentational (no onclick).
+  Markup here · styles in styles.css (search "VISIT OUR SHOWROOMS").
+
+  ASSET
+    • Photo — jonny-assets/knightsbridge-pdp__showrooms--storefront-customs-house.png (773x536)
+-->
+<section class="showrooms-section" aria-label="Visit our showrooms">
+
+  <div class="showrooms-text">
+    <h2 class="showrooms-title">Visit Our Showrooms</h2>
+    <p class="showrooms-body">Visit one of our showrooms, located in <span class="showrooms-places"><a class="showroom-link" href="#">Parsons Green</a>, <a class="showroom-link" href="#">Birmingham</a>, <a class="showroom-link" href="#">Surrey</a> and <a class="showroom-link" href="#">Hertford</a></span> where you can enjoy a coffee and browse at your leisure.</p>
+    <p class="showrooms-body">Or alternatively, book a virtual appointment to speak with one of our showroom consultants who can advise you on everything from sofa styles to fabric choices.</p>
+    <div class="showrooms-buttons">
+      <button class="showroom-btn showroom-btn--primary" type="button">Find a Store</button>
+      <button class="showroom-btn showroom-btn--secondary" type="button">Book a Consultation</button>
+    </div>
+  </div>
+
+  <img class="showrooms-image"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__showrooms--storefront-customs-house.png"
+       alt="The Darlings of Chelsea showroom at The Customs House" loading="lazy">
+
+</section>
+<!-- ===== END VISIT OUR SHOWROOMS ===== -->
+
+
+<!-- ===== SIZE DRAWER ===== -->
+<div class="drawer-overlay" id="size-drawer" onclick="closeDrawer('size-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Choose from 8 sizes</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('size-drawer')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="segment-switcher">
+        <div class="segment-switcher-inner">
+          <button class="segment-btn active" onclick="switchSegment(this, 'sofas')">Sofas</button>
+          <button class="segment-btn" onclick="switchSegment(this, 'footstools')">Footstools</button>
+          <button class="segment-btn" onclick="switchSegment(this, 'sofabeds')">Sofa Beds</button>
+        </div>
+      </div>
+
+      <!-- SOFAS PANEL -->
+      <div class="size-panel" id="panel-sofas"><div class="size-grid"><div class="size-cell" onclick="selectSize(this, 'Arm Chair')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png"></div>
+          <div class="size-cell-name">Arm Chair</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,655</span>
+            <span class="size-cell-dims">(W 82cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Love Seat')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png"></div>
+          <div class="size-cell-name">Love Seat</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,880</span>
+            <span class="size-cell-dims">(W 117cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Medium Sofa')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png"></div>
+          <div class="size-cell-name">Medium Sofa</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,455</span>
+            <span class="size-cell-dims">(W 176cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Large Sofa')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20175.png"></div>
+          <div class="size-cell-name">Large Sofa</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,955</span>
+            <span class="size-cell-dims">(W 207cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Large Sofa 1-Arm')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed1.png"></div>
+          <div class="size-cell-name">Large Sofa 1-Arm</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,455</span>
+            <span class="size-cell-dims">(W 184cm  D 88cm)</span>
+          </div>
+        </div>
+
+      </div></div><!-- end size-grid / panel-sofas -->
+
+      <!-- FOOTSTOOLS PANEL -->
+      <div class="size-panel" id="panel-footstools" style="display:none;">
+        <div class="size-grid">
+          <div class="size-cell" onclick="selectSize(this, 'Footstool')">
+            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
+            <div class="size-cell-name">Footstool</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£895</span>
+              <span class="size-cell-dims">(W 80cm  D 80cm)</span>
+            </div>
+          </div>
+          <div class="size-cell" onclick="selectSize(this, 'Large Footstool')">
+            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
+            <div class="size-cell-name">Large Footstool</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£995</span>
+              <span class="size-cell-dims">(W 100cm  D 80cm)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOFA BEDS PANEL -->
+      <div class="size-panel" id="panel-sofabeds" style="display:none;">
+        <div class="size-grid">
+          <div class="size-cell" onclick="selectSize(this, '3-Seater Sofa Bed')">
+            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20188.png"></div>
+            <div class="size-cell-name">3-Seater Sofa Bed</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£3,555</span>
+              <span class="size-cell-dims">(W 135cm  D 88cm)</span>
+            </div>
+          </div>
+          <div class="size-cell" onclick="selectSize(this, '3.5-Seater Sofa Bed')">
+            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed2.png"></div>
+            <div class="size-cell-name">3.5-Seater Sofa Bed</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£3,735</span>
+              <span class="size-cell-dims">(W 156cm  D 88cm)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div><!-- end drawer-body -->
+      <!-- SIZE CONFIRM BAR -->
+      <div class="confirm-bar" id="size-confirm-bar">
+        <div class="confirm-bar-buttons">
+          <button class="confirm-btn-primary" onclick="confirmSize()"><span class="calibre-fix">Confirm</span></button>
+        </div>
+      </div>
+    </div><!-- end drawer -->
+  </div><!-- end drawer-overlay (size-drawer) -->
+
+
+<!-- ===== FOOT DRAWER ===== -->
+<div class="drawer-overlay" id="foot-drawer" onclick="closeDrawer('foot-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Choose foot colour</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('foot-drawer')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+
+      <p class="foot-drawer-intro">A choice of foot styles to enhance or compliment<br>your fabric selection — free of charge.</p>
+
+      <div class="size-grid">
+
+        <div class="size-cell" onclick="selectFoot(this, 'Dark Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Dark Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Light Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Light Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Grey Wash')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Grey Wash</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Medium Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Medium Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Washed Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Washed Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Ebony')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Ebony</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- end drawer-body -->
+    <!-- FOOT CONFIRM BAR -->
+    <div class="confirm-bar" id="foot-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmFoot()"><span class="calibre-fix">Confirm</span></button>
+      </div>
+    </div>
+  </div><!-- end drawer -->
+</div><!-- end drawer-overlay (foot-drawer) -->
+
+
+<!-- ===== FABRIC DRAWER ===== -->
+<div class="drawer-overlay" id="fabric-drawer" onclick="closeDrawer('fabric-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header" style="position:relative;">
+      <button class="drawer-reset" onclick="resetFabric()">Reset</button>
+      <span class="drawer-title">Choose a fabric</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('fabric-drawer')" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-filters">
+      <div class="filter-dropdown-wrap">
+        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
+          <div class="filter-label">Colours</div>
+          <div class="filter-value"><div class="filter-dot-selected" id="colour-dot-selected"></div><span id="colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+        </div>
+                <div class="colour-dropdown-panel" id="colour-panel">
+          <div class="colour-search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search fabric colours" id="colour-search-input" value="Vole" oninput="filterColours(this.value)">
+          </div>
+          <div class="colour-list" id="colour-list">
+            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
+          </div>
+          <div class="colour-results" id="colour-results" style="display:none;">
+            <div class="colour-item" onclick="selectColourResult(this, 'Browns', 'Vole', '#A88F6B')">
+              <div class="colour-dot" style="background:#A88F6B;"></div>
+              <span>Browns › Vole</span>
+            </div>
+          </div>
+        </div></div>
+      <div class="filter-dropdown">
+        <div class="filter-label">Fabrics</div>
+        <div class="filter-value"><div class="filter-fabric-swatch" id="fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+      </div>
+    </div>
+    <div class="filter-results-text" id="filter-results-text"></div>
+    <div class="drawer-body" style="padding:0;overflow-y:auto;">
+      
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant House Fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png">
+          <div class="swatch-tick"><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£172)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png">
+          
+        </div>
+        <div class="swatch-cell" data-fabric="stromboli" data-colour="Stromboli" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Vintage Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          
+        </div>
+        </div>
+      </div>
+      <div id="filtered-results" class="filtered-results" style="display:none;">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Basket Weave</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Basket Weave')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Vole.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FABRIC CONFIRM BAR -->
+    <div class="confirm-bar" id="fabric-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmFabric()"><span class="calibre-fix">Confirm</span></button>
+        <button id="contrast-piping-btn" class="confirm-btn-secondary" onclick="addContrastPiping()">
+          <span class="confirm-optional-pill">optional</span>
+          <span class="calibre-fix">Add Contrast Piping?</span>
+        </button>
+      </div>
+      <div class="confirm-bar-link"><a onclick="showContrastPipingInfo()">What's contrast piping?</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTRAST PIPING DRAWER (mirrors FABRIC DRAWER structure) ===== -->
+<div class="piping-drawer-overlay" id="piping-drawer">
+  <div class="drawer">
+    <div class="drawer-header" style="position:relative;">
+      <button class="drawer-reset" onclick="resetPiping()">Reset</button>
+      <span class="drawer-title">Choose contrast piping</span>
+      <button class="drawer-close" onclick="closePipingDrawer()" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-filters">
+      <div class="filter-dropdown-wrap">
+        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
+          <div class="filter-label">Colours</div>
+          <div class="filter-value"><div class="filter-dot-selected" id="piping-colour-dot-selected"></div><span id="piping-colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+        </div>
+        <div class="colour-dropdown-panel" id="piping-colour-panel">
+          <div class="colour-search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search fabric colours" id="piping-colour-search-input">
+          </div>
+          <div class="colour-list" id="piping-colour-list">
+            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <div class="filter-label">Fabrics</div>
+        <div class="filter-value"><div class="filter-fabric-swatch" id="piping-fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="piping-fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+      </div>
+    </div>
+    <div class="drawer-body" style="padding:0;overflow-y:auto;flex:1;">
+
+      <!-- Same as current body fabric — Stromboli pre-selected -->
+      <div class="fabric-section" style="padding-bottom:10px;">
+        <div class="fabric-section-header" style="margin-bottom:12px;">
+          <span class="fabric-section-name">Same as current body fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <div class="swatch-grid">
+          <div class="swatch-cell selected" id="piping-swatch-same" onclick="selectPiping(this, 'same', 'Stain Resistant Plush Velvet - Stromboli')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant House Fabric -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant House Fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-1', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-2', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-cavalry', 'Stain Resistant House Fabric - Cavalry')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Plush Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£172)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-1', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-2', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-3', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-4', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-5', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Easy Clean Matte Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-1', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-2', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-3', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-4', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Moleskin Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-1', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-2', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-3', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-4', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Vintage Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Vintage Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-1', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-2', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- PIPING CONFIRM BAR -->
+    <!-- Contrast piping selection toast -->
+    <!-- Contrast piping removal toast -->
+    <div class="piping-toast" id="piping-removal-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping removed!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
+    <div class="piping-toast" id="piping-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping added!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
+    <div class="confirm-bar" id="piping-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmPiping()"><span class="calibre-fix">Confirm</span></button>
+        <button class="confirm-btn-secondary" onclick="backToPipingFabric()"><span class="calibre-fix">Back</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GALLERY OVERLAY ===== -->
+
+<div id="gallery-overlay" class="gallery-overlay">
+
+  <!-- Close button -->
+  <button id="gallery-close" class="gallery-close" onclick="closeGallery()" aria-label="Close gallery">
+    <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/CloseFullScreen.svg" alt="Close">
+  </button>
+
+  <!-- Prev arrow -->
+  <button id="gallery-prev" class="gallery-nav-btn prev" onclick="galleryNav(-1)" aria-label="Previous image">
+    <img id="gallery-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="">
+  </button>
+
+  <!-- Next arrow -->
+  <button id="gallery-next" class="gallery-nav-btn next" onclick="galleryNav(1)" aria-label="Next image">
+    <img id="gallery-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="">
+  </button>
+
+  <!-- Image -->
+  <div class="gallery-stage">
+    <img id="gallery-img" class="gallery-img" src="" alt="">
+
+    <!-- Description -->
+    <p id="gallery-desc" class="gallery-desc"></p>
+
+    <!-- Counter -->
+    <p id="gallery-counter" class="gallery-counter"></p>
+  </div>
+</div>
+
+
+<!-- ===== CONTRAST PIPING INFO MODAL ===== -->
+<!-- Opened from the fabric drawer confirm bar: "What's contrast piping?" -->
+<div id="piping-info-modal" class="info-modal" onclick="if (event.target === this) closeContrastPipingInfo()">
+  <div class="info-modal-card">
+    <button class="info-modal-close" onclick="closeContrastPipingInfo()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="#1E1D1E" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <img class="info-modal-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Piping.jpg" alt="Close-up of contrast piping stitched along a sofa edge">
+    <div class="info-modal-body">
+      <h2 class="info-modal-title">Contrast piping</h2>
+      <p class="info-modal-text">Contrast piping is one that has piping stitched along its edges that enhances and emphasises its design. The piping is usually in a different colour to the colour of your sofa, creating a stylish contrast.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LOCATION DRAWER ===== -->
+<div class="location-drawer-overlay" id="location-drawer" onclick="closeLocationDrawer(event)">
+  <div class="location-drawer">
+    <div class="location-drawer-body">
+      <div class="location-drawer-head">
+        <span class="location-drawer-title">View at one of our showrooms</span>
+        <button class="location-close-btn" onclick="closeLocationDrawerDirect()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="location-rows-wrap">
+
+        <!-- Parsons Green -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205.jpg" alt="Parsons Green Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Parsons Green Showroom</div>
+            <div class="location-detail">33 Parsons Green Lane, London, SW6 4HH<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 8pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Surrey -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-1.jpg" alt="Surrey Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Surrey Showroom</div>
+            <div class="location-detail">Station Road West, Ash Vale, Surrey GU12 5Q,<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Hertford -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-2.jpg" alt="Hertford Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Hertford Showroom</div>
+            <div class="location-detail">Gascoyne Way, Hertford, SG13 8EL<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Birmingham -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-3.jpg" alt="Birmingham Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Birmingham Showroom</div>
+            <div class="location-detail">2 The Customs House, Waterside, Dickens Heath, Solihull, B90 1UD<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="location-divider" style="margin-top:24px;"></div>
+
+      <!-- Virtual appointment -->
+      <div class="location-virtual-section">
+        <div class="location-virtual-heading">Not in-store nearby? Try a virtual appointment.</div>
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-4.jpg" alt="Virtual appointment">
+          </div>
+          <div class="location-info">
+            <div class="location-detail">We'll show you around our showroom, compare models and fabrics and address your queries.</div>
+            <button class="location-book-btn"><span class="calibre-fix">BOOK AN APPOINTMENT</span></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== SCRIPTS ===== -->
+<!-- ===== FINISHING TOUCHES DRAWER ===== -->
+<!-- Two-page extras drawer opened from #selector-finish. Pages toggle (.is-active);
+     each .finish-group is single-choice (left=standard pre-selected, right=upgrade).
+     A click sets .is-selected (border) and marks the group .is-touched (shows tick).
+     Footer label flips Skip<->Add per page once any group on it is touched. On close,
+     ftRenderSummary() lists the selected upgrades on the row (pushing the page down).
+     NOTE: drawer is 720px wide (Figma) vs the 504px config drawers — flagged to Jonny.
+     ASSETS to commit (jonny-assets/, exported from Figma): the 8 card line-drawings
+     knightsbridge-pdp__finishing-touches--{cushions-fiber-wrapped,cushions-feather-wrapped,
+     arms-non-removable,arms-removable,arm-caps-none,arm-caps-included,bench-two-cushions,
+     bench-single}.png  (cards hold a fixed-height art slot so layout is stable until they land). -->
+<div class="drawer-overlay" id="finish-drawer" onclick="ftBackdrop(event)">
+  <div class="drawer finish-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Finishing touches (<span id="finish-counter">1</span>/2)</span>
+      <button class="drawer-close finish-close" onclick="ftClose()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+
+      <div class="finish-page is-active" data-page="1">
+        <div class="finish-group" data-summary="Feather cushions" data-price="+£120">
+          <h3 class="finish-group-title">Feather-wrapped cushions</h3>
+          <p class="finish-group-desc">Upgrade to luxury feather-wrapped foam for a softer, more indulgent sit.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--cushions-fiber-wrapped.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Fiber-wrapped</span>
+              <span class="finish-card-sub">Standard (free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--cushions-feather-wrapped.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Feather-wrapped</span>
+              <span class="finish-card-sub">(+£120)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+        <div class="finish-group" data-summary="Removable arms" data-price="+£150">
+          <h3 class="finish-group-title">Removable arms</h3>
+          <p class="finish-group-desc">Adding removable arms makes it easier and lighter to move your sofa and ensure it fits anywhere — now or in the future.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arms-non-removable.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Non removable</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arms-removable.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Removable arms</span>
+              <span class="finish-card-sub">(+£150)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="finish-page" data-page="2">
+        <div class="finish-group" data-summary="Arm Caps" data-price="+free">
+          <h3 class="finish-group-title">Arm Caps</h3>
+          <p class="finish-group-desc">Adding arm caps protects your sofa from any natural oils you may have on your hands or accidental spills. They also protect from natural wear and tear.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arm-caps-none.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">No Arm Caps</span>
+              <span class="finish-card-sub">Standard (free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arm-caps-included.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Include Arm Caps</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+        <div class="finish-group" data-summary="Bench Cushion" data-price="+free">
+          <h3 class="finish-group-title">Bench Cushion</h3>
+          <p class="finish-group-desc">Would you prefer two individual seats or one longer bench-seat cushion?</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--bench-two-cushions.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">2 Cushions</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--bench-single.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Bench Cushion</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="confirm-bar finish-footer visible">
+      <div class="finish-footer-row">
+        <button type="button" class="finish-back" onclick="ftBack()">
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M6 1L1 6l5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <button type="button" class="finish-action" onclick="ftAction()">Skip</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== END FINISHING TOUCHES DRAWER ===== -->
+
 <script>
-(function() {
-  const track = document.getElementById('range-carousel');
-  const btnPrev = document.getElementById('carousel-prev');
-  const btnNext = document.getElementById('carousel-next');
-  if (!track || !btnPrev || !btnNext) return;
+// ════════════════════════════════════════════════════════════
+// SHARED
+// ════════════════════════════════════════════════════════════
+const CAPTIONS = {
+  pearl:            'The Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.',
+  stromboli:        'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.',
+  stromboliCavalry: 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Stain Resistant House Fabric Cavalry Contrast Piping and Dark Oak Feet.'
+};
 
-  let index = 0;
-
-  function getVisibleCount() {
-    const w = window.innerWidth;
-    if (w <= 560) return 1;
-    if (w <= 900) return 2;
-    return 3; // 3 full + ~0.25 peek
-  }
-
-  function getCardWidth() {
-    const cards = track.querySelectorAll('.range-card');
-    if (!cards.length) return 0;
-    const style = getComputedStyle(track);
-    const gap = parseFloat(style.gap) || 20;
-    return cards[0].getBoundingClientRect().width + gap;
-  }
-
-  function totalCards() {
-    return track.querySelectorAll('.range-card').length;
-  }
-
-  function maxIndex() {
-    return Math.max(0, totalCards() - getVisibleCount());
-  }
-
-  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
-  const ICONS = {
-    prev: { active: BASE + 'Carosel_left(active).svg', deactive: BASE + 'Carosel_left(deactive).svg' },
-    next: { active: BASE + 'Carosel_right(active).svg', deactive: BASE + 'Carosel_right(deactive).svg' }
-  };
-
-  function update() {
-    const offset = index * getCardWidth();
-    track.style.transform = `translateX(-${offset}px)`;
-    const atStart = index <= 0;
-    const atEnd = index >= maxIndex();
-    btnPrev.dataset.disabled = atStart ? 'true' : 'false';
-    btnNext.dataset.disabled = atEnd ? 'true' : 'false';
-    document.getElementById('carousel-prev-icon').src = atStart ? ICONS.prev.deactive : ICONS.prev.active;
-    document.getElementById('carousel-next-icon').src = atEnd ? ICONS.next.deactive : ICONS.next.active;
-  }
-
-  btnPrev.addEventListener('click', function() {
-    if (index > 0) { index--; update(); }
-  });
-
-  btnNext.addEventListener('click', function() {
-    if (index < maxIndex()) { index++; update(); }
-  });
-
-  // Touch/swipe
-  let startX = 0;
-  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', function(e) {
-    const dx = startX - e.changedTouches[0].clientX;
-    if (Math.abs(dx) > 40) {
-      if (dx > 0 && index < maxIndex()) { index++; update(); }
-      else if (dx < 0 && index > 0) { index--; update(); }
-    }
-  });
-
-  window.addEventListener('resize', function() { index = Math.min(index, maxIndex()); update(); });
-
-  update();
-})();
-</script>
-
-<!-- SCRIPTS: CONFIGURATOR -->
-<script>
+// ════════════════════════════════════════════════════════════
+// CONFIGURATOR — selectors, drawers, 3D preview, captions
+// ════════════════════════════════════════════════════════════
 function selectFabric(el, sectionName) {
   // Remove all selected states
   document.querySelectorAll('#fabric-drawer .swatch-cell').forEach(c => {
@@ -382,21 +1765,21 @@ function selectFabric(el, sectionName) {
   // Swap 3D model when Stromboli swatch chosen
   if (el.dataset.fabric === 'stromboli') {
     currentFabric = 'stromboli';
-    const sizeRow = document.querySelectorAll('.selector-row')[1];
+    const sizeRow = document.getElementById('selector-size');
     const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
                      sizeRow.querySelector('.selector-value').textContent.includes('Medium');
     document.getElementById('main-img').src = get3dSrc();
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
     const caption = document.querySelector('.image-caption-text');
-    if (caption) caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.';
+    if (caption) caption.textContent = CAPTIONS.stromboli;
   } else {
     currentFabric = 'pearl';
     document.getElementById('main-img').src = main3dSrc;
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
     document.querySelector('.thumb').classList.add('active');
     const caption = document.querySelector('.image-caption-text');
-    if (caption) caption.textContent = 'The Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+    if (caption) caption.textContent = CAPTIONS.pearl;
   }
   // Update fabric selector row value and thumb
   const fabricSelectorValue = document.getElementById('fabric-selector-value');
@@ -542,7 +1925,7 @@ function switchTo3D() {
   thumbs.forEach(t => t.classList.remove('active'));
   if (thumbs[0]) thumbs[0].classList.add('active');
   const caption = document.querySelector('.image-caption-text');
-  if (caption) caption.textContent = 'Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+  if (caption) caption.textContent = CAPTIONS.pearl;
 }
 function openDrawer(id) {
   // Any config drawer interaction always switches to 3d config mode
@@ -631,7 +2014,7 @@ function selectSize(el, name) {
   const dimsEl = el.querySelector('.size-cell-dims');
   const dims = dimsEl ? ' ' + dimsEl.textContent.trim() : '';
   // Update selector row value
-  const sizeRow = document.querySelectorAll('.selector-row')[1];
+  const sizeRow = document.getElementById('selector-size');
   if (sizeRow) {
     const v = sizeRow.querySelector('.selector-value');
     if (v) v.textContent = name + dims;
@@ -670,7 +2053,7 @@ let confirmedPiping = null; // null = not yet confirmed/added
 // Central resolver: returns the correct 3D preview src for current fabric/size/foot/piping state
 function get3dSrc() {
   if (currentFabric !== 'stromboli') return main3dSrc;
-  const sizeRow = document.querySelector('.selector-row[onclick*="size-drawer"]');
+  const sizeRow = document.getElementById('selector-size');
   const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
                    sizeRow.querySelector('.selector-value').textContent.includes('Medium');
   const pipingKey = confirmedPiping && confirmedPiping !== 'same' ? confirmedPiping : null;
@@ -715,8 +2098,19 @@ function addContrastPiping() {
 }
 
 function showContrastPipingInfo() {
-  // Placeholder — info modal to be built
+  document.getElementById('piping-info-modal').classList.add('open');
 }
+
+function closeContrastPipingInfo() {
+  document.getElementById('piping-info-modal').classList.remove('open');
+}
+
+// Close the contrast-piping info modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Escape') return;
+  const m = document.getElementById('piping-info-modal');
+  if (m && m.classList.contains('open')) closeContrastPipingInfo();
+});
 
 function selectPiping(cell, pipingKey, label) {
   const mainImg = document.getElementById('main-img');
@@ -819,13 +2213,13 @@ function updateCaptionWithPiping() {
   const caption = document.querySelector('.image-caption-text');
   if (!caption) return;
   if (confirmedPiping === 'sr-cavalry') {
-    caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Stain Resistant House Fabric Cavalry Contrast Piping and Dark Oak Feet.';
+    caption.textContent = CAPTIONS.stromboliCavalry;
   } else {
     // Piping removed or same-as-body — revert to current fabric caption
     if (currentFabric === 'stromboli') {
-      caption.textContent = 'The Knightsbridge Large Sofa with Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.';
+      caption.textContent = CAPTIONS.stromboli;
     } else {
-      caption.textContent = 'The Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+      caption.textContent = CAPTIONS.pearl;
     }
   }
 }
@@ -979,7 +2373,7 @@ function activateConfig() {
   if (thumbs[0]) thumbs[0].classList.add('active');
   // Update caption
   const caption = document.querySelector('.image-caption-text');
-  if (caption) caption.textContent = 'Knightsbridge Large Sofa in Stain Resistant House Fabric Pearl.';
+  if (caption) caption.textContent = CAPTIONS.pearl;
 }
 
 function switchMain(type, el) {
@@ -992,663 +2386,85 @@ function switchMain(type, el) {
   mainImg.src = type === '3d' ? main3dSrc : mainLifestyleSrc;
   mainImg.parentElement.style.background = 'transparent';
 }
-</script>
-<!-- SIZE DRAWER -->
-<div class="drawer-overlay" id="size-drawer" onclick="closeDrawer('size-drawer', event)">
-  <div class="drawer">
-    <div class="drawer-header">
-      <span class="drawer-title">Choose from 7 sizes</span>
-      <button class="drawer-close" onclick="closeDrawerDirect('size-drawer')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <div class="drawer-body">
-      <div class="segment-switcher">
-        <div class="segment-switcher-inner">
-          <button class="segment-btn active" onclick="switchSegment(this, 'sofas')">Sofas</button>
-          <button class="segment-btn" onclick="switchSegment(this, 'footstools')">Footstools</button>
-          <button class="segment-btn" onclick="switchSegment(this, 'sofabeds')">Sofa Beds</button>
-        </div>
-      </div>
 
-      <!-- SOFAS PANEL -->
-      <div class="size-panel" id="panel-sofas"><div class="size-grid"><div class="size-cell" onclick="selectSize(this, 'Arm Chair')">
-          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png" data-replaced="1" data-replaced="1" data-replaced="1" data-replaced="1" style="width:148px;height:auto;"></div>
-          <div class="size-cell-name">Arm Chair</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">£2,655</span>
-            <span class="size-cell-dims">(W 82cm  D 88cm)</span>
-          </div>
-        </div>
+// ════════════════════════════════════════════════════════════
+// CAROUSEL — "More from this range"
+// ════════════════════════════════════════════════════════════
+(function() {
+  const track = document.getElementById('range-carousel');
+  const btnPrev = document.getElementById('carousel-prev');
+  const btnNext = document.getElementById('carousel-next');
+  if (!track || !btnPrev || !btnNext) return;
 
-        <div class="size-cell" onclick="selectSize(this, 'Love Seat')">
-          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png" style="width:148px;height:auto;"></div>
-          <div class="size-cell-name">Love Seat</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">£2,880</span>
-            <span class="size-cell-dims">(W 117cm  D 88cm)</span>
-          </div>
-        </div>
+  let index = 0;
 
-        <div class="size-cell" onclick="selectSize(this, 'Medium Sofa')">
-          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png" style="width:148px;height:auto;"></div>
-          <div class="size-cell-name">Medium Sofa</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">£2,455</span>
-            <span class="size-cell-dims">(W 176cm  D 88cm)</span>
-          </div>
-        </div>
+  function getVisibleCount() {
+    const w = window.innerWidth;
+    if (w <= 560) return 1;
+    if (w <= 900) return 2;
+    return 3; // 3 full + ~0.25 peek
+  }
 
-        <div class="size-cell" onclick="selectSize(this, 'Large Sofa')">
-          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20175.png" style="width:148px;height:auto;"></div>
-          <div class="size-cell-name">Large Sofa</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">£2,955</span>
-            <span class="size-cell-dims">(W 207cm  D 88cm)</span>
-          </div>
-        </div>
+  function getCardWidth() {
+    const cards = track.querySelectorAll('.range-card');
+    if (!cards.length) return 0;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 20;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
 
-        <div class="size-cell" onclick="selectSize(this, 'Large Sofa 1-Arm')">
-          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed1.png" style="width:148px;height:auto;"></div>
-          <div class="size-cell-name">Large Sofa 1-Arm</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">£2,455</span>
-            <span class="size-cell-dims">(W 184cm  D 88cm)</span>
-          </div>
-        </div>
+  function totalCards() {
+    return track.querySelectorAll('.range-card').length;
+  }
 
-      </div></div><!-- end size-grid / panel-sofas -->
+  function maxIndex() {
+    return Math.max(0, totalCards() - getVisibleCount());
+  }
 
-      <!-- FOOTSTOOLS PANEL -->
-      <div class="size-panel" id="panel-footstools" style="display:none;">
-        <div class="size-grid">
-          <div class="size-cell" onclick="selectSize(this, 'Footstool')">
-            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
-            <div class="size-cell-name">Footstool</div>
-            <div class="size-cell-meta">
-              <span class="size-cell-price">£895</span>
-              <span class="size-cell-dims">(W 80cm  D 80cm)</span>
-            </div>
-          </div>
-          <div class="size-cell" onclick="selectSize(this, 'Large Footstool')">
-            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
-            <div class="size-cell-name">Large Footstool</div>
-            <div class="size-cell-meta">
-              <span class="size-cell-price">£995</span>
-              <span class="size-cell-dims">(W 100cm  D 80cm)</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
+  const ICONS = {
+    prev: { active: BASE + 'Carosel_left(active).svg', deactive: BASE + 'Carosel_left(deactive).svg' },
+    next: { active: BASE + 'Carosel_right(active).svg', deactive: BASE + 'Carosel_right(deactive).svg' }
+  };
 
-      <!-- SOFA BEDS PANEL -->
-      <div class="size-panel" id="panel-sofabeds" style="display:none;">
-        <div class="size-grid">
-          <div class="size-cell" onclick="selectSize(this, '3-Seater Sofa Bed')">
-            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20188.png" style="width:148px;height:auto;"></div>
-            <div class="size-cell-name">3-Seater Sofa Bed</div>
-            <div class="size-cell-meta">
-              <span class="size-cell-price">£3,555</span>
-              <span class="size-cell-dims">(W 135cm  D 88cm)</span>
-            </div>
-          </div>
-          <div class="size-cell" onclick="selectSize(this, '3.5-Seater Sofa Bed')">
-            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed2.png" style="width:148px;height:auto;"></div>
-            <div class="size-cell-name">3.5-Seater Sofa Bed</div>
-            <div class="size-cell-meta">
-              <span class="size-cell-price">£3,735</span>
-              <span class="size-cell-dims">(W 156cm  D 88cm)</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  function update() {
+    const offset = index * getCardWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+    const atStart = index <= 0;
+    const atEnd = index >= maxIndex();
+    btnPrev.dataset.disabled = atStart ? 'true' : 'false';
+    btnNext.dataset.disabled = atEnd ? 'true' : 'false';
+    document.getElementById('carousel-prev-icon').src = atStart ? ICONS.prev.deactive : ICONS.prev.active;
+    document.getElementById('carousel-next-icon').src = atEnd ? ICONS.next.deactive : ICONS.next.active;
+  }
 
-      </div><!-- end drawer-body -->
-      <!-- SIZE CONFIRM BAR -->
-      <div class="confirm-bar" id="size-confirm-bar">
-        <div class="confirm-bar-buttons">
-          <button class="confirm-btn-primary" onclick="confirmSize()"><span class="calibre-fix">Confirm</span></button>
-        </div>
-      </div>
-    </div><!-- end drawer -->
-  </div><!-- end drawer-overlay (size-drawer) -->
+  btnPrev.addEventListener('click', function() {
+    if (index > 0) { index--; update(); }
+  });
 
+  btnNext.addEventListener('click', function() {
+    if (index < maxIndex()) { index++; update(); }
+  });
 
-<!-- FOOT DRAWER -->
-<div class="drawer-overlay" id="foot-drawer" onclick="closeDrawer('foot-drawer', event)">
-  <div class="drawer">
-    <div class="drawer-header">
-      <span class="drawer-title">Choose foot colour</span>
-      <button class="drawer-close" onclick="closeDrawerDirect('foot-drawer')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <div class="drawer-body">
+  // Touch/swipe
+  let startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    const dx = startX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0 && index < maxIndex()) { index++; update(); }
+      else if (dx < 0 && index > 0) { index--; update(); }
+    }
+  });
 
-      <p style="font-family:var(--font-tiempos);font-size:14px;color:var(--mid);text-align:center;line-height:1.5;padding:0 24px 24px;">A choice of foot styles to enhance or compliment<br>your fabric selection — free of charge.</p>
+  window.addEventListener('resize', function() { index = Math.min(index, maxIndex()); update(); });
 
-      <div class="size-grid">
+  update();
+})();
 
-        <div class="size-cell" onclick="selectFoot(this, 'Dark Oak')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Dark Oak</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-        <div class="size-cell" onclick="selectFoot(this, 'Light Oak')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Light Oak</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-        <div class="size-cell" onclick="selectFoot(this, 'Grey Wash')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Grey Wash</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-        <div class="size-cell" onclick="selectFoot(this, 'Medium Oak')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Medium Oak</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-        <div class="size-cell" onclick="selectFoot(this, 'Washed Oak')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Washed Oak</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-        <div class="size-cell" onclick="selectFoot(this, 'Ebony')">
-          <div class="size-cell-img">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png" style="width:120px;height:auto;">
-          </div>
-          <div class="size-cell-name">Ebony</div>
-          <div class="size-cell-meta">
-            <span class="size-cell-price">(£0)</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div><!-- end drawer-body -->
-    <!-- FOOT CONFIRM BAR -->
-    <div class="confirm-bar" id="foot-confirm-bar">
-      <div class="confirm-bar-buttons">
-        <button class="confirm-btn-primary" onclick="confirmFoot()"><span class="calibre-fix">Confirm</span></button>
-      </div>
-    </div>
-  </div><!-- end drawer -->
-</div><!-- end drawer-overlay (foot-drawer) -->
-
-
-<!-- FABRIC DRAWER -->
-<div class="drawer-overlay" id="fabric-drawer" onclick="closeDrawer('fabric-drawer', event)">
-  <div class="drawer">
-    <div class="drawer-header" style="position:relative;">
-      <button class="drawer-reset" onclick="resetFabric()">Reset</button>
-      <span class="drawer-title" style="flex:1;text-align:center;">Choose a fabric</span>
-      <button class="drawer-close" onclick="closeDrawerDirect('fabric-drawer')" style="flex-shrink:0;">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <div class="drawer-filters">
-      <div class="filter-dropdown-wrap">
-        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
-          <div class="filter-label">Colours</div>
-          <div class="filter-value"><div class="filter-dot-selected" id="colour-dot-selected"></div><span id="colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
-        </div>
-                <div class="colour-dropdown-panel" id="colour-panel">
-          <div class="colour-search">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
-            <input type="text" placeholder="Search fabric colours" id="colour-search-input" value="Vole" oninput="filterColours(this.value)">
-          </div>
-          <div class="colour-list" id="colour-list">
-            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
-          </div>
-          <div class="colour-results" id="colour-results" style="display:none;">
-            <div class="colour-item" onclick="selectColourResult(this, 'Browns', 'Vole', '#A88F6B')">
-              <div class="colour-dot" style="background:#A88F6B;"></div>
-              <span>Browns › Vole</span>
-            </div>
-          </div>
-        </div></div>
-      <div class="filter-dropdown">
-        <div class="filter-label">Fabrics</div>
-        <div class="filter-value"><div class="filter-fabric-swatch" id="fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
-      </div>
-    </div>
-    <div class="filter-results-text" id="filter-results-text"></div>
-    <div class="drawer-body" style="padding:0;overflow-y:auto;">
-      
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant House Fabric</span>
-          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
-        <div class="swatch-grid">
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          <div class="swatch-tick"><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg></div>
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        </div>
-      </div>
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£172)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
-        <div class="swatch-grid">
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" data-fabric="stromboli" data-colour="Stromboli" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        </div>
-      </div>
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
-        <div class="swatch-grid">
-        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        </div>
-      </div>
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
-        <div class="swatch-grid">
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        </div>
-      </div>
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Vintage Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
-        <div class="swatch-grid">
-        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
-          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          
-        </div>
-        </div>
-      </div>
-      <div id="filtered-results" style="display:none; padding: 30px 32px 32px;">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant Basket Weave</span>
-          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Basket Weave')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Vole.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- FABRIC CONFIRM BAR -->
-    <div class="confirm-bar" id="fabric-confirm-bar">
-      <div class="confirm-bar-buttons">
-        <button class="confirm-btn-primary" onclick="confirmFabric()"><span class="calibre-fix">Confirm</span></button>
-        <button id="contrast-piping-btn" class="confirm-btn-secondary" onclick="addContrastPiping()">
-          <span class="confirm-optional-pill">optional</span>
-          <span class="calibre-fix">Add Contrast Piping?</span>
-        </button>
-      </div>
-      <div class="confirm-bar-link"><a onclick="showContrastPipingInfo()">What's contrast piping?</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- CONTRAST PIPING DRAWER -->
-<div class="piping-drawer-overlay" id="piping-drawer">
-  <div class="drawer">
-    <div class="drawer-header" style="position:relative;">
-      <button class="drawer-reset" onclick="resetPiping()">Reset</button>
-      <span class="drawer-title" style="flex:1;text-align:center;">Choose contrast piping</span>
-      <button class="drawer-close" onclick="closePipingDrawer()" style="flex-shrink:0;">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <div class="drawer-filters">
-      <div class="filter-dropdown-wrap">
-        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
-          <div class="filter-label">Colours</div>
-          <div class="filter-value"><div class="filter-dot-selected" id="piping-colour-dot-selected"></div><span id="piping-colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
-        </div>
-        <div class="colour-dropdown-panel" id="piping-colour-panel">
-          <div class="colour-search">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
-            <input type="text" placeholder="Search fabric colours" id="piping-colour-search-input" oninput="">
-          </div>
-          <div class="colour-list" id="piping-colour-list">
-            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
-            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="filter-dropdown">
-        <div class="filter-label">Fabrics</div>
-        <div class="filter-value"><div class="filter-fabric-swatch" id="piping-fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="piping-fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
-      </div>
-    </div>
-    <div class="drawer-body" style="padding:0;overflow-y:auto;flex:1;">
-
-      <!-- Same as current body fabric — Stromboli pre-selected -->
-      <div class="fabric-section" style="padding-bottom:10px;">
-        <div class="fabric-section-header" style="margin-bottom:12px;">
-          <span class="fabric-section-name">Same as current body fabric</span>
-          <span class="fabric-section-price">&nbsp;(+£0)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <div class="swatch-grid">
-          <div class="swatch-cell selected" id="piping-swatch-same" onclick="selectPiping(this, 'same', 'Stain Resistant Plush Velvet - Stromboli')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-      <!-- Stain Resistant House Fabric -->
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant House Fabric</span>
-          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-1', 'Stain Resistant House Fabric')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-2', 'Stain Resistant House Fabric')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'sr-cavalry', 'Stain Resistant House Fabric - Cavalry')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-      <!-- Stain Resistant Plush Velvet -->
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£172)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectPiping(this, 'plush-1', 'Stain Resistant Plush Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'plush-2', 'Stain Resistant Plush Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'plush-3', 'Stain Resistant Plush Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'plush-4', 'Stain Resistant Plush Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'plush-5', 'Stain Resistant Plush Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-      <!-- Easy Clean Matte Velvet -->
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectPiping(this, 'matte-1', 'Easy Clean Matte Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'matte-2', 'Easy Clean Matte Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'matte-3', 'Easy Clean Matte Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'matte-4', 'Easy Clean Matte Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-      <!-- Stain Resistant Moleskin Velvet -->
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectPiping(this, 'moles-1', 'Stain Resistant Moleskin Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'moles-2', 'Stain Resistant Moleskin Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'moles-3', 'Stain Resistant Moleskin Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'moles-4', 'Stain Resistant Moleskin Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-      <!-- Vintage Velvet -->
-      <div class="fabric-section">
-        <div class="fabric-section-header">
-          <span class="fabric-section-name">Vintage Velvet</span>
-          <span class="fabric-section-price">&nbsp;(+£288)</span>
-          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
-        </div>
-        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
-        <div class="swatch-grid">
-          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-1', 'Vintage Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-2', 'Vintage Velvet')">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <!-- PIPING CONFIRM BAR -->
-    <!-- Contrast piping selection toast -->
-    <!-- Contrast piping removal toast -->
-    <div class="piping-toast" id="piping-removal-toast">
-      <div class="piping-toast-icon">
-        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
-          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="piping-toast-text">
-        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping removed!</span></div>
-        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
-      </div>
-    </div>
-
-    <div class="piping-toast" id="piping-toast">
-      <div class="piping-toast-icon">
-        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
-          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <div class="piping-toast-text">
-        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping added!</span></div>
-        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
-      </div>
-    </div>
-
-    <div class="confirm-bar" id="piping-confirm-bar">
-      <div class="confirm-bar-buttons">
-        <button class="confirm-btn-primary" onclick="confirmPiping()"><span class="calibre-fix">Confirm</span></button>
-        <button class="confirm-btn-secondary" onclick="backToPipingFabric()"><span class="calibre-fix">Back</span></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- GALLERY OVERLAY -->
-
-<div id="gallery-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
-
-  <!-- Close button -->
-  <button id="gallery-close" onclick="closeGallery()" aria-label="Close gallery" style="position:absolute; top:32px; right:32px; background:none; border:none; cursor:pointer; padding:0; width:40px; height:40px; display:flex; align-items:center; justify-content:center; opacity:1; transition:opacity 0.15s ease;" onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='1'">
-    <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/CloseFullScreen.svg" alt="Close" style="width:40px; height:40px;">
-  </button>
-
-  <!-- Prev arrow -->
-  <button id="gallery-prev" onclick="galleryNav(-1)" aria-label="Previous image" style="position:absolute; left:40px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; opacity:1; transition:opacity 0.15s ease;" onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='1'">
-    <img id="gallery-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="" style="width:48px; height:48px;">
-  </button>
-
-  <!-- Next arrow -->
-  <button id="gallery-next" onclick="galleryNav(1)" aria-label="Next image" style="position:absolute; right:40px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; padding:0; display:flex; align-items:center; justify-content:center; opacity:1; transition:opacity 0.15s ease;" onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='1'">
-    <img id="gallery-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="" style="width:48px; height:48px;">
-  </button>
-
-  <!-- Image -->
-  <div style="display:flex; flex-direction:column; align-items:center;">
-    <img id="gallery-img" src="" alt="" style="width:1000px; height:664px; object-fit:cover; display:block;">
-
-    <!-- Description -->
-    <p id="gallery-desc" style="max-width:640px; font-family:var(--font-calibre), sans-serif; font-size:16px; font-weight:400; color:#ffffff; text-align:center; margin:32px 0 0 0; line-height:1.5;"></p>
-
-    <!-- Counter -->
-    <p id="gallery-counter" style="font-family:var(--font-calibre), sans-serif; font-size:16px; font-weight:400; color:#ffffff; text-align:center; margin:16px 0 0 0;"></p>
-  </div>
-</div>
-
-<script>
+// ════════════════════════════════════════════════════════════
+// GALLERY — fullscreen image overlay
+// ════════════════════════════════════════════════════════════
 (function() {
   const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
   const GALLERY_IMAGES = [
@@ -1687,13 +2503,13 @@ function switchMain(type, el) {
     currentGalleryIndex = 0;
     updateGalleryUI();
     var overlay = document.getElementById('gallery-overlay');
-    overlay.style.display = 'flex';
+    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
   };
 
   window.closeGallery = function() {
-    document.getElementById('gallery-overlay').style.display = 'none';
+    document.getElementById('gallery-overlay').classList.remove('open');
     document.body.style.overflow = '';
     document.documentElement.style.overflow = '';
   };
@@ -1709,101 +2525,16 @@ function switchMain(type, el) {
   // Keyboard navigation
   document.addEventListener('keydown', function(e) {
     var overlay = document.getElementById('gallery-overlay');
-    if (overlay.style.display === 'none') return;
+    if (!overlay.classList.contains('open')) return;
     if (e.key === 'Escape') window.closeGallery();
     if (e.key === 'ArrowLeft') window.galleryNav(-1);
     if (e.key === 'ArrowRight') window.galleryNav(1);
   });
 })();
-</script>
 
-<!-- ── LOCATION DRAWER ── -->
-<div class="location-drawer-overlay" id="location-drawer" onclick="closeLocationDrawer(event)">
-  <div class="location-drawer">
-    <div class="location-drawer-body">
-      <div class="location-drawer-head">
-        <span class="location-drawer-title">View at one of our showrooms</span>
-        <button class="location-close-btn" onclick="closeLocationDrawerDirect()">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
-        </button>
-      </div>
-
-      <div class="location-rows-wrap">
-
-        <!-- Parsons Green -->
-        <div class="location-row">
-          <div class="location-img-wrap">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205.jpg" alt="Parsons Green Showroom">
-          </div>
-          <div class="location-info">
-            <div class="location-name">Parsons Green Showroom</div>
-            <div class="location-detail">33 Parsons Green Lane, London, SW6 4HH<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 8pm</div>
-            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
-          </div>
-        </div>
-        <div class="location-divider"></div>
-
-        <!-- Surrey -->
-        <div class="location-row">
-          <div class="location-img-wrap">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-1.jpg" alt="Surrey Showroom">
-          </div>
-          <div class="location-info">
-            <div class="location-name">Surrey Showroom</div>
-            <div class="location-detail">Station Road West, Ash Vale, Surrey GU12 5Q,<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
-            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
-          </div>
-        </div>
-        <div class="location-divider"></div>
-
-        <!-- Hertford -->
-        <div class="location-row">
-          <div class="location-img-wrap">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-2.jpg" alt="Hertford Showroom">
-          </div>
-          <div class="location-info">
-            <div class="location-name">Hertford Showroom</div>
-            <div class="location-detail">Gascoyne Way, Hertford, SG13 8EL<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 6pm</div>
-            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
-          </div>
-        </div>
-        <div class="location-divider"></div>
-
-        <!-- Birmingham -->
-        <div class="location-row">
-          <div class="location-img-wrap">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-3.jpg" alt="Birmingham Showroom">
-          </div>
-          <div class="location-info">
-            <div class="location-name">Birmingham Showroom</div>
-            <div class="location-detail">2 The Customs House, Waterside, Dickens Heath, Solihull, B90 1UD<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
-            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="location-divider" style="margin-top:24px;"></div>
-
-      <!-- Virtual appointment -->
-      <div class="location-virtual-section">
-        <div class="location-virtual-heading">Not in-store nearby? Try a virtual appointment.</div>
-        <div class="location-row">
-          <div class="location-img-wrap">
-            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-4.jpg" alt="Virtual appointment">
-          </div>
-          <div class="location-info">
-            <div class="location-detail">We'll show you around our showroom, compare models and fabrics and address your queries.</div>
-            <button class="location-book-btn"><span class="calibre-fix">BOOK AN APPOINTMENT</span></button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script>
+// ════════════════════════════════════════════════════════════
+// LOCATION DRAWER
+// ════════════════════════════════════════════════════════════
 function openLocationDrawer() {
   document.getElementById('location-drawer').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1824,6 +2555,96 @@ function closeLocationDrawerDirect() {
     document.documentElement.style.overflow = '';
   });
 }
+// ════════════════════════════════════════════════════════════
+// OUR FAVOURITE FABRICS — carousel (arrows step; one slide visible)
+// ════════════════════════════════════════════════════════════
+(function () {
+  const carousel = document.querySelector('.fav-carousel');
+  if (!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.fav-slide'));
+  if (slides.length < 2) return;
+  let idx = Math.max(0, slides.findIndex(s => s.classList.contains('is-active')));
+  function show(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+    const v = slides[idx].querySelector('video.fav-panel-media');
+    if (v) { try { v.play(); } catch (e) {} }
+  }
+  carousel.querySelectorAll('.fav-arrow--prev').forEach(b => b.addEventListener('click', () => show(idx - 1)));
+  carousel.querySelectorAll('.fav-arrow--next').forEach(b => b.addEventListener('click', () => show(idx + 1)));
+})();
+// ════════════════════════════════════════════════════════════
+// FINISHING TOUCHES — two-page extras drawer (#selector-finish)
+// ════════════════════════════════════════════════════════════
+let ftPage = 0;
+function ftPagesEls() { return document.querySelectorAll('#finish-drawer .finish-page'); }
+function openFinishDrawer() { openDrawer('finish-drawer'); ftShowPage(0); }
+function ftShowPage(n) {
+  const pages = ftPagesEls();
+  ftPage = Math.max(0, Math.min(pages.length - 1, n));
+  pages.forEach((p, i) => p.classList.toggle('is-active', i === ftPage));
+  const d = document.getElementById('finish-drawer');
+  const counter = d.querySelector('#finish-counter');
+  if (counter) counter.textContent = ftPage + 1;
+  d.querySelector('.finish-back').style.display = ftPage === 0 ? 'none' : '';
+  ftUpdateFooter();
+  const body = d.querySelector('.drawer-body'); if (body) body.scrollTop = 0;
+}
+function ftSelect(card) {
+  const group = card.closest('.finish-group');
+  group.querySelectorAll('.finish-card').forEach(c => c.classList.remove('is-selected'));
+  card.classList.add('is-selected');
+  group.classList.add('is-touched');   // any active choice reveals the tick
+  ftUpdateFooter();
+}
+function ftUpdateFooter() {
+  const pages = ftPagesEls();
+  const touched = !!pages[ftPage].querySelector('.finish-group.is-touched');
+  const btn = document.querySelector('#finish-drawer .finish-action');
+  btn.textContent = touched ? 'Add' : 'Skip';
+  btn.classList.toggle('is-add', touched);
+}
+function ftBack() { ftShowPage(ftPage - 1); }
+function ftAction() {
+  const pages = ftPagesEls();
+  if (ftPage < pages.length - 1) ftShowPage(ftPage + 1);
+  else { ftRenderSummary(); animateDrawerClose('finish-drawer'); }
+}
+function ftClose() { ftRenderSummary(); animateDrawerClose('finish-drawer'); }
+function ftBackdrop(e) { if (e.target === e.currentTarget) { ftRenderSummary(); animateDrawerClose('finish-drawer'); } }
+function ftRenderSummary() {
+  const host = document.querySelector('#selector-finish .finish-summary');
+  if (!host) return;
+  let html = '';
+  document.querySelectorAll('#finish-drawer .finish-group').forEach(group => {
+    const up = group.querySelector('.finish-card[data-opt="upgrade"]');
+    if (up && up.classList.contains('is-selected')) {
+      html += '<span class="finish-summary-item">'
+        + '<span class="finish-summary-name">' + group.dataset.summary + '</span>'
+        + '<span class="finish-summary-price">(' + group.dataset.price + ')</span>'
+        + '<svg class="finish-summary-tick" width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4l3 3 6-6" stroke="#1E1D1E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        + '</span>';
+    }
+  });
+  host.innerHTML = html;
+}
+// ════════════════════════════════════════════════════════════
+// MICRO-ANIMATIONS — main preview eases in when its image swaps
+// (3D toggle, fabric change, thumbnails). Load-triggered, so it
+// covers every swap with no edits to those handlers, and only
+// plays once the new image is ready — no "waiting" blank frame.
+// ════════════════════════════════════════════════════════════
+(function () {
+  const img = document.getElementById('main-img');
+  if (!img) return;
+  let armed = img.complete;                 // initial hero already painted? arm now
+  img.addEventListener('load', function () {
+    if (!armed) { armed = true; return; }   // skip the very first (initial) load
+    img.classList.remove('img-ease');
+    void img.offsetWidth;                    // restart the animation
+    img.classList.add('img-ease');
+  });
+})();
 </script>
 
 </body>
