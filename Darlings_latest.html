@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knightsbridge Range – Darlings of Chelsea</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+  ============================================================
+  KNIGHTSBRIDGE PDP — PROTOTYPE  ·  Darlings of Chelsea
+  ------------------------------------------------------------
+  PAGE SECTIONS (document order):
+    1. ANNOUNCEMENT BANNER
+    2. NAV
+    3. BREADCRUMB
+    4. PDP — CONFIGURATOR   (LEFT: product image / RIGHT: selectors, price, CTA)
+    5. MORE FROM THIS RANGE — CAROUSEL
+    6. WHY WE LOVE IT
+    7. OUR FAVOURITE FABRICS
+    8. SOFA DIMENSIONS        (Sofa Specifications 1/3 — static "Seat" state)
+    9. THE SOFA BUILD         (Sofa Specifications 2/3)
+   10. HOW THE SOFA SITS      (Sofa Specifications 3/3 — video deferred)
+   11. VISIT OUR SHOWROOMS
+   12. WHY CHOOSE             (hero — still image stands in for the video)
+   13. REASONS WHY            (accordion — row 1 open; expand logic + rows 2-5 copy to come)
+   14. FINANCE & WARRANTY
+   15. TRUSTPILOT REVIEWS     (static replica of the live TrustBox widget)
+   16. RECENTLY VIEWED        (duplicate of "More from this range" — final content section)
+
+  DRAWERS / OVERLAYS (markup below the page; logic in SCRIPTS):
+    SIZE DRAWER · FOOT DRAWER · FABRIC DRAWER
+    CONTRAST PIPING DRAWER (mirrors FABRIC DRAWER) · GALLERY OVERLAY
+    CONTRAST PIPING INFO MODAL · LOCATION DRAWER
+
+  SCRIPTS (one consolidated block at the foot of the page, divided by feature):
+    CONFIGURATOR · CAROUSEL · GALLERY · LOCATION
+
+  HOW TO EDIT ONE FEATURE
+    • Search its NAME in CAPS to jump to its markup.
+    • Search the same name in the SCRIPTS block for its logic.
+    • All visual rules live in styles.css (search the same name there).
+    • FEATURE-MAP.md = jump-list with line numbers · HANDOVER.md = conventions, placeholders & open work.
+  ============================================================
+-->
+
+<!-- ===== ANNOUNCEMENT BANNER ===== -->
+<div class="banner">
+  <div class="banner-center">
+    <span class="calibre-fix"><strong style="font-weight:500;">35% off</strong>&nbsp;·&nbsp;Sale Ends in 9 days 13 hours 11 mins</span>
+  </div>
+  <div class="banner-right">
+    <span class="calibre-fix"><a href="#">Tel: 01252 372 949</a></span>
+    <span class="calibre-fix">|</span>
+    <span class="calibre-fix"><a href="#">Find a Store</a></span>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <button class="nav-burger" aria-label="Menu" type="button">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 6.5h16M3 11h16M3 15.5h16" stroke="#242726" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-left">
+    <a href="#" class="nav-link">Sofas</a>
+    <a href="#" class="nav-link">Sofa Beds</a>
+    <a href="#" class="nav-link">Corner Sofas</a>
+    <a href="#" class="nav-link">Beds</a>
+    <a href="#" class="nav-link">Chairs</a>
+  </div>
+
+  <div class="nav-logo">
+    <svg width="160" height="30" viewBox="0 0 160 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M158.913 7.77497C157.322 6.18316 154.28 5.25722 152.991 3.96814C152.669 3.64551 152.427 3.22197 152.427 2.67907C152.427 1.45003 153.514 0.684686 155.247 0.684686C157.221 0.684686 158.55 1.87285 158.832 3.86723H159.517V1.12776C158.389 0.523371 157.059 0 155.267 0C152.608 0 150.835 1.36901 150.835 3.44369C150.835 4.43111 151.258 5.1158 151.742 5.59938C153.253 7.11018 156.294 8.15656 157.603 9.46661C158.066 9.92958 158.308 10.5539 158.308 11.1177C158.308 12.4878 156.999 13.4348 155.106 13.4348C152.81 13.4348 151.44 12.1457 151.198 9.72775H150.514L150.574 13.2329C151.923 13.8373 153.676 14.2204 155.065 14.2204C158.832 14.2204 160 11.9844 160 10.2916C160 9.3053 159.597 8.45966 158.913 7.77497ZM135.644 7.65308C137.738 7.57314 138.101 8.07662 138.101 9.4261V12.5681C137.255 13.1526 135.805 13.5346 134.475 13.5346C131.011 13.5346 128.554 10.7951 128.554 6.92788C128.554 3.04112 131.172 0.684686 134.374 0.684686C136.671 0.684686 138.423 1.85296 139.249 3.96814H139.833L139.591 0.966446C137.819 0.301653 136.349 0 134.677 0C129.803 0 126.379 3.00061 126.379 7.31092C126.379 12.1851 130.467 14.2204 134.617 14.2204C136.227 14.2204 138.041 13.8572 139.974 13.1725V9.3657C139.974 8.03611 140.538 7.61365 141.988 7.65308V7.06967H135.644V7.65308ZM112.415 0.826109C114.006 0.846002 114.851 1.59073 114.851 3.26248V11.0573L104.338 0.24125H101.356V0.826109C102.122 0.886511 102.485 1.04747 103.29 1.89347L104.076 2.6986V11.1583C104.076 12.5681 103.149 13.4952 101.679 13.3942V13.9777H107.318V13.3942C105.747 13.3129 104.841 12.6285 104.841 11.1583V3.42379L113.281 12.2061C113.805 12.7295 114.59 13.6959 114.851 14.1589H115.919C115.919 13.676 115.617 12.4278 115.617 11.7221V3.96814C115.617 1.95387 116.02 0.906043 117.792 0.826109V0.24125H112.415V0.826109ZM87.4363 0.826109C89.289 0.764621 89.6314 1.28908 89.6314 2.45735V11.7221C89.6314 13.0112 89.1684 13.4348 87.4363 13.3942V13.9777H93.6803V13.3942C91.9478 13.4742 91.5048 12.9508 91.5048 11.6617V2.45735C91.5048 1.16827 92.109 0.764621 93.6803 0.826109V0.24125H87.4363V0.826109ZM75.3663 13.3942H72.4863C71.036 13.3942 70.5726 12.8499 70.5726 11.6816V2.61866C70.5726 1.12776 71.0759 0.764621 72.8687 0.826109V0.24125H66.3832V0.826109C68.2362 0.764621 68.6992 1.28908 68.6992 2.49677V11.6017C68.6992 12.9917 68.3365 13.4546 66.3026 13.3942V13.9777H78.8912L79.8379 10.6143H79.2333C78.3069 12.0842 77.3203 13.3942 75.3663 13.3942ZM50.4059 6.74704H48.795V0.826109H50.4466C53.186 0.826109 54.2333 2.09421 54.2333 3.94716C54.2333 5.70029 53.186 6.74704 50.4059 6.74704ZM56.61 11.7221L54.1323 8.84233C53.7899 8.45966 53.1453 7.7945 52.5818 7.1496C55.5427 6.72714 56.4088 5.0959 56.4088 3.74642C56.4088 1.75204 54.5354 0.24125 51.6144 0.24125H44.8674V0.826109C46.5389 0.764621 46.9217 1.34948 46.9217 2.53764V11.6017C46.9217 12.9103 46.5992 13.4348 44.8674 13.3942V13.9777H50.8493V13.3942C49.1371 13.4348 48.795 12.8904 48.795 11.6017V7.49285H49.8423C50.4869 7.49285 50.6481 7.57314 51.0105 7.99669L54.3335 11.9844C55.5827 13.4952 56.3282 13.9777 57.4154 13.9777C57.8787 13.9777 58.3425 13.9176 58.9464 13.7769V13.3537C58.3221 13.3338 57.7175 13.0112 56.61 11.7221ZM26.9971 7.67406L29.2326 1.75204L31.7102 7.67406H26.9971ZM35.1342 11.3196L30.4614 0.24125H28.588L28.8901 0.946914L25.0032 10.6349C24.1567 12.749 23.5325 13.3537 22.7674 13.3942V13.9777H27.3599V13.3942C26.2313 13.3338 25.6071 12.7895 25.6071 11.8834C25.6071 11.4599 25.7483 10.9969 26.1107 10.0305L26.6747 8.53959H32.073L32.8584 10.3531C33.3621 11.5203 33.4427 11.8636 33.4427 12.286C33.4427 13.0311 32.9187 13.3338 31.7705 13.3942V13.9777H37.1285V13.3942C36.2621 13.2329 35.7787 12.8499 35.1342 11.3196ZM11.5817 11.8834C10.4338 13.0311 8.76196 13.3942 6.86896 13.3942C4.79368 13.3942 4.12951 12.77 4.12951 11.2385V0.826109H6.34497C8.62107 0.826109 10.2323 1.53033 11.3801 2.67907C12.5687 3.86723 13.1529 5.57877 13.1529 7.49285C13.1529 8.90273 12.8105 10.6548 11.5817 11.8834ZM7.65441 0.24125H0V0.826109C1.954 0.744728 2.25612 1.38999 2.25612 2.61866V11.6212C2.25612 12.9103 1.91369 13.4546 0 13.3942V13.9777H6.92924C10.3931 13.9777 11.9844 13.2528 13.1529 12.0842C14.2205 11.0168 15.2674 9.32519 15.2674 6.92788C15.2674 3.42379 12.6493 0.24125 7.65441 0.24125Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3029 25.733C33.3029 24.1094 32.5805 22.4539 30.8431 22.4539C29.3567 22.4539 28.6133 23.8547 28.6133 25.6701C28.6133 27.2937 29.3356 28.9492 31.0735 28.9492C32.5599 28.9492 33.3029 27.5483 33.3029 25.733ZM34.4229 25.5529C34.4229 27.9835 32.832 29.5333 30.9265 29.5333C28.7599 29.5333 27.4937 27.8243 27.4937 25.8502C27.4937 23.4196 29.0845 21.8698 30.9897 21.8698C33.1566 21.8698 34.4229 23.5788 34.4229 25.5529Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M39.9351 29.427V29.0132C40.6363 28.9919 41.0027 28.8855 41.0027 28.2385V23.1646C41.0027 22.5176 40.6363 22.4112 39.9351 22.3899V21.9761H45.6191V23.8124H45.3469C44.9595 22.889 44.6663 22.464 43.8288 22.464H42.0078V25.5316H43.5987C44.0592 25.5316 44.2476 25.2136 44.3628 24.5767H44.7084V26.9751H44.3628C44.2476 26.3385 44.0592 26.0202 43.5987 26.0202H42.0078V28.2385C42.0078 28.8855 42.5204 28.9705 43.3579 29.0132V29.427H39.9351Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M63.8917 27.1451H64.2791L64.0383 28.9492C63.3577 29.2997 62.7085 29.5333 61.5989 29.5333C59.5268 29.5333 58.1553 27.9943 58.1553 25.8607C58.1553 23.3769 59.7465 21.8698 61.7665 21.8698C62.8658 21.8698 63.5461 22.1562 64.0276 22.5389V24.1625H63.6506C63.3681 22.9313 62.6668 22.4112 61.7037 22.4112C60.0183 22.4112 59.2753 23.8338 59.2753 25.5637C59.2753 27.4955 60.1335 28.9919 61.8293 28.9919C62.8762 28.9919 63.4833 28.3658 63.8917 27.1451Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M75.7715 25.8607H71.8877V28.2385C71.8877 28.8855 72.2751 28.9919 72.9557 29.0132V29.427H69.8149V29.0132C70.5166 28.9919 70.8833 28.8855 70.8833 28.2385V23.1646C70.8833 22.5176 70.5166 22.4112 69.8149 22.3899V21.9761H72.9557V22.3899C72.2751 22.4112 71.8877 22.5176 71.8877 23.1646V25.3724H75.7715V23.1646C75.7715 22.5176 75.3841 22.4112 74.7039 22.3899V21.9761H77.8439V22.3899C77.143 22.4112 76.7766 22.5176 76.7766 23.1646V28.2385C76.7766 28.8855 77.143 28.9919 77.8439 29.0132V29.427H74.7039V29.0132C75.3841 28.9919 75.7715 28.8855 75.7715 28.2385V25.8607Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M87.8673 26.8163C87.7628 26.1794 87.5741 25.8607 87.1136 25.8607H85.334V28.2171C85.334 28.7904 85.6483 28.9391 86.3913 28.9391H87.4382C88.3588 28.9391 88.5372 28.6313 89.2074 27.5165H89.4999L89.1864 29.427H83.2612V29.0132C83.9629 28.9919 84.3292 28.8855 84.3292 28.2385V23.1646C84.3292 22.5176 83.9629 22.4112 83.2612 22.3899V21.9761H89.1336V23.7488H88.8511C88.4744 22.8254 88.1812 22.464 87.3333 22.464H85.334V25.3724H87.1136C87.5741 25.3724 87.7628 25.0538 87.8673 24.4172H88.2229V26.8163H87.8673Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M97.0669 28.2171C97.0669 28.7904 97.3804 28.9391 98.1241 28.9391H98.7312C99.6526 28.9391 99.8823 28.4613 100.468 27.3578H100.804L100.468 29.427H94.9834V29.0132C95.685 28.9919 96.0514 28.8855 96.0514 28.2385V23.1646C96.0514 22.5176 95.685 22.4112 94.9834 22.3899V21.9761H98.1241V22.3899C97.4436 22.4112 97.0669 22.5176 97.0669 23.1646V28.2171Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M106.255 28.8005L106.182 27.0601H106.548C106.862 28.1748 107.5 29.0027 108.568 29.0027C109.552 29.0027 110.149 28.5141 110.149 27.6442C110.149 26.9114 109.678 26.5721 108.412 26.0943C107.019 25.5742 106.265 25.0646 106.265 23.8652C106.265 22.7404 107.093 21.8698 108.558 21.8698C109.406 21.8698 110.17 22.1562 110.735 22.5389V24.1625H110.39C110.149 23.1332 109.521 22.4004 108.506 22.4004C107.626 22.4004 107.176 22.9103 107.176 23.5896C107.176 24.3112 107.532 24.6403 108.83 25.1286C110.369 25.7015 111.102 26.2535 111.102 27.4315C111.102 28.7904 109.929 29.5333 108.537 29.5333C107.553 29.5333 106.716 29.1933 106.255 28.8005Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M121.253 26.8163C121.148 26.1794 120.959 25.8607 120.499 25.8607H118.719V28.2171C118.719 28.7904 119.034 28.9391 119.777 28.9391H120.823C121.744 28.9391 121.922 28.6313 122.593 27.5165H122.885L122.572 29.427H116.646V29.0132C117.348 28.9919 117.714 28.8855 117.714 28.2385V23.1646C117.714 22.5176 117.348 22.4112 116.646 22.3899V21.9761H122.519V23.7488H122.236C121.86 22.8254 121.566 22.464 120.719 22.464H118.719V25.3724H120.499C120.959 25.3724 121.148 25.0538 121.253 24.4172H121.608V26.8163H121.253Z" fill="black"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M130.189 26.4974H132.9L131.518 23.1756L130.189 26.4974ZM133.089 26.965H130.001L129.54 28.1214C129.478 28.2809 129.425 28.4292 129.425 28.5464C129.425 28.8755 129.687 28.992 130.409 29.0133V29.4271H128.064V29.0133C128.347 28.9706 128.588 28.907 128.703 28.6205L131.184 22.5813L130.859 21.8807H132.021L134.9 28.6205C135.015 28.907 135.224 28.9706 135.528 29.0133V29.4271H132.722V29.0133C133.444 28.992 133.696 28.8856 133.696 28.5568C133.696 28.4292 133.644 28.2914 133.581 28.1322L133.089 26.965Z" fill="black"/>
+    </svg>
+  </div>
+
+  <div class="nav-right">
+    <a href="#" class="nav-link">Footstools</a>
+    <a href="#" class="nav-link">Clearance</a>
+    <a href="#" class="nav-link">Free Samples</a>
+    <div class="nav-icons">
+      <button class="nav-icon-btn" aria-label="Search"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.0015 17.7582C18.1773 17.5869 18.4469 17.571 18.6401 17.7084L18.7086 17.7672L22.8972 22.0631C23.09 22.2608 23.086 22.5774 22.8883 22.7702C22.7125 22.9415 22.4429 22.9574 22.2497 22.82L22.1812 22.7612L17.9926 18.4653C17.7998 18.2675 17.8038 17.951 18.0015 17.7582Z" fill="#242726"/><path d="M13.4467 7C17.0071 7 19.8933 9.8952 19.8933 13.4666C19.8933 17.038 17.0071 19.9332 13.4467 19.9332C9.88627 19.9332 7 17.038 7 13.4666C7 9.8952 9.88627 7 13.4467 7ZM13.4467 8C10.4392 8 8 10.4468 8 13.4666C8 16.4864 10.4392 18.9332 13.4467 18.9332C16.4541 18.9332 18.8933 16.4864 18.8933 13.4666C18.8933 10.4468 16.4541 8 13.4467 8Z" fill="#242726"/></svg></button>
+      <button class="nav-icon-btn" aria-label="Wishlist"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6166 8.85653L15 9.474L14.3834 8.85653C12.5796 7.04784 9.65501 7.04784 7.85208 8.85653C6.04929 10.6651 6.04929 13.5964 7.85216 15.4042L14.6459 22.2197C14.8413 22.4157 15.1587 22.4157 15.3541 22.2197L22.1479 15.4042C23.9507 13.5964 23.9507 10.6643 22.1478 8.85645C20.3442 7.04784 17.4196 7.04784 15.6166 8.85653ZM21.5858 9.71776C22.8516 11.1433 22.8029 13.3312 21.4398 14.6981L15 21.157L8.56031 14.6982C7.14658 13.2806 7.14658 10.9808 8.56031 9.5625C9.97249 8.14582 12.2623 8.14582 13.6752 9.56258L14.6459 10.5363C14.8413 10.7324 15.1587 10.7324 15.3541 10.5363L16.3249 9.5625C17.737 8.14582 20.0269 8.14582 21.4398 9.56258L21.5858 9.71776Z" fill="#242726"/></svg></button>
+      <button class="nav-icon-btn" aria-label="Bag"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.5818 10.2647H6.41504L8.35926 22.5588H21.7189L23.5818 10.2647ZM22.4183 11.264L20.8583 21.558H9.21232L7.58432 11.264H22.4183Z" fill="#242726"/><path d="M15 6C16.8686 6 18.3951 7.46428 18.4948 9.30796L18.5 9.5H17.5C17.5 8.11929 16.3807 7 15 7C13.6745 7 12.59 8.03154 12.5053 9.33562L12.5 9.5H11.5C11.5 7.567 13.067 6 15 6Z" fill="#242726"/></svg></button>
+    </div>
+  </div>
+</nav>
+<!-- ===== END NAV ===== -->
+<div class="page-wrapper">
+
+  <!-- ===== BREADCRUMB ===== -->
+  <div class="breadcrumb">
+    <a href="#" class="breadcrumb-back">
+      <svg width="6" height="10" viewBox="0 0 6 10" fill="none">
+        <path d="M5 1L1 5l4 4" stroke="#787878" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="calibre-fix">Sofas</span>
+    </a>
+    <span class="breadcrumb-chevron calibre-fix">›</span>
+    <span class="calibre-fix">Knightsbridge Range</span>
+  </div>
+
+  <!-- ===== PDP — CONFIGURATOR (main product block) ===== -->
+  <div class="pdp-grid">
+
+    <!-- ----- LEFT: PRODUCT IMAGE ----- -->
+    <div class="image-col">
+      <div class="main-image-wrap">
+        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Main_Image.jpg" id="main-img" alt="Knightsbridge Sofa">
+
+        <div class="image-actions">
+          <button class="image-action-btn" aria-label="Expand" onclick="openGallery()"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.29001 16.967C3.43465 17.1116 3.65917 17.1277 3.82156 17.0152L3.87926 16.967L8.13413 12.7121C8.29684 12.5494 8.29684 12.2856 8.13413 12.1229C7.98949 11.9782 7.76497 11.9622 7.60258 12.0747L7.54487 12.1229L3.29001 16.3777C3.12729 16.5405 3.12729 16.8043 3.29001 16.967Z" fill="#242726"/><path d="M3.16797 13.3492V17.089L6.86768 17.0437C7.09778 17.0409 7.28203 16.8521 7.27925 16.622C7.27671 16.4175 7.12724 16.2492 6.93245 16.2163L6.85748 16.2105L4.0013 16.2457V13.3492C4.0013 13.1446 3.85391 12.9745 3.65953 12.9392L3.58464 12.9325C3.38009 12.9325 3.20996 13.0799 3.17468 13.2743L3.16797 13.3492Z" fill="#242726"/><path d="M16.5557 3.78953C16.4111 3.6449 16.1865 3.62882 16.0241 3.74132L15.9664 3.78953L11.7116 8.0444C11.5489 8.20712 11.5489 8.47093 11.7116 8.63365C11.8562 8.77829 12.0807 8.79436 12.2431 8.68187L12.3008 8.63365L16.5557 4.37879C16.7184 4.21607 16.7184 3.95225 16.5557 3.78953Z" fill="#242726"/><path d="M16.6777 7.40224V3.66237L12.978 3.70766C12.7479 3.71048 12.5637 3.8993 12.5665 4.1294C12.569 4.33393 12.7185 4.50224 12.9133 4.53514L12.9882 4.54093L15.8445 4.505L15.8444 7.40224C15.8444 7.60679 15.9918 7.77692 16.1862 7.8122L16.2611 7.81891C16.4656 7.81891 16.6357 7.67151 16.671 7.47714L16.6777 7.40224Z" fill="#242726"/></svg></button>
+          <button class="image-action-btn" aria-label="Wishlist"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6296 3.4575C15.2465 3.07425 14.7917 2.77023 14.2911 2.56281C13.7905 2.35539 13.254 2.24863 12.7121 2.24863C12.1702 2.24863 11.6337 2.35539 11.1331 2.56281C10.6325 2.77023 10.1777 3.07425 9.7946 3.4575L8.9996 4.2525L8.2046 3.4575C7.43083 2.68373 6.38138 2.24903 5.2871 2.24903C4.19283 2.24903 3.14337 2.68373 2.3696 3.4575C1.59583 4.23127 1.16113 5.28072 1.16113 6.375C1.16113 7.46927 1.59583 8.51873 2.3696 9.2925L8.9996 15.9225L15.6296 9.2925C16.0128 8.90943 16.3169 8.45461 16.5243 7.95401C16.7317 7.45342 16.8385 6.91686 16.8385 6.375C16.8385 5.83313 16.7317 5.29657 16.5243 4.79598C16.3169 4.29539 16.0128 3.84056 15.6296 3.4575Z" stroke="#1E1E1E" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="image-action-btn" aria-label="Pinterest"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.96972 16.9074C7.49451 16.469 8.34401 15.024 8.53548 14.2876C8.6386 13.891 9.06365 12.2724 9.06365 12.2724C9.34011 12.7994 10.1477 13.2457 11.0067 13.2457C13.5635 13.2457 15.4057 10.8944 15.4057 7.97292C15.4055 5.1724 13.1201 3.07693 10.1793 3.07693C6.52115 3.07693 4.57812 5.53277 4.57812 8.20681C4.57812 9.45017 5.23999 10.9981 6.29894 11.4909C6.45953 11.5656 6.54543 11.5327 6.58247 11.3775C6.61059 11.2597 6.7535 10.684 6.81789 10.4161C6.83848 10.3306 6.82834 10.2569 6.75904 10.173C6.40882 9.74829 6.12821 8.96702 6.12821 8.23847C6.12821 6.36874 7.54399 4.55956 9.95603 4.55956C12.0386 4.55956 13.4969 5.97872 13.4969 8.00842C13.4969 10.3017 12.3389 11.8903 10.8321 11.8903C9.99998 11.8903 9.37699 11.2022 9.57676 10.3585C9.81572 9.35074 10.2789 8.26336 10.2789 7.53603C10.2789 6.88492 9.92944 6.34185 9.20626 6.34185C8.35553 6.34185 7.67231 7.22193 7.67231 8.40059C7.67231 9.15143 7.92587 9.65916 7.92587 9.65916C7.92587 9.65916 7.08574 13.2113 6.93176 13.873C6.76134 14.6051 6.82819 15.6365 6.90241 16.3072L6.96972 16.9074Z" fill="black"/></svg></button>
+        </div>
+
+        <button class="swatches-btn">
+          <img id="swatch-btn-thumb" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png" alt="Swatch">
+          <span class="swatch-btn-text">Order this free swatch</span>
+        </button>
+      </div>
+
+      <!-- Caption -->
+      <div class="image-caption">
+        <div class="info-circle">i</div>
+        <p class="image-caption-text">The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.</p>
+      </div>
+
+      <!-- Thumbnails -->
+      <div class="thumbnails">
+        <div class="thumb active" onclick="switchMain('3d', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/3dthumb.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb1.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb2.jpg"></div>
+        <div class="thumb" onclick="switchMain('main', this)"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Thumb3.jpg"></div>
+      </div>
+    </div>
+
+    <!-- ----- RIGHT: CONFIGURATOR ----- -->
+    <div class="config-col">
+      <h1 class="product-title">Knightsbridge Range</h1>
+      <p class="product-desc">Embodying classic British refinement with a modern sensibility. An ideal sofa for those who appreciate heritage and sophistication.</p>
+
+      <div class="selectors">
+
+        <!-- Fabric -->
+        <div class="selector-row" id="selector-fabric" onclick="openDrawer('fabric-drawer')">
+          <div class="selector-thumb"><img id="fabric-selector-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Fabric_GreyGosling.jpg"></div>
+          <div class="selector-text">
+            <div class="selector-label">Choose from 125 Fabrics</div>
+            <div class="selector-value" id="fabric-selector-value">Choose a fabric</div>
+          </div>
+          <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Size -->
+        <div class="selector-row" id="selector-size" onclick="openDrawer('size-drawer')">
+          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Size_MedSofa.jpg"></div>
+          <div class="selector-text">
+            <div class="selector-label">Choose from 8 Sizes</div>
+            <div class="selector-value">Choose a size</div>
+          </div>
+          <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Foot Colour -->
+        <div class="selector-row" id="selector-foot" onclick="openDrawer('foot-drawer')">
+          <div class="selector-thumb round" id="foot-thumb-wrap"><img id="foot-thumb-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png"></div>
+          <div class="selector-text">
+            <div class="selector-label">Choose Foot Colour</div>
+            <div class="selector-value" id="foot-selector-value">Choose a foot colour</div>
+          </div>
+          <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- Finishing Touches -->
+        <div class="selector-row" id="selector-finish" onclick="openFinishDrawer()">
+          <div class="selector-thumb"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Extras_CushionFilling.jpg"></div>
+          <div class="selector-text">
+            <div class="selector-label">
+              Add Finishing Touches
+              <span class="optional-pill">optional</span>
+            </div>
+            <div class="selector-value">Cushion fillings and more</div>
+            <div class="finish-summary"></div>
+          </div>
+          <svg class="selector-chevron" width="7" height="12" viewBox="0 0 7 12" fill="none">
+            <path d="M1 1l5 5-5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Price Row -->
+      <div class="price-row">
+        <div class="dimensions-link" role="button" tabindex="0" onclick="document.getElementById('sofa-dimensions').scrollIntoView({behavior:'smooth',block:'start'})" onkeydown="if(event.key==='Enter'){document.getElementById('sofa-dimensions').scrollIntoView({behavior:'smooth',block:'start'})}" style="cursor:pointer;">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.3488 20.0342C20.6057 20.0342 20.814 20.2424 20.814 20.4993C20.814 20.7276 20.6494 20.9175 20.4324 20.9569L20.3488 20.9644H5.46512C5.20824 20.9644 5 20.7562 5 20.4993C5 20.271 5.16454 20.0811 5.38151 20.0417L5.46512 20.0342H20.3488Z" fill="#242726"/><path d="M17.8234 9.1748C18.0289 9.1748 18.1955 9.3414 18.1955 9.5469C18.1955 9.72671 18.0679 9.87674 17.8984 9.91143L17.8234 9.91899H7.59084C7.38534 9.91899 7.21875 9.7524 7.21875 9.5469C7.21875 9.36708 7.3463 9.21706 7.51585 9.18236L7.59084 9.1748H17.8234Z" fill="#242726"/><path d="M16.4566 8.07834C16.5701 7.9389 16.7638 7.90309 16.9172 7.98323L16.9801 8.02472L18.3228 9.11792C18.5619 9.31254 18.5979 9.6641 18.4032 9.90314L18.3617 9.9486L18.3351 9.97324L16.9883 11.1359C16.8327 11.2702 16.5978 11.253 16.4635 11.0974C16.346 10.9613 16.3445 10.7644 16.4502 10.6273L16.502 10.5726L17.68 9.55437L16.5102 8.60182C16.3708 8.48829 16.335 8.29466 16.4151 8.14126L16.4566 8.07834Z" fill="#242726"/><path d="M8.95898 8.31348L7.61626 9.40668C7.53658 9.47156 7.52457 9.58874 7.58945 9.66842C7.59632 9.67686 7.60391 9.68468 7.61215 9.69179L8.95898 10.8545" stroke="#242726" stroke-width="0.8" stroke-linecap="round"/><path d="M5.46484 20.4996V6" stroke="#242726" stroke-linecap="round"/><path d="M20.3496 20.4996V6" stroke="#242726" stroke-linecap="round"/></svg>
+          Sofa Dimensions
+        </div>
+        <div class="price-wrap">
+          <span class="price-was">£3,860</span>
+          <span class="price-now">£2,955</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button class="cta-btn"><span class="calibre-fix">Add to Basket</span></button>
+
+      <div class="finance-calc-row">
+        <span class="finance-calc-icon"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Calculator.svg" width="20" height="20" style="display:block;"></span>
+        <span class="calibre-fix">Try our <a href="#">Finance Calculator</a> for Interest-free options &rsaquo;</span>
+      </div>
+
+      <!-- Bottom Links -->
+      <div class="bottom-links">
+        <div class="bottom-link-row">
+          <div class="bottom-link-left">
+            <span class="bottom-link-icon"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Van.png" width="28" height="28" style="display:block;"></span>
+            <span class="bottom-link-text">Handmade to order. <a href="#">Delivered in 9–11 weeks.</a></span>
+          </div>
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="#787878" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="bottom-link-row" onclick="openLocationDrawer()">
+          <div class="bottom-link-left">
+            <span class="bottom-link-icon"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Store.png" width="28" height="28" style="display:block;"></span>
+            <span class="bottom-link-text">View it at one of <u>Our showrooms</u></span>
+          </div>
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M1 1l5 5-5 5" stroke="#787878" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ===== MORE FROM THIS RANGE — CAROUSEL ===== -->
+<section class="range-carousel-section" aria-label="More from this range">
+
+  <div class="range-carousel-header">
+    <h2 class="range-carousel-title">More from this range</h2>
+    <div class="range-carousel-arrows" aria-label="Carousel navigation">
+      <button class="carousel-arrow prev" aria-label="Previous products" id="carousel-prev" data-disabled="true">
+        <img id="carousel-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="" aria-hidden="true">
+      </button>
+      <button class="carousel-arrow next" aria-label="Next products" id="carousel-next">
+        <img id="carousel-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+  </div>
+
+  <div class="range-carousel-track-outer">
+    <div class="range-carousel-track" id="range-carousel" role="list">
+
+      <!-- CARD 1: Footstool -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Footstool, from £989">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20170.png"
+               alt="Knightsbridge Footstool" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Footstool</p>
+          <p class="range-card__price">from £989</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+        </div>
+      </a>
+
+      <!-- CARD 2: Sofa Bed -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Sofa Bed, from £3,802">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20171.png"
+               alt="Knightsbridge Sofa Bed" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Sofa Bed</p>
+          <p class="range-card__price">from £3,802</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 3: Large Corner Sofa -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Large Corner Sofa, from £5,621">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20236.png"
+               alt="Knightsbridge Large Corner Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Large Corner Sofa</p>
+          <p class="range-card__price">from £5,621</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 4: Chaise Sofa -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Chaise Sofa, from £3,021">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20235.png"
+               alt="Knightsbridge Chaise Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Chaise Sofa</p>
+          <p class="range-card__price">from £3,021</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 5: Chaise Sofa (DUPLICATE placeholder — added for carousel peek/scroll room; swap for a real product later) -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Chaise Sofa, from £3,021">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20235.png"
+               alt="Knightsbridge Chaise Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Chaise Sofa</p>
+          <p class="range-card__price">from £3,021</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== WHY WE LOVE IT ===== -->
+<!--
+  Editorial intro for the range: eyebrow + serif heading + body copy, then the
+  looping product video (autoplay / muted / loop / playsinline), filling the
+  16:9 banner via object-fit: cover — matches the hero & fabric video pattern.
+  Markup here · logic: none · styles in styles.css (search "WHY WE LOVE IT").
+
+  ASSET
+    • Video — jonny-assets/30 secs web.webm
+-->
+<section class="why-we-love-section" aria-label="Why we love it">
+
+  <div class="why-we-love-intro">
+    <p class="why-we-love-eyebrow wwl-fade">The Knightsbridge Range</p>
+    <h2 class="why-we-love-title wwl-fade wwl-fade--delay1">Why we love it</h2>
+    <p class="why-we-love-text wwl-fade wwl-fade--delay2">Featuring sharp, clean lines, streamlined proportions, and simple tapered legs, the Knightsbridge exudes a polished, refined presence. Plush piped cushions and supportive lumbar pillows add comfort without compromising the sofa&rsquo;s structured, tailored look.</p>
+  </div>
+
+  <!-- Product video — jonny-assets/30 secs web.webm (autoplay / muted / loop / playsinline, to match the hero & fabric videos) -->
+  <div class="why-we-love-video">
+    <video class="why-we-love-media"
+           src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/30%20secs%20web.webm"
+           autoplay muted loop playsinline aria-hidden="true"></video>
+  </div>
+
+</section>
+<!-- ===== END WHY WE LOVE IT ===== -->
+
+
+<!-- ===== OUR FAVOURITE FABRICS ===== -->
+<!--
+  Editorial fabric carousel. Each .fav-slide is explicit parallel markup (two
+  rounded cards: left = lifestyle photo + dots overlay, right = fabric panel with
+  overlaid pick tag / heading / colour / description / swatch button; caption +
+  prev/next arrows below). One slide shows at a time; the arrows step (logic in
+  the script block). Dots are per-slide indicators, so their active state is baked
+  into each slide. Add fabric N by appending another .fav-slide + a matching dot.
+  Markup here · styles in styles.css (search "OUR FAVOURITE FABRICS").
+
+  ASSETS (jonny-assets/)
+    SLIDE 1 · Gingersnap
+      • Photo  — knightsbridge-pdp__fabrics--lifestyle-velvet-amber-chair.png (clean 887x582)
+      • Video  — knightsbridge-pdp__fabrics--swatch-velvet-gingersnap-video.mp4 (object-fit: cover)
+      • Poster — knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png
+    SLIDE 2 · Jean
+      • Photo  — knightsbridge-pdp__fabrics--lifestyle-cotton-jean-image.png
+      • Video  — knightsbridge-pdp__fabrics--swatch-cotton-jean-video.mp4
+                 (interim/watermarked stock clip — fine for prototype; object-fit: cover)
+      • Panel  — .fav-panel--jean denim kept as fallback colour behind the video
+      • Caption — placeholder (TODO: real model / piping / feet)
+    Shared — Swatch.svg · Carosel_*(active).svg
+-->
+<section class="fav-section" aria-label="Our favourite fabrics">
+
+  <div class="fav-head">
+    <p class="fav-eyebrow">The Knightsbridge in</p>
+    <h2 class="fav-title">Our Favourite Fabrics</h2>
+  </div>
+
+  <div class="fav-carousel">
+
+    <!-- ── SLIDE 1 · Gingersnap ───────────────────────────────────── -->
+    <div class="fav-slide is-active" data-fav-slide="0">
+
+      <div class="fav-cards">
+        <div class="fav-photo">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-velvet-amber-chair.png"
+               alt="Knightsbridge Love Seat in ginger velvet, styled in a period room" loading="lazy">
+          <div class="fav-dots">
+            <span class="fav-dot is-active"></span>
+            <span class="fav-dot"></span>
+          </div>
+        </div>
+        <div class="fav-panel">
+          <video class="fav-panel-media"
+                 src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap-video.mp4"
+                 poster="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png"
+                 autoplay muted loop playsinline aria-hidden="true"></video>
+          <div class="fav-panel-content">
+            <span class="fav-tag">Darlings Pick</span>
+            <h3 class="fav-fabric-name">Stain Resistant<br>Cotton Velvet</h3>
+            <p class="fav-fabric-colour">Gingersnap</p>
+            <p class="fav-fabric-desc">Deep, saturated, endlessly inviting. Cotton velvet catches the light through the day moody in the evening, rich and warm by afternoon sun.</p>
+            <button class="fav-swatch-btn" type="button">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-velvet-gingersnap.png" alt="Velvet Gingersnap swatch" class="fav-swatch-img">
+              <span class="swatch-btn-text">Order this free swatch</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fav-caption-row">
+        <div class="fav-caption">
+          <div class="info-circle">i</div>
+          <p class="fav-caption-text"><span class="fav-caption-strong">The Knightsbridge Love Seat</span> w/ Stain Resistant Plush Velvet Ginger Snap, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.</p>
+        </div>
+        <div class="fav-arrows">
+          <button class="fav-arrow fav-arrow--prev" type="button" aria-label="Previous fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(active).svg" alt=""></button>
+          <button class="fav-arrow fav-arrow--next" type="button" aria-label="Next fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt=""></button>
+        </div>
+      </div>
+
+    </div>
+    <!-- ── END SLIDE 1 ── -->
+
+    <!-- ── SLIDE 2 · Jean ─────────────────────────────────────────── -->
+    <div class="fav-slide" data-fav-slide="1">
+
+      <div class="fav-cards">
+        <div class="fav-photo">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-cotton-jean-image.png"
+               alt="Knightsbridge sofa in Soft As Cotton Jean, styled in a bright living room" loading="lazy">
+          <div class="fav-dots">
+            <span class="fav-dot"></span>
+            <span class="fav-dot is-active"></span>
+          </div>
+        </div>
+        <!-- Interim Jean swatch clip (prototype): watermark/res aren't a concern
+             for now — object-fit: cover frames it to the panel. The .fav-panel--jean
+             denim stays as the load/fallback colour behind it. -->
+        <div class="fav-panel fav-panel--jean">
+          <video class="fav-panel-media"
+                 src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--swatch-cotton-jean-video.mp4"
+                 autoplay muted loop playsinline aria-hidden="true"></video>
+          <div class="fav-panel-content">
+            <span class="fav-tag">Best Seller</span>
+            <h3 class="fav-fabric-name">Stain Resistant<br>Soft As Cotton</h3>
+            <p class="fav-fabric-colour">Jean</p>
+            <p class="fav-fabric-desc">Soft enough to fool you into thinking it&rsquo;s cotton, tough enough that you&rsquo;ll stop worrying about spills. Beautifully, warm, relaxed comfort from day one.</p>
+            <button class="fav-swatch-btn" type="button">
+              <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Jean.jpg" alt="Cotton Jean swatch" class="fav-swatch-img">
+              <span class="swatch-btn-text">Order this free swatch</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="fav-caption-row">
+        <div class="fav-caption">
+          <div class="info-circle">i</div>
+          <!-- TODO: confirm full caption from Jonny (exact model / contrast piping /
+               feet for the Jean lifestyle shot). Minimal placeholder for now. -->
+          <p class="fav-caption-text"><span class="fav-caption-strong">The Knightsbridge</span> w/ Stain Resistant Soft As Cotton Jean.</p>
+        </div>
+        <div class="fav-arrows">
+          <button class="fav-arrow fav-arrow--prev" type="button" aria-label="Previous fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(active).svg" alt=""></button>
+          <button class="fav-arrow fav-arrow--next" type="button" aria-label="Next fabric"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt=""></button>
+        </div>
+      </div>
+
+    </div>
+    <!-- ── END SLIDE 2 ── -->
+
+  </div>
+
+</section>
+<!-- ===== END OUR FAVOURITE FABRICS ===== -->
+
+
+<!-- ===== SOFA DIMENSIONS ===== -->
+<!--
+  First of the three Sofa Specifications sub-sections (Dimensions / Build /
+  How it sits). Two columns: left = size dropdown + dimensions table + caption +
+  download/print; right = annotated sofa render with a centred External / Arms /
+  Seat control beneath it.
+
+  Static "Seat" state only. The External/Arms/Seat control and the size dropdown
+  are presentational — switching logic is a later task and is intentionally NOT
+  wired (no onclick handlers added to the script block).
+  Markup here · styles in styles.css (search "SOFA DIMENSIONS").
+
+  ASSETS
+    • Sofa render — jonny-assets/knightsbridge-pdp__dimensions--sofa-annotated.png
+                    (596x472; leader lines + H/K/F pills baked in for the Seat state)
+    • Link icon   — --icon-print.png (used for the merged "Download and Print" action).
+                    "Will it fit?" reuses the Sofa-Dimensions anchor SVG as a placeholder
+                    icon and opens jonny-assets/Darlings-of-Chelsea-Will-it-Fit-Guide.pdf
+    • Chevron     — DropdownArrow.svg (shared)
+-->
+<section class="dim-section" id="sofa-dimensions" aria-label="Sofa dimensions">
+
+  <!-- LEFT: size selector + dimensions table + caption + actions -->
+  <div class="dim-info">
+    <h2 class="dim-title">Sofa Dimensions</h2>
+
+    <div class="dim-select">
+      <span>Knightsbridge Medium Sofa</span>
+      <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/DropdownArrow.svg" alt="" aria-hidden="true">
+    </div>
+
+    <table class="dim-table">
+      <tbody>
+        <tr>
+          <th class="dim-row-label" scope="row">External (cm)</th>
+          <td>A 213</td><td>B 95</td><td>C 95</td>
+        </tr>
+        <tr class="dim-row-hl">
+          <th class="dim-row-label" scope="row">Seat (cm)</th>
+          <td>H 187</td><td>K 60</td><td>F 56</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Arm (cm)</th>
+          <td>J14</td><td></td><td>G 86</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Legs (cm)</th>
+          <td></td><td></td><td>D 20</td>
+        </tr>
+        <tr>
+          <th class="dim-row-label" scope="row">Frame Height (exc. feet)</th>
+          <td></td><td></td><td>P 62</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="dim-note">Measurements may vary by up to 3-5%</p>
+
+    <div class="dim-actions">
+      <!-- Download-and-print merged into one action; keeps the printer icon (presentational, no handler) -->
+      <button class="dim-action" type="button">
+        <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-print.png" alt="" aria-hidden="true">
+        <span>Download and Print</span>
+      </button>
+      <!-- "Will it fit?" opens the fit-guide PDF in a new tab. Icon temporarily reuses the Sofa Dimensions anchor SVG (swap for a dedicated icon later). -->
+      <a class="dim-action" href="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/Darlings-of-Chelsea-Will-it-Fit-Guide.pdf" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.3488 20.0342C20.6057 20.0342 20.814 20.2424 20.814 20.4993C20.814 20.7276 20.6494 20.9175 20.4324 20.9569L20.3488 20.9644H5.46512C5.20824 20.9644 5 20.7562 5 20.4993C5 20.271 5.16454 20.0811 5.38151 20.0417L5.46512 20.0342H20.3488Z" fill="#242726"/><path d="M17.8234 9.1748C18.0289 9.1748 18.1955 9.3414 18.1955 9.5469C18.1955 9.72671 18.0679 9.87674 17.8984 9.91143L17.8234 9.91899H7.59084C7.38534 9.91899 7.21875 9.7524 7.21875 9.5469C7.21875 9.36708 7.3463 9.21706 7.51585 9.18236L7.59084 9.1748H17.8234Z" fill="#242726"/><path d="M16.4566 8.07834C16.5701 7.9389 16.7638 7.90309 16.9172 7.98323L16.9801 8.02472L18.3228 9.11792C18.5619 9.31254 18.5979 9.6641 18.4032 9.90314L18.3617 9.9486L18.3351 9.97324L16.9883 11.1359C16.8327 11.2702 16.5978 11.253 16.4635 11.0974C16.346 10.9613 16.3445 10.7644 16.4502 10.6273L16.502 10.5726L17.68 9.55437L16.5102 8.60182C16.3708 8.48829 16.335 8.29466 16.4151 8.14126L16.4566 8.07834Z" fill="#242726"/><path d="M8.95898 8.31348L7.61626 9.40668C7.53658 9.47156 7.52457 9.58874 7.58945 9.66842C7.59632 9.67686 7.60391 9.68468 7.61215 9.69179L8.95898 10.8545" stroke="#242726" stroke-width="0.8" stroke-linecap="round"/><path d="M5.46484 20.4996V6" stroke="#242726" stroke-linecap="round"/><path d="M20.3496 20.4996V6" stroke="#242726" stroke-linecap="round"/></svg>
+        <span>Will it fit?</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT: annotated render + view control (Seat active) -->
+  <div class="dim-visual">
+    <img class="dim-sofa"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--sofa-annotated.png"
+         alt="Knightsbridge Medium Sofa with seat dimensions: height 187cm, seat depth 60cm, seat height 56cm" loading="lazy">
+    <div class="dim-tabs" role="tablist" aria-label="Dimension view">
+      <span class="dim-tab">External</span>
+      <span class="dim-tab">Arms</span>
+      <span class="dim-tab is-active">Seat</span>
+    </div>
+  </div>
+
+</section>
+<!-- ===== END SOFA DIMENSIONS ===== -->
+
+
+<!-- ===== THE SOFA BUILD ===== -->
+<!--
+  Second Sofa Specifications sub-section. Mirror of Sofa Dimensions: annotated
+  cutaway image on the LEFT, numbered build list on the RIGHT.
+  Markup here · styles in styles.css (search "THE SOFA BUILD").
+
+  ASSETS
+    • Cutaway — jonny-assets/knightsbridge-pdp__build--exploded-diagram.png
+                (770x577; 1-5 callouts + Darlings' Lifetime badge baked in.
+                 mix-blend-multiply matches the Figma frame on the white page.)
+-->
+<section class="build-section" aria-label="The sofa build">
+
+  <img class="build-sofa"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__build--exploded-diagram.png"
+       alt="Cutaway of the Knightsbridge sofa showing its hardwood frame, feet, stabiliser bars, webbing and foam-core cushions" loading="lazy">
+
+  <div class="build-list">
+    <div class="build-intro">
+      <h2 class="build-title">The Sofa Build</h2>
+      <p class="build-lead">A sustainably sourced hard-wood frame.</p>
+    </div>
+    <ol class="build-steps">
+      <li class="build-step">
+        <span class="build-num">1.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Traditional hard-wood construction.</p>
+          <p class="build-step-desc">Pinned, screwed and glued</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">2.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Solid wood feet</p>
+          <p class="build-step-desc">Includes a choice of wood colour finishes</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">3.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Stabiliser Bars</p>
+          <p class="build-step-desc">Providing extra support for the sofa</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">4.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Traditionally fixed upholstery webbing</p>
+          <p class="build-step-desc">For maximum seating comfort/support</p>
+        </div>
+      </li>
+      <li class="build-step">
+        <span class="build-num">5.</span>
+        <div class="build-step-body">
+          <p class="build-step-title">Foam Core Cushions with microfibre wrap.</p>
+          <p class="build-step-desc">Comfort and support. Springs back into shape. Some pluming required.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+</section>
+<!-- ===== END THE SOFA BUILD ===== -->
+
+
+<!-- ===== HOW THE SOFA SITS ===== -->
+<!--
+  Third Sofa Specifications sub-section. Copy on the LEFT; video thumbnail with
+  a Sophie / Amanda / Chris switcher beneath it on the RIGHT.
+
+  The switcher is presentational (Sophie active) and the video is a static
+  thumbnail — play/switch logic is a later task, intentionally NOT wired.
+  (The Figma frame layers the switcher behind the video; the flattened PDF
+  confirms it sits below, matching the Sofa Dimensions tabs.)
+  Markup here · styles in styles.css (search "HOW THE SOFA SITS").
+
+  ASSETS
+    • Video still — jonny-assets/knightsbridge-pdp__how-it-sits--video-thumbnail.png
+                    (773x516; play button + rounded corners baked in)
+-->
+<section class="sits-section" aria-label="How the sofa sits">
+
+  <div class="sits-copy">
+    <h2 class="sits-title">How the Sofa Sits</h2>
+    <p class="sits-text">We&rsquo;ve filmed three people of varying heights sitting in this exact sofa in order to give you a better idea of how the experience might feel.</p>
+  </div>
+
+  <div class="sits-media">
+    <div class="sits-video">
+      <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__how-it-sits--video-thumbnail.png"
+           alt="Woman seated on the Knightsbridge sofa in a styled room" loading="lazy">
+    </div>
+    <div class="sits-people" aria-label="Choose a person">
+      <span class="sits-person is-active">Sophie: 5&rsquo; 3&rdquo;</span>
+      <span class="sits-person">Amanda: 5&rsquo; 8&rdquo;</span>
+      <span class="sits-person">Chris 6&rsquo; 2&rdquo;</span>
+    </div>
+  </div>
+
+</section>
+<!-- ===== END HOW THE SOFA SITS ===== -->
+
+
+<!-- ===== VISIT OUR SHOWROOMS ===== -->
+<!--
+  Photo (left) + text/CTA column (right) — visual order set by flex-direction:row-reverse
+  in styles.css; source order stays text-then-image for reading order. Column is
+  bottom-aligned with the image (align-items:flex-end) so the buttons sit on the image's
+  lower edge, as in the frame. Symmetric 121px gaps top & bottom (top from How The Sofa
+  Sits, bottom to Why Choose) — bottom raised 72→121 so it matches the top gap.
+  Location names are underlined links; href="#" are PLACEHOLDERS — swap for real
+  store URLs later. Buttons are presentational (no onclick).
+  Markup here · styles in styles.css (search "VISIT OUR SHOWROOMS").
+
+  ASSET
+    • Photo — jonny-assets/knightsbridge-pdp__showrooms--storefront-customs-house.png (773x536)
+-->
+<section class="showrooms-section" aria-label="Visit our showrooms">
+
+  <div class="showrooms-text">
+    <h2 class="showrooms-title">Visit Our Showrooms</h2>
+    <p class="showrooms-body">Visit one of our showrooms, located in <span class="showrooms-places"><a class="showroom-link" href="#">Parsons Green</a>, <a class="showroom-link" href="#">Birmingham</a>, <a class="showroom-link" href="#">Surrey</a> and <a class="showroom-link" href="#">Hertford</a></span> where you can enjoy a coffee and browse at your leisure.</p>
+    <p class="showrooms-body">Or alternatively, book a virtual appointment to speak with one of our showroom consultants who can advise you on everything from sofa styles to fabric choices.</p>
+    <div class="showrooms-buttons">
+      <button class="showroom-btn showroom-btn--primary" type="button">Find a Store</button>
+      <button class="showroom-btn showroom-btn--secondary" type="button">Book a Consultation</button>
+    </div>
+  </div>
+
+  <img class="showrooms-image"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__showrooms--storefront-customs-house.png"
+       alt="The Darlings of Chelsea showroom at The Customs House" loading="lazy">
+
+</section>
+<!-- ===== END VISIT OUR SHOWROOMS ===== -->
+
+
+<!-- ===== WHY CHOOSE ===== -->
+<!--
+  Full-width hero banner: media background (1340x674, rounded) with centred
+  white overlay copy. This is only the hero — the trust columns and the
+  finance / warranty / handcrafted cards from the design are separate frames.
+
+  Hero background is the looping product video (autoplay / muted / loop /
+  playsinline). The pattern-cutting still (exact 1340x674) is wired as the
+  <video> poster — shown before the video paints and as a fallback. The overlay
+  is unchanged.
+  Markup here · styles in styles.css (search "WHY CHOOSE").
+
+  ASSETS
+    • Video  — jonny-assets/knightsbridge-pdp__why-darlings-video.mp4
+    • Poster — jonny-assets/knightsbridge-pdp__trust--handcrafted-pattern-cutting.png
+-->
+<section class="why-choose-section" aria-label="Why choose Darlings">
+  <div class="why-choose-hero">
+    <video class="why-choose-media"
+           src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__why-darlings-video.mp4"
+           poster="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--handcrafted-pattern-cutting.png"
+           autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="why-choose-overlay">
+      <h2 class="why-choose-title">Why choose Darlings?</h2>
+      <p class="why-choose-text">We craft every sofa by hand in the UK, and we&rsquo;ve been doing it for over 20 years. Here&rsquo;s why thousands trust Darlings to get it right.</p>
+    </div>
+  </div>
+</section>
+<!-- ===== END WHY CHOOSE ===== -->
+
+
+<!-- ===== REASONS WHY ===== -->
+<!--
+  Left lifestyle image + right 5-row accordion. STATIC STATE matching the frame:
+  row 1 (Handcrafted in Britain) is expanded with its body copy + minus toggle;
+  rows 2-5 are collapsed (title + plus toggle). The +/- toggles are presentational
+  (no onclick) — expand/collapse JS and the body copy for rows 2-5 are a later task.
+  72px top gap from Why Choose; 135px bottom gap to Finance & Warranty (top/bottom
+  swapped so the gap above Reasons is tighter than the gap below it).
+  Markup here · styles in styles.css (search "REASONS WHY").
+
+  ASSETS
+    • Left image    — jonny-assets/knightsbridge-pdp__fabrics--lifestyle-tufted-blue.png (453x472)
+    • Row icons     — dimensions--icon-sofa-outline / dimensions--icon-tape-measure /
+                      trust--icon-delivery / trust--icon-guarantee  (60x60)
+    • Row 3 icon    — MISSING (glasses): placeholder in place, see TODO below
+-->
+<section class="reasons-section" aria-label="Reasons to choose Darlings">
+
+  <img class="reasons-image"
+       src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__fabrics--lifestyle-tufted-blue.png"
+       alt="A blue tufted Darlings sofa in a styled living room" loading="lazy">
+
+  <div class="reasons-accordion">
+
+  <div class="reason is-open">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-sofa-outline.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Handcrafted in Britain</p>
+        <p class="reason-body">Each sofa is handmade to order in UK workshops using solid hardwood frames and traditional techniques. No shortcuts. No mass production.</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="true" aria-label="Collapse Handcrafted in Britain"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__dimensions--icon-tape-measure.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Tailored to you</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Tailored to you"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/DedicatedService.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Dedicated personal service</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Dedicated personal service"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--icon-delivery.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Hassle-free delivery &amp; returns</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Hassle-free delivery & returns"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  <div class="reason">
+    <img class="reason-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--icon-guarantee.png" alt="" aria-hidden="true">
+    <div class="reason-main">
+      <div class="reason-text">
+        <p class="reason-title">Built to last, backed by guarantee</p>
+      </div>
+      <button class="reason-toggle" type="button" aria-expanded="false" aria-label="Expand Built to last, backed by guarantee"><svg class="reason-pm" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+<!-- ===== END REASONS WHY ===== -->
+
+
+<!-- ===== FINANCE & WARRANTY ===== -->
+<!--
+  Two equal cards: Finance (left) and Warranty (right). Each is image → heading
+  → body → outlined button. Buttons are presentational (no onclick) — calculator
+  / find-out-more links are a later task.
+  Markup here · styles in styles.css (search "FINANCE & WARRANTY").
+
+  ASSETS
+    • Finance image  — jonny-assets/knightsbridge-pdp__trust--handcrafted-interior-dark.png (660x313)
+    • Warranty image — jonny-assets/knightsbridge-pdp__trust--warranty-spill-red-wine.png (655x313)
+-->
+<section class="fw-section" aria-label="Finance and warranty">
+
+  <div class="fw-card">
+    <img class="fw-image"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--handcrafted-interior-dark.png"
+         alt="A Darlings sofa in a dark, panelled interior" loading="lazy">
+    <h3 class="fw-title">0% Interest-free Finance Available</h3>
+    <p class="fw-text">Available both in-store and online for orders over &pound;500, it&rsquo;s a simple and convenient way to manage your payments.</p>
+    <button class="fw-btn" type="button">Try our calculator</button>
+  </div>
+
+  <div class="fw-card">
+    <img class="fw-image"
+         src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__trust--warranty-spill-red-wine.png"
+         alt="A hand reaching for a tipped glass of red wine spilling onto a sofa" loading="lazy">
+    <h3 class="fw-title">5-year Extended Warranty</h3>
+    <p class="fw-text">Add an extended warranty protection to cover everything from spills to accidental damage.</p>
+    <button class="fw-btn" type="button">Find out more</button>
+  </div>
+
+</section>
+<!-- ===== END FINANCE & WARRANTY ===== -->
+
+
+<!-- ===== TRUSTPILOT REVIEWS ===== -->
+<!--
+  Static visual replica of the live Trustpilot TrustBox widget on the current PDP
+  (darlingsofchelsea.co.uk). NOT the real widget — no Trustpilot script/iframe; purely
+  presentational to show placement above Recently Viewed. Stars are inline SVG (green
+  #00b67a boxes); review content mirrors the live page; arrows are static (no onclick).
+  Markup here · styles in styles.css (search "TRUSTPILOT").
+-->
+<section class="tp-section" aria-label="Trustpilot customer reviews">
+  <div class="tp-row">
+
+    <div class="tp-summary">
+      <h2 class="tp-excellent">Excellent</h2>
+      <svg class="tp-stars" viewBox="0 0 124 24" role="img" aria-label="Rated 4.5 out of 5" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(25,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(50,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(75,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(100,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#dcdce6"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g></svg>
+      <p class="tp-based">Based on <a href="#">1,962 reviews</a></p>
+      <div class="tp-logo"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#00b67a"/></svg><span>Trustpilot</span></div>
+      <p class="tp-showing">Showing our 4 &amp; 5 star reviews</p>
+    </div>
+
+    <button class="tp-arrow tp-arrow--prev" type="button" aria-label="Previous reviews" data-disabled="true"><svg viewBox="0 0 8 14" width="8" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M7 1 1 7l6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+    <div class="tp-cards">
+      <article class="tp-card">
+        <svg class="tp-stars" viewBox="0 0 124 24" role="img" aria-label="Rated 5 out of 5" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(25,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(50,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(75,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(100,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g></svg>
+        <span class="tp-verified"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#b0b0b8"/><path d="M9.5 16.2 5.8 12.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z" fill="#fff"/></svg> Verified</span>
+        <p class="tp-meta"><strong>Carol Stapley</strong>, 13 hours ago</p>
+        <h3 class="tp-card-title">Brilliant service throughout</h3>
+        <p class="tp-card-text">Service from ordering to delivery was fantastic. Quality of …</p>
+      </article>
+      <article class="tp-card">
+        <svg class="tp-stars" viewBox="0 0 124 24" role="img" aria-label="Rated 5 out of 5" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(25,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(50,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(75,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(100,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g></svg>
+        <span class="tp-verified"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#b0b0b8"/><path d="M9.5 16.2 5.8 12.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z" fill="#fff"/></svg> Verified</span>
+        <p class="tp-meta"><strong>Gillian Elliott</strong>, 18 hours ago</p>
+        <h3 class="tp-card-title">great service.</h3>
+        <p class="tp-card-text">great service.</p>
+      </article>
+      <article class="tp-card">
+        <svg class="tp-stars" viewBox="0 0 124 24" role="img" aria-label="Rated 5 out of 5" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(25,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(50,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(75,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(100,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g></svg>
+        <span class="tp-verified"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#b0b0b8"/><path d="M9.5 16.2 5.8 12.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z" fill="#fff"/></svg> Verified</span>
+        <p class="tp-meta"><strong>LW</strong>, 3 days ago</p>
+        <h3 class="tp-card-title">The fabric samples were excellent…</h3>
+        <p class="tp-card-text">The fabric samples were excellent quality and arrived really quickly.</p>
+      </article>
+      <article class="tp-card">
+        <svg class="tp-stars" viewBox="0 0 124 24" role="img" aria-label="Rated 5 out of 5" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(25,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(50,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(75,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g><g transform="translate(100,0)"><rect width="12" height="24" fill="#00b67a"/><rect x="12" width="12" height="24" fill="#00b67a"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#fff"/></g></svg>
+        <span class="tp-verified"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" fill="#b0b0b8"/><path d="M9.5 16.2 5.8 12.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z" fill="#fff"/></svg> Verified</span>
+        <p class="tp-meta"><strong>freddiwealth Chika</strong>, 5 days ago</p>
+        <h3 class="tp-card-title">This sofa is fantastic</h3>
+        <p class="tp-card-text">This sofa is fantastic! After long study sessions, I sit on it and instantly rel…</p>
+      </article>
+    </div>
+
+    <button class="tp-arrow tp-arrow--next" type="button" aria-label="Next reviews"><svg viewBox="0 0 8 14" width="8" height="14" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  </div>
+</section>
+<!-- ===== END TRUSTPILOT REVIEWS ===== -->
+
+
+<!-- ===== RECENTLY VIEWED — CAROUSEL ===== -->
+<!-- Duplicate of "More from this range": same cards (placeholder — swap for real recently-viewed items), own element IDs so its arrows/swipe are independent. Shares all .range-carousel / .range-card styles. -->
+<section class="range-carousel-section" aria-label="Recently viewed">
+
+  <div class="range-carousel-header">
+    <h2 class="range-carousel-title">Recently Viewed</h2>
+    <div class="range-carousel-arrows" aria-label="Carousel navigation">
+      <button class="carousel-arrow prev" aria-label="Previous products" id="rv-carousel-prev" data-disabled="true">
+        <img id="rv-carousel-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="" aria-hidden="true">
+      </button>
+      <button class="carousel-arrow next" aria-label="Next products" id="rv-carousel-next">
+        <img id="rv-carousel-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+  </div>
+
+  <div class="range-carousel-track-outer">
+    <div class="range-carousel-track" id="recently-viewed-carousel" role="list">
+
+      <!-- CARD 1: Footstool -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Footstool, from £989">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20170.png"
+               alt="Knightsbridge Footstool" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Footstool</p>
+          <p class="range-card__price">from £989</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+        </div>
+      </a>
+
+      <!-- CARD 2: Sofa Bed -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Sofa Bed, from £3,802">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20171.png"
+               alt="Knightsbridge Sofa Bed" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Sofa Bed</p>
+          <p class="range-card__price">from £3,802</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 3: Large Corner Sofa -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Large Corner Sofa, from £5,621">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20236.png"
+               alt="Knightsbridge Large Corner Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Large Corner Sofa</p>
+          <p class="range-card__price">from £5,621</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 4: Chaise Sofa -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Chaise Sofa, from £3,021">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20235.png"
+               alt="Knightsbridge Chaise Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Chaise Sofa</p>
+          <p class="range-card__price">from £3,021</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+      <!-- CARD 5: Chaise Sofa (DUPLICATE placeholder — added for carousel peek/scroll room; swap for a real product later) -->
+      <a class="range-card" href="#" role="listitem" aria-label="Knightsbridge Chaise Sofa, from £3,021">
+        <div class="range-card__image-wrap">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20235.png"
+               alt="Knightsbridge Chaise Sofa" loading="lazy">
+        </div>
+        <div class="range-card__body">
+          <p class="range-card__category">Knightsbridge</p>
+          <p class="range-card__name">Chaise Sofa</p>
+          <p class="range-card__price">from £3,021</p>
+          <p class="range-card__options">+ 285 colour and fabric options</p>
+          <p class="range-card__options">+ 6 sizes</p>
+        </div>
+      </a>
+
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SIZE DRAWER ===== -->
+<div class="drawer-overlay" id="size-drawer" onclick="closeDrawer('size-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Choose from 8 sizes</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('size-drawer')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="segment-switcher">
+        <div class="segment-switcher-inner">
+          <button class="segment-btn active" onclick="switchSegment(this, 'sofas')">Sofas</button>
+          <button class="segment-btn" onclick="switchSegment(this, 'footstools')">Footstools</button>
+          <button class="segment-btn" onclick="switchSegment(this, 'sofabeds')">Sofa Beds</button>
+        </div>
+      </div>
+
+      <!-- SOFAS PANEL -->
+      <div class="size-panel" id="panel-sofas"><div class="size-grid"><div class="size-cell" onclick="selectSize(this, 'Arm Chair')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png"></div>
+          <div class="size-cell-name">Arm Chair</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,655</span>
+            <span class="size-cell-dims">(W 82cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Love Seat')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image_armchair.png"></div>
+          <div class="size-cell-name">Love Seat</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,880</span>
+            <span class="size-cell-dims">(W 117cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Medium Sofa')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20172.png"></div>
+          <div class="size-cell-name">Medium Sofa</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,455</span>
+            <span class="size-cell-dims">(W 176cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Large Sofa')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20175.png"></div>
+          <div class="size-cell-name">Large Sofa</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,955</span>
+            <span class="size-cell-dims">(W 207cm  D 88cm)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectSize(this, 'Large Sofa 1-Arm')">
+          <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed1.png"></div>
+          <div class="size-cell-name">Large Sofa 1-Arm</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">£2,455</span>
+            <span class="size-cell-dims">(W 184cm  D 88cm)</span>
+          </div>
+        </div>
+
+      </div></div><!-- end size-grid / panel-sofas -->
+
+      <!-- FOOTSTOOLS PANEL -->
+      <div class="size-panel" id="panel-footstools" style="display:none;">
+        <div class="size-grid">
+          <div class="size-cell" onclick="selectSize(this, 'Footstool')">
+            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
+            <div class="size-cell-name">Footstool</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£895</span>
+              <span class="size-cell-dims">(W 80cm  D 80cm)</span>
+            </div>
+          </div>
+          <div class="size-cell" onclick="selectSize(this, 'Large Footstool')">
+            <div class="size-cell-img"><div class="size-cell-img-placeholder"></div></div>
+            <div class="size-cell-name">Large Footstool</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£995</span>
+              <span class="size-cell-dims">(W 100cm  D 80cm)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOFA BEDS PANEL -->
+      <div class="size-panel" id="panel-sofabeds" style="display:none;">
+        <div class="size-grid">
+          <div class="size-cell" onclick="selectSize(this, '3-Seater Sofa Bed')">
+            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20188.png"></div>
+            <div class="size-cell-name">3-Seater Sofa Bed</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£3,555</span>
+              <span class="size-cell-dims">(W 135cm  D 88cm)</span>
+            </div>
+          </div>
+          <div class="size-cell" onclick="selectSize(this, '3.5-Seater Sofa Bed')">
+            <div class="size-cell-img"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Sofa%20bed2.png"></div>
+            <div class="size-cell-name">3.5-Seater Sofa Bed</div>
+            <div class="size-cell-meta">
+              <span class="size-cell-price">£3,735</span>
+              <span class="size-cell-dims">(W 156cm  D 88cm)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div><!-- end drawer-body -->
+      <!-- SIZE CONFIRM BAR -->
+      <div class="confirm-bar" id="size-confirm-bar">
+        <div class="confirm-bar-buttons">
+          <button class="confirm-btn-primary" onclick="confirmSize()"><span class="calibre-fix">Confirm</span></button>
+        </div>
+      </div>
+    </div><!-- end drawer -->
+  </div><!-- end drawer-overlay (size-drawer) -->
+
+
+<!-- ===== FOOT DRAWER ===== -->
+<div class="drawer-overlay" id="foot-drawer" onclick="closeDrawer('foot-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Choose foot colour</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('foot-drawer')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+
+      <p class="foot-drawer-intro">A choice of foot styles to enhance or compliment<br>your fabric selection — free of charge.</p>
+
+      <div class="size-grid">
+
+        <div class="size-cell" onclick="selectFoot(this, 'Dark Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Dark Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Light Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Light Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Grey Wash')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Grey Wash</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Medium Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Medium Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Washed Oak')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Washed Oak</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+        <div class="size-cell" onclick="selectFoot(this, 'Ebony')">
+          <div class="size-cell-img">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png">
+          </div>
+          <div class="size-cell-name">Ebony</div>
+          <div class="size-cell-meta">
+            <span class="size-cell-price">(£0)</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- end drawer-body -->
+    <!-- FOOT CONFIRM BAR -->
+    <div class="confirm-bar" id="foot-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmFoot()"><span class="calibre-fix">Confirm</span></button>
+      </div>
+    </div>
+  </div><!-- end drawer -->
+</div><!-- end drawer-overlay (foot-drawer) -->
+
+
+<!-- ===== FABRIC DRAWER ===== -->
+<div class="drawer-overlay" id="fabric-drawer" onclick="closeDrawer('fabric-drawer', event)">
+  <div class="drawer">
+    <div class="drawer-header" style="position:relative;">
+      <button class="drawer-reset" onclick="resetFabric()">Reset</button>
+      <span class="drawer-title">Choose a fabric</span>
+      <button class="drawer-close" onclick="closeDrawerDirect('fabric-drawer')" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-filters">
+      <div class="filter-dropdown-wrap">
+        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
+          <div class="filter-label">Colours</div>
+          <div class="filter-value"><div class="filter-dot-selected" id="colour-dot-selected"></div><span id="colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+        </div>
+                <div class="colour-dropdown-panel" id="colour-panel">
+          <div class="colour-search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search fabric colours" id="colour-search-input" value="Vole" oninput="filterColours(this.value)">
+          </div>
+          <div class="colour-list" id="colour-list">
+            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
+          </div>
+          <div class="colour-results" id="colour-results" style="display:none;">
+            <div class="colour-item" onclick="selectColourResult(this, 'Browns', 'Vole', '#A88F6B')">
+              <div class="colour-dot" style="background:#A88F6B;"></div>
+              <span>Browns › Vole</span>
+            </div>
+          </div>
+        </div></div>
+      <div class="filter-dropdown">
+        <div class="filter-label">Fabrics</div>
+        <div class="filter-value"><div class="filter-fabric-swatch" id="fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+      </div>
+    </div>
+    <div class="filter-results-text" id="filter-results-text"></div>
+    <div class="drawer-body" style="padding:0;overflow-y:auto;">
+      
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant House Fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png">
+          <div class="swatch-tick"><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg></div>
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant House Fabric')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£172)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png">
+          
+        </div>
+        <div class="swatch-cell" data-fabric="stromboli" data-colour="Stromboli" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Plush Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Easy Clean Matte Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Moleskin Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png">
+          
+        </div>
+        </div>
+      </div>
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Vintage Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          
+        </div>
+        <div class="swatch-cell" onclick="selectFabric(this, 'Vintage Velvet')">
+          <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          
+        </div>
+        </div>
+      </div>
+      <div id="filtered-results" class="filtered-results" style="display:none;">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Basket Weave</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectFabric(this, 'Stain Resistant Basket Weave')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Vole.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FABRIC CONFIRM BAR -->
+    <div class="confirm-bar" id="fabric-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmFabric()"><span class="calibre-fix">Confirm</span></button>
+        <button id="contrast-piping-btn" class="confirm-btn-secondary" onclick="addContrastPiping()">
+          <span class="confirm-optional-pill">optional</span>
+          <span class="calibre-fix">Add Contrast Piping?</span>
+        </button>
+      </div>
+      <div class="confirm-bar-link"><a onclick="showContrastPipingInfo()">What's contrast piping?</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTRAST PIPING DRAWER (mirrors FABRIC DRAWER structure) ===== -->
+<div class="piping-drawer-overlay" id="piping-drawer">
+  <div class="drawer">
+    <div class="drawer-header" style="position:relative;">
+      <button class="drawer-reset" onclick="resetPiping()">Reset</button>
+      <span class="drawer-title">Choose contrast piping</span>
+      <button class="drawer-close" onclick="closePipingDrawer()" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-filters">
+      <div class="filter-dropdown-wrap">
+        <div class="filter-dropdown" onclick="toggleColourDropdown(this)">
+          <div class="filter-label">Colours</div>
+          <div class="filter-value"><div class="filter-dot-selected" id="piping-colour-dot-selected"></div><span id="piping-colour-selected">All Colours</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+        </div>
+        <div class="colour-dropdown-panel" id="piping-colour-panel">
+          <div class="colour-search">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5.5" stroke="#787878" stroke-width="1.2"/><path d="M11.5 11.5L16 16" stroke="#787878" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <input type="text" placeholder="Search fabric colours" id="piping-colour-search-input">
+          </div>
+          <div class="colour-list" id="piping-colour-list">
+            <div class="colour-item selected" onclick="selectColour(this, 'All Colours')"><div class="colour-dot outline" style="background:#fff;"></div><span>All Colours</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Neutrals')"><div class="colour-dot" style="background:#E5DED4;"></div><span>Neutrals</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Greys')"><div class="colour-dot" style="background:#BCBCBC;"></div><span>Greys</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Blues')"><div class="colour-dot" style="background:#4E7898;"></div><span>Blues</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Reds')"><div class="colour-dot" style="background:#8F343C;"></div><span>Reds</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Oranges')"><div class="colour-dot" style="background:#B75435;"></div><span>Oranges</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Browns')"><div class="colour-dot" style="background:#A88F6B;"></div><span>Browns</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Purples')"><div class="colour-dot" style="background:#4F4E6A;"></div><span>Purples</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Pinks')"><div class="colour-dot" style="background:#D3AEA8;"></div><span>Pinks</span></div>
+            <div class="colour-item" onclick="selectColour(this, 'Darks')"><div class="colour-dot" style="background:#020202;"></div><span>Darks</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-dropdown">
+        <div class="filter-label">Fabrics</div>
+        <div class="filter-value"><div class="filter-fabric-swatch" id="piping-fabrics-swatch" style="display:none;width:28px;height:28px;background:#e8e4df;border-radius:4px;flex-shrink:0;margin-right:8px;"></div><span id="piping-fabrics-selected">All Fabrics</span> <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.459 7L8.72949 11.1938L3.00001 7" stroke="black"/></svg></div>
+      </div>
+    </div>
+    <div class="drawer-body" style="padding:0;overflow-y:auto;flex:1;">
+
+      <!-- Same as current body fabric — Stromboli pre-selected -->
+      <div class="fabric-section" style="padding-bottom:10px;">
+        <div class="fabric-section-header" style="margin-bottom:12px;">
+          <span class="fabric-section-name">Same as current body fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <div class="swatch-grid">
+          <div class="swatch-cell selected" id="piping-swatch-same" onclick="selectPiping(this, 'same', 'Stain Resistant Plush Velvet - Stromboli')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant House Fabric -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant House Fabric</span>
+          <span class="fabric-section-price">&nbsp;(+£0.00)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-1', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20230.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-house-2', 'Stain Resistant House Fabric')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20231.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'sr-cavalry', 'Stain Resistant House Fabric - Cavalry')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20233.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Plush Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Plush Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£172)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">Brings depth, warmth, and a touch of indulgence.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-1', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20179.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-2', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-3', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20182.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-4', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'plush-5', 'Stain Resistant Plush Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20184.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Easy Clean Matte Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Easy Clean Matte Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-1', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-2', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%2096.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-3', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'matte-4', 'Easy Clean Matte Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Stain Resistant Moleskin Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Stain Resistant Moleskin Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love super-soft fabric.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-1', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20183.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-2', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20196.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-3', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20197.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'moles-4', 'Stain Resistant Moleskin Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20198.png">
+          </div>
+        </div>
+      </div>
+
+      <!-- Vintage Velvet -->
+      <div class="fabric-section">
+        <div class="fabric-section-header">
+          <span class="fabric-section-name">Vintage Velvet</span>
+          <span class="fabric-section-price">&nbsp;(+£288)</span>
+          <span class="fabric-info-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#D9D9D9"/><path d="M9.03203 13.4143C9.03203 13.0437 9.31891 12.7569 9.66555 12.7569C10.0241 12.7569 10.311 13.0437 10.311 13.4143C10.311 13.7848 10.0241 14.0598 9.66555 14.0598C9.31891 14.0598 9.03203 13.7848 9.03203 13.4143ZM11.8769 8.60914C11.8769 9.49367 11.2195 10.1152 10.6577 10.7129C10.2513 11.1432 10.1556 11.4062 10.1437 11.693H9.25914C9.295 11.0954 9.4743 10.7846 9.95242 10.2587C10.3708 9.78055 10.9684 9.32633 10.9684 8.62109C10.9684 7.86805 10.4545 7.38992 9.64164 7.38992C8.76906 7.38992 8.27898 7.99953 8.20727 8.86016H7.23906C7.3825 7.4975 8.30289 6.5532 9.64164 6.5532C11.0402 6.5532 11.8769 7.35406 11.8769 8.60914Z" fill="black"/></svg></span>
+        </div>
+        <p class="fabric-section-desc">A great choice for those who love a plush feel.</p>
+        <div class="swatch-grid">
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-1', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20187.png">
+          </div>
+          <div class="swatch-cell" onclick="selectPiping(this, 'vintage-2', 'Vintage Velvet')">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20181.png">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- PIPING CONFIRM BAR -->
+    <!-- Contrast piping selection toast -->
+    <!-- Contrast piping removal toast -->
+    <div class="piping-toast" id="piping-removal-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping removed!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
+    <div class="piping-toast" id="piping-toast">
+      <div class="piping-toast-icon">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12.5" cy="12.5" r="12.5" fill="#020202"/>
+          <path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="piping-toast-text">
+        <div class="piping-toast-title"><span class="calibre-fix">Contrast Piping added!</span></div>
+        <div class="piping-toast-subtitle"><span class="calibre-fix">Stain Resistant House Fabric - Cavalry</span></div>
+      </div>
+    </div>
+
+    <div class="confirm-bar" id="piping-confirm-bar">
+      <div class="confirm-bar-buttons">
+        <button class="confirm-btn-primary" onclick="confirmPiping()"><span class="calibre-fix">Confirm</span></button>
+        <button class="confirm-btn-secondary" onclick="backToPipingFabric()"><span class="calibre-fix">Back</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== GALLERY OVERLAY ===== -->
+
+<div id="gallery-overlay" class="gallery-overlay">
+
+  <!-- Close button -->
+  <button id="gallery-close" class="gallery-close" onclick="closeGallery()" aria-label="Close gallery">
+    <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/CloseFullScreen.svg" alt="Close">
+  </button>
+
+  <!-- Prev arrow -->
+  <button id="gallery-prev" class="gallery-nav-btn prev" onclick="galleryNav(-1)" aria-label="Previous image">
+    <img id="gallery-prev-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_left(deactive).svg" alt="">
+  </button>
+
+  <!-- Next arrow -->
+  <button id="gallery-next" class="gallery-nav-btn next" onclick="galleryNav(1)" aria-label="Next image">
+    <img id="gallery-next-icon" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Carosel_right(active).svg" alt="">
+  </button>
+
+  <!-- Image -->
+  <div class="gallery-stage">
+    <img id="gallery-img" class="gallery-img" src="" alt="">
+
+    <!-- Description -->
+    <p id="gallery-desc" class="gallery-desc"></p>
+
+    <!-- Counter -->
+    <p id="gallery-counter" class="gallery-counter"></p>
+  </div>
+</div>
+
+
+<!-- ===== CONTRAST PIPING INFO MODAL ===== -->
+<!-- Opened from the fabric drawer confirm bar: "What's contrast piping?" -->
+<div id="piping-info-modal" class="info-modal" onclick="if (event.target === this) closeContrastPipingInfo()">
+  <div class="info-modal-card">
+    <button class="info-modal-close" onclick="closeContrastPipingInfo()" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="#1E1D1E" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </button>
+    <img class="info-modal-img" src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Piping.jpg" alt="Close-up of contrast piping stitched along a sofa edge">
+    <div class="info-modal-body">
+      <h2 class="info-modal-title">Contrast piping</h2>
+      <p class="info-modal-text">Contrast piping is one that has piping stitched along its edges that enhances and emphasises its design. The piping is usually in a different colour to the colour of your sofa, creating a stylish contrast.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LOCATION DRAWER ===== -->
+<div class="location-drawer-overlay" id="location-drawer" onclick="closeLocationDrawer(event)">
+  <div class="location-drawer">
+    <div class="location-drawer-body">
+      <div class="location-drawer-head">
+        <span class="location-drawer-title">View at one of our showrooms</span>
+        <button class="location-close-btn" onclick="closeLocationDrawerDirect()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <div class="location-rows-wrap">
+
+        <!-- Parsons Green -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205.jpg" alt="Parsons Green Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Parsons Green Showroom</div>
+            <div class="location-detail">33 Parsons Green Lane, London, SW6 4HH<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 8pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Surrey -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-1.jpg" alt="Surrey Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Surrey Showroom</div>
+            <div class="location-detail">Station Road West, Ash Vale, Surrey GU12 5Q,<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Hertford -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-2.jpg" alt="Hertford Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Hertford Showroom</div>
+            <div class="location-detail">Gascoyne Way, Hertford, SG13 8EL<br>T: <a href="tel:02089657100">020 8965 7100</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+        <div class="location-divider"></div>
+
+        <!-- Birmingham -->
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-3.jpg" alt="Birmingham Showroom">
+          </div>
+          <div class="location-info">
+            <div class="location-name">Birmingham Showroom</div>
+            <div class="location-detail">2 The Customs House, Waterside, Dickens Heath, Solihull, B90 1UD<br>T: <a href="tel:02152372949">02152 372949</a> &nbsp;|&nbsp; Closes 6pm</div>
+            <a href="#" class="location-directions"><span class="link-text">Get travel directions</span><span class="link-chevron"> ›</span></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="location-divider" style="margin-top:24px;"></div>
+
+      <!-- Virtual appointment -->
+      <div class="location-virtual-section">
+        <div class="location-virtual-heading">Not in-store nearby? Try a virtual appointment.</div>
+        <div class="location-row">
+          <div class="location-img-wrap">
+            <img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20205-4.jpg" alt="Virtual appointment">
+          </div>
+          <div class="location-info">
+            <div class="location-detail">We'll show you around our showroom, compare models and fabrics and address your queries.</div>
+            <button class="location-book-btn"><span class="calibre-fix">BOOK AN APPOINTMENT</span></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== SCRIPTS ===== -->
+<!-- ===== FINISHING TOUCHES DRAWER ===== -->
+<!-- Two-page extras drawer opened from #selector-finish. Pages toggle (.is-active);
+     each .finish-group is single-choice (left=standard pre-selected, right=upgrade).
+     A click sets .is-selected (border) and marks the group .is-touched (shows tick).
+     Footer label flips Skip<->Add per page once any group on it is touched. On close,
+     ftRenderSummary() lists the selected upgrades on the row (pushing the page down).
+     NOTE: drawer is 720px wide (Figma) vs the 504px config drawers — flagged to Jonny.
+     ASSETS to commit (jonny-assets/, exported from Figma): the 8 card line-drawings
+     knightsbridge-pdp__finishing-touches--{cushions-fiber-wrapped,cushions-feather-wrapped,
+     arms-non-removable,arms-removable,arm-caps-none,arm-caps-included,bench-two-cushions,
+     bench-single}.png  (cards hold a fixed-height art slot so layout is stable until they land). -->
+<div class="drawer-overlay" id="finish-drawer" onclick="ftBackdrop(event)">
+  <div class="drawer finish-drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Finishing touches (<span id="finish-counter">1</span>/2)</span>
+      <button class="drawer-close finish-close" onclick="ftClose()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#1E1D1E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+
+      <div class="finish-page is-active" data-page="1">
+        <div class="finish-group" data-summary="Feather cushions" data-price="+£120">
+          <h3 class="finish-group-title">Feather-wrapped cushions</h3>
+          <p class="finish-group-desc">Upgrade to luxury feather-wrapped foam for a softer, more indulgent sit.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--cushions-fiber-wrapped.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Fiber-wrapped</span>
+              <span class="finish-card-sub">Standard (free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--cushions-feather-wrapped.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Feather-wrapped</span>
+              <span class="finish-card-sub">(+£120)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+        <div class="finish-group" data-summary="Removable arms" data-price="+£150">
+          <h3 class="finish-group-title">Removable arms</h3>
+          <p class="finish-group-desc">Adding removable arms makes it easier and lighter to move your sofa and ensure it fits anywhere — now or in the future.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arms-non-removable.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Non removable</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arms-removable.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Removable arms</span>
+              <span class="finish-card-sub">(+£150)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="finish-page" data-page="2">
+        <div class="finish-group" data-summary="Arm Caps" data-price="+free">
+          <h3 class="finish-group-title">Arm Caps</h3>
+          <p class="finish-group-desc">Adding arm caps protects your sofa from any natural oils you may have on your hands or accidental spills. They also protect from natural wear and tear.</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arm-caps-none.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">No Arm Caps</span>
+              <span class="finish-card-sub">Standard (free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--arm-caps-included.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Include Arm Caps</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+        <div class="finish-group" data-summary="Bench Cushion" data-price="+free">
+          <h3 class="finish-group-title">Bench Cushion</h3>
+          <p class="finish-group-desc">Would you prefer two individual seats or one longer bench-seat cushion?</p>
+          <div class="finish-cards">
+          <button type="button" class="finish-card is-selected" data-opt="standard" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--bench-two-cushions.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">2 Cushions</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <button type="button" class="finish-card" data-opt="upgrade" onclick="ftSelect(this)">
+            <span class="finish-card-art"><img src="https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/jonny-assets/knightsbridge-pdp__finishing-touches--bench-single.png" alt="" loading="lazy"></span>
+            <span class="finish-card-label">
+              <span class="finish-card-name">Bench Cushion</span>
+              <span class="finish-card-sub">(free)</span>
+            </span>
+            <span class="finish-tick" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#020202"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="confirm-bar finish-footer visible">
+      <div class="finish-footer-row">
+        <button type="button" class="finish-back" onclick="ftBack()">
+          <svg width="7" height="12" viewBox="0 0 7 12" fill="none"><path d="M6 1L1 6l5 5" stroke="#1E1D1E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back
+        </button>
+        <button type="button" class="finish-action" onclick="ftAction()">Skip</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===== END FINISHING TOUCHES DRAWER ===== -->
+
+<script>
+// ════════════════════════════════════════════════════════════
+// SHARED
+// ════════════════════════════════════════════════════════════
+const CAPTIONS = {
+  pearl:            'The Large Knightsbridge w/ Stain Resistant House Fabric Pearl.',
+  stromboli:        'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.',
+  stromboliCavalry: 'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Stain Resistant House Fabric Cavalry Contrast Piping and Dark Oak Feet.'
+};
+
+// ════════════════════════════════════════════════════════════
+// CONFIGURATOR — selectors, drawers, 3D preview, captions
+// ════════════════════════════════════════════════════════════
+function selectFabric(el, sectionName) {
+  // Remove all selected states
+  document.querySelectorAll('#fabric-drawer .swatch-cell').forEach(c => {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  el.classList.add('selected');
+  const tick = document.createElement('div');
+  tick.className = 'swatch-tick';
+  tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+  el.appendChild(tick);
+  // Swap 3D model when Stromboli swatch chosen
+  if (el.dataset.fabric === 'stromboli') {
+    currentFabric = 'stromboli';
+    const sizeRow = document.getElementById('selector-size');
+    const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
+                     sizeRow.querySelector('.selector-value').textContent.includes('Medium');
+    document.getElementById('main-img').src = get3dSrc();
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    document.querySelector('.thumb').classList.add('active');
+    const caption = document.querySelector('.image-caption-text');
+    if (caption) caption.textContent = CAPTIONS.stromboli;
+  } else {
+    currentFabric = 'pearl';
+    document.getElementById('main-img').src = main3dSrc;
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    document.querySelector('.thumb').classList.add('active');
+    const caption = document.querySelector('.image-caption-text');
+    if (caption) caption.textContent = CAPTIONS.pearl;
+  }
+  // Update fabric selector row value and thumb
+  const fabricSelectorValue = document.getElementById('fabric-selector-value');
+  if (fabricSelectorValue) {
+    const colourName = el.dataset.colour;
+    fabricSelectorValue.textContent = colourName ? sectionName + ' - ' + colourName : sectionName;
+  }
+  const fabricSelectorThumb = document.getElementById('fabric-selector-thumb-img');
+  const swatchBtnThumb = document.getElementById('swatch-btn-thumb');
+  const swatchImg = el.querySelector('img');
+  if (fabricSelectorThumb && swatchImg) fabricSelectorThumb.src = swatchImg.src;
+  if (swatchBtnThumb && swatchImg) swatchBtnThumb.src = swatchImg.src;
+  // Show fabric confirm bar
+  document.getElementById('fabric-confirm-bar').classList.add('visible');
+}
+
+function toggleColourDropdown(el) {
+  const panel = document.getElementById('colour-panel');
+  panel.classList.toggle('open');
+  el.classList.toggle('active');
+  // Pre-fill with Vole and show results
+  if (panel.classList.contains('open')) {
+    const input = document.getElementById('colour-search-input');
+    if (input.value) filterColours(input.value);
+  }
+}
+function selectColour(el, name) {
+  document.querySelectorAll('#colour-list .colour-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('colour-selected').textContent = name;
+  document.getElementById('colour-panel').classList.remove('open');
+  document.querySelector('.filter-dropdown-wrap .filter-dropdown').classList.remove('active');
+}
+function selectColourResult(el, category, colour, hex) {
+  // Update the colour filter label with category name (no dot)
+  const dot = document.getElementById('colour-dot-selected');
+  if (dot) dot.classList.remove('visible');
+  document.getElementById('colour-selected').textContent = category;
+  // Close the dropdown
+  document.getElementById('colour-panel').classList.remove('open');
+  const filterBtn = document.querySelector('.filter-dropdown-wrap .filter-dropdown');
+  if (filterBtn) filterBtn.classList.remove('active');
+  // Show "Showing results for 'Vole'" text below filters
+  const resultsText = document.getElementById('filter-results-text');
+  resultsText.textContent = "Showing results for '" + colour + "'";
+  resultsText.classList.add('visible');
+  // Update fabrics filter to show "Stain Resistant"
+  const fabricsSelected = document.getElementById('fabrics-selected');
+  if (fabricsSelected) fabricsSelected.textContent = 'Stain Resistant';
+  const fabricsSwatch = document.getElementById('fabrics-swatch');
+  if (fabricsSwatch) fabricsSwatch.style.display = 'none';
+  // Hide all normal fabric sections
+  document.querySelectorAll('.fabric-section').forEach(s => s.style.display = 'none');
+  // Show the filtered results section
+  const filtered = document.getElementById('filtered-results');
+  if (filtered) filtered.style.display = 'block';
+}
+function filterColours(val) {
+  const list = document.getElementById('colour-list');
+  const results = document.getElementById('colour-results');
+  if (val.trim() === '') {
+    list.style.display = 'block';
+    results.style.display = 'none';
+  } else {
+    list.style.display = 'none';
+    results.style.display = 'block';
+  }
+}
+// Close colour dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('colour-panel');
+  const wrap = panel ? panel.closest('.filter-dropdown-wrap') : null;
+  if (panel && wrap && !wrap.contains(e.target)) {
+    panel.classList.remove('open');
+    const btn = wrap.querySelector('.filter-dropdown');
+    if (btn) btn.classList.remove('active');
+  }
+});
+// Init: show Vole search results on load of dropdown
+window.addEventListener('DOMContentLoaded', function() {
+  const input = document.getElementById('colour-search-input');
+  if (input && input.value) {
+    filterColours(input.value);
+  }
+});
+
+function resetFabric() {
+  // Clear all swatch selections and ticks
+  document.querySelectorAll('#fabric-drawer .swatch-cell').forEach(c => {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  // Reset colours filter to "All Colours"
+  const dot = document.getElementById('colour-dot-selected');
+  if (dot) { dot.classList.remove('visible'); dot.style.background = ''; }
+  document.querySelectorAll('#colour-list .colour-item').forEach(i => i.classList.remove('selected'));
+  const allColoursItem = document.querySelector('#colour-list .colour-item');
+  if (allColoursItem) allColoursItem.classList.add('selected');
+  document.getElementById('colour-selected').textContent = 'All Colours';
+  // Reset colour search input
+  const searchInput = document.getElementById('colour-search-input');
+  if (searchInput) searchInput.value = '';
+  // Hide colour results, show colour list
+  const colourList = document.getElementById('colour-list');
+  const colourResults = document.getElementById('colour-results');
+  if (colourList) colourList.style.display = 'block';
+  if (colourResults) colourResults.style.display = 'none';
+  // Close colour dropdown panel
+  const colourPanel = document.getElementById('colour-panel');
+  if (colourPanel) colourPanel.classList.remove('open');
+  const filterBtn = document.querySelector('.filter-dropdown-wrap .filter-dropdown');
+  if (filterBtn) filterBtn.classList.remove('active');
+  // Reset fabrics filter to "All Fabrics"
+  const fabricsSelected = document.getElementById('fabrics-selected');
+  if (fabricsSelected) fabricsSelected.textContent = 'All Fabrics';
+  const fabricsSwatch = document.getElementById('fabrics-swatch');
+  if (fabricsSwatch) fabricsSwatch.style.display = 'none';
+  // Hide "Showing results for..." text
+  const resultsText = document.getElementById('filter-results-text');
+  if (resultsText) { resultsText.textContent = ''; resultsText.classList.remove('visible'); }
+  // Hide filtered results, show all fabric sections
+  const filtered = document.getElementById('filtered-results');
+  if (filtered) filtered.style.display = 'none';
+  document.querySelectorAll('#fabric-drawer .fabric-section').forEach(s => s.style.display = '');
+  // Hide confirm bar on reset
+  document.getElementById('fabric-confirm-bar').classList.remove('visible');
+}
+function switchSegment(el, panel) {
+  el.closest('.segment-switcher-inner').querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.size-panel').forEach(p => p.style.display = 'none');
+  const target = document.getElementById('panel-' + panel);
+  if (target) target.style.display = 'block';
+}
+
+function switchTo3D() {
+  const mainImg = document.getElementById('main-img');
+  if (!mainImg) return;
+  mainImg.src = main3dSrc;
+  mainImg.parentElement.style.background = 'transparent';
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[0]) thumbs[0].classList.add('active');
+  const caption = document.querySelector('.image-caption-text');
+  if (caption) caption.textContent = CAPTIONS.pearl;
+}
+function openDrawer(id) {
+  // Any config drawer interaction always switches to 3d config mode
+  if (id === 'fabric-drawer' || id === 'size-drawer' || id === 'foot-drawer') {
+    activateConfig(); // marks configured=true the first time
+    const mainImg = document.getElementById('main-img');
+    if (mainImg) {
+      if (currentFabric === 'stromboli') {
+        mainImg.src = get3dSrc();
+        mainImg.parentElement.style.background = 'transparent';
+        const thumbs = document.querySelectorAll('.thumb');
+        thumbs.forEach(t => t.classList.remove('active'));
+        if (thumbs[0]) thumbs[0].classList.add('active');
+      } else {
+        switchTo3D();
+      }
+    }
+  }
+  document.getElementById(id).classList.add('open');
+  // If reopening fabric drawer and a fabric is already confirmed, show confirm bar
+  if (id === 'fabric-drawer' && currentFabric) {
+    document.getElementById('fabric-confirm-bar').classList.add('visible');
+  }
+}
+function animateDrawerClose(id) {
+  const overlay = document.getElementById(id);
+  const drawer = overlay ? overlay.querySelector('.drawer') : null;
+  if (!drawer) { overlay && overlay.classList.remove('open'); return; }
+  drawer.style.animation = 'slideOut 0.25s ease forwards';
+  drawer.addEventListener('animationend', function handler() {
+    drawer.removeEventListener('animationend', handler);
+    drawer.style.animation = '';
+    overlay.classList.remove('open');
+  });
+}
+function closeDrawer(id, event) {
+  if (event.target === event.currentTarget) {
+    animateDrawerClose(id);
+  }
+}
+function closeDrawerDirect(id) {
+  animateDrawerClose(id);
+  // Hide confirm bars when drawer closes
+  if (id === 'fabric-drawer') document.getElementById('fabric-confirm-bar').classList.remove('visible');
+  if (id === 'size-drawer') document.getElementById('size-confirm-bar').classList.remove('visible');
+  if (id === 'foot-drawer') document.getElementById('foot-confirm-bar').classList.remove('visible');
+}
+
+// Foot images map
+const footImages = {
+  'Dark Oak':   'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20241-Photoroom%201.png',
+  'Light Oak':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20242-Photoroom%201.png',
+  'Grey Wash':  'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20243-Photoroom%201.png',
+  'Medium Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20240-Photoroom%201.png',
+  'Washed Oak': 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20244-Photoroom%201.png',
+  'Ebony':      'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/image%20245-Photoroom%201.png'
+};
+
+function selectFoot(el, name) {
+  document.querySelectorAll('#foot-drawer .size-cell').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const v = document.getElementById('foot-selector-value');
+  if (v) v.textContent = name;
+  const thumbImg = document.getElementById('foot-thumb-img');
+  if (thumbImg && footImages[name]) thumbImg.src = footImages[name];
+  currentFoot = name;
+  // Live 3D preview
+  if (currentFabric === 'stromboli') {
+    document.getElementById('main-img').src = get3dSrc();
+  }
+  document.getElementById('foot-confirm-bar').classList.add('visible');
+}
+
+function confirmFoot() {
+  document.getElementById('foot-confirm-bar').classList.remove('visible');
+  // Swap 3D model if Stromboli is active
+  if (currentFabric === 'stromboli') {
+    document.getElementById('main-img').src = get3dSrc();
+  }
+  closeDrawerDirect('foot-drawer');
+}
+function selectSize(el, name) {
+  el.closest('.size-grid').querySelectorAll('.size-cell').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  // Build display value: name + dimensions if present in the cell
+  const dimsEl = el.querySelector('.size-cell-dims');
+  const dims = dimsEl ? ' ' + dimsEl.textContent.trim() : '';
+  // Update selector row value
+  const sizeRow = document.getElementById('selector-size');
+  if (sizeRow) {
+    const v = sizeRow.querySelector('.selector-value');
+    if (v) v.textContent = name + dims;
+  }
+  // Swap 3D model if Stromboli is active
+  if (currentFabric === 'stromboli') {
+    document.getElementById('main-img').src = get3dSrc();
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    document.querySelector('.thumb').classList.add('active');
+  }
+  // Show size confirm bar
+  document.getElementById('size-confirm-bar').classList.add('visible');
+}
+
+const mainLifestyleSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Main_Image.jpg";
+const main3dSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Pearl.png";
+const largeSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large_sofa_Stromboli.png";
+const mediumSofaStromboliSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli.png";
+const mediumSofaStromboliLightFeetSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Medium_sofa_Stromboli_Lightfeet.png";
+// Stromboli + Cavalry piping variants
+const largeSofaStromboliCavalrySrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Strombolil_Piping_SR_Cavalry.png";
+const largeSofaStromboliCavalryLightOakSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Large%20Sofa_Stomboli_Piping_Cavalry_light_oak.png";
+const mediumSofaStromboliCavalrySrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Med_Sofa_Strombolil_Piping_SR_Cavalry.png";
+const mediumSofaStromboliCavalryLightOakSrc = "https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/Med_Sofa_Strombolil_Piping_SR_Cavalry_LightOak.png";
+let currentFabric = "pearl"; // track active fabric for size changes
+let currentFoot = "Dark Oak"; // track active foot colour
+
+function confirmFabric() {
+  document.getElementById('fabric-confirm-bar').classList.remove('visible');
+  closeDrawerDirect('fabric-drawer');
+}
+
+let currentPiping = 'same'; // default: same as body fabric
+let confirmedPiping = null; // null = not yet confirmed/added
+
+// Central resolver: returns the correct 3D preview src for current fabric/size/foot/piping state
+function get3dSrc() {
+  if (currentFabric !== 'stromboli') return main3dSrc;
+  const sizeRow = document.getElementById('selector-size');
+  const isMedium = sizeRow && sizeRow.querySelector('.selector-value') &&
+                   sizeRow.querySelector('.selector-value').textContent.includes('Medium');
+  const pipingKey = confirmedPiping && confirmedPiping !== 'same' ? confirmedPiping : null;
+
+  if (pipingKey === 'sr-cavalry') {
+    if (isMedium) {
+      return currentFoot === 'Light Oak' ? mediumSofaStromboliCavalryLightOakSrc : mediumSofaStromboliCavalrySrc;
+    } else {
+      return currentFoot === 'Light Oak' ? largeSofaStromboliCavalryLightOakSrc : largeSofaStromboliCavalrySrc;
+    }
+  }
+
+  // No piping — standard Stromboli
+  if (isMedium) {
+    return currentFoot === 'Light Oak' ? mediumSofaStromboliLightFeetSrc : mediumSofaStromboliSrc;
+  }
+  return largeSofaStromboliSrc;
+}
+
+function addContrastPiping() {
+  // Hide fabric confirm bar and close fabric drawer instantly (no animation)
+  document.getElementById('fabric-confirm-bar').classList.remove('visible');
+  const fabricOverlay = document.getElementById('fabric-drawer');
+  fabricOverlay.classList.remove('open');
+
+  // Open piping drawer
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.classList.add('open');
+  pipingOverlay.getBoundingClientRect();
+  pipingOverlay.classList.add('visible');
+
+  if (confirmedPiping && confirmedPiping !== 'same') {
+    // Editing: restore the confirmed selection state
+    restorePipingState(confirmedPiping);
+  } else {
+    // Fresh add: reset to default (same as body fabric)
+    resetPipingState();
+  }
+
+  // Show confirm bar (a selection is always active)
+  document.getElementById('piping-confirm-bar').classList.add('visible');
+}
+
+function showContrastPipingInfo() {
+  document.getElementById('piping-info-modal').classList.add('open');
+}
+
+function closeContrastPipingInfo() {
+  document.getElementById('piping-info-modal').classList.remove('open');
+}
+
+// Close the contrast-piping info modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Escape') return;
+  const m = document.getElementById('piping-info-modal');
+  if (m && m.classList.contains('open')) closeContrastPipingInfo();
+});
+
+function selectPiping(cell, pipingKey, label) {
+  const mainImg = document.getElementById('main-img');
+
+  // If editing and user clicks the already-confirmed swatch — remove piping
+  if (confirmedPiping && confirmedPiping !== 'same' && pipingKey === confirmedPiping && cell.classList.contains('selected')) {
+    // Deselect — clear all, fall back to "same as body fabric" selected
+    document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+      c.classList.remove('selected');
+      const tick = c.querySelector('.swatch-tick');
+      if (tick) tick.remove();
+    });
+    currentPiping = 'same';
+    confirmedPiping = null;
+    if (mainImg) mainImg.src = get3dSrc();
+    // Re-select the "same" cell so drawer has a valid selection
+    const sameCell = document.getElementById('piping-swatch-same');
+    if (sameCell) {
+      sameCell.classList.add('selected');
+      const t = document.createElement('div');
+      t.className = 'swatch-tick';
+      t.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+      sameCell.appendChild(t);
+    }
+    updateContrastPipingButtonLabel();
+    updateCaptionWithPiping();
+    showPipingRemovalToast();
+    // Stay on piping drawer — user may want to pick a different swatch
+    return;
+  }
+
+  // Normal selection
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  cell.classList.add('selected');
+  const tick = document.createElement('div');
+  tick.className = 'swatch-tick';
+  tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+  cell.appendChild(tick);
+  currentPiping = pipingKey;
+
+  // Update 3D image live preview
+  if (pipingKey === 'sr-cavalry' && mainImg) {
+    // Temporarily set confirmedPiping so get3dSrc() resolves piping variant
+    const prevConfirmed = confirmedPiping;
+    confirmedPiping = 'sr-cavalry';
+    mainImg.src = get3dSrc();
+    confirmedPiping = prevConfirmed;
+    showPipingToast();
+  } else if (pipingKey === 'same' && mainImg) {
+    mainImg.src = get3dSrc();
+  }
+
+  document.getElementById('piping-confirm-bar').classList.add('visible');
+}
+
+function showPipingToast() {
+  fireToast(document.getElementById('piping-toast'));
+}
+
+function showPipingRemovalToast() {
+  fireToast(document.getElementById('piping-removal-toast'));
+}
+
+function fireToast(toast) {
+  if (!toast) return;
+  if (toast._timer) clearTimeout(toast._timer);
+  if (toast._hideTimer) clearTimeout(toast._hideTimer);
+  toast.classList.remove('hiding');
+  toast.style.display = 'flex';
+  void toast.offsetWidth;
+  toast.classList.add('visible');
+  toast._timer = setTimeout(function() {
+    toast.classList.add('hiding');
+    toast._hideTimer = setTimeout(function() {
+      toast.classList.remove('visible', 'hiding');
+      toast.style.display = '';
+    }, 500);
+  }, 2500);
+}
+
+function confirmPiping() {
+  document.getElementById('piping-confirm-bar').classList.remove('visible');
+  // Record what was confirmed
+  confirmedPiping = currentPiping;
+  // Update 3D preview to reflect confirmed piping + current size + current foot
+  const mainImg = document.getElementById('main-img');
+  if (mainImg && currentFabric === 'stromboli') mainImg.src = get3dSrc();
+  // Update fabric confirm bar button label
+  updateContrastPipingButtonLabel();
+  // Update caption to reflect piping choice
+  updateCaptionWithPiping();
+  closePipingDrawer();
+}
+
+function updateCaptionWithPiping() {
+  const caption = document.querySelector('.image-caption-text');
+  if (!caption) return;
+  if (confirmedPiping === 'sr-cavalry') {
+    caption.textContent = CAPTIONS.stromboliCavalry;
+  } else {
+    // Piping removed or same-as-body — revert to current fabric caption
+    if (currentFabric === 'stromboli') {
+      caption.textContent = CAPTIONS.stromboli;
+    } else {
+      caption.textContent = CAPTIONS.pearl;
+    }
+  }
+}
+
+function updateContrastPipingButtonLabel() {
+  const btn = document.getElementById('contrast-piping-btn');
+  if (!btn) return;
+  const pill = btn.querySelector('.confirm-optional-pill');
+  const label = btn.querySelector('.calibre-fix');
+  if (confirmedPiping && confirmedPiping !== 'same') {
+    // Piping has been added — show "Edit Contrast Piping"
+    if (pill) pill.style.display = 'none';
+    if (label) label.textContent = 'Edit Contrast Piping';
+  } else {
+    // Not added yet
+    if (pill) pill.style.display = '';
+    if (label) label.textContent = 'Add Contrast Piping?';
+  }
+}
+
+function backToPipingFabric() {
+  // Quick fade out piping drawer, then instantly show fabric drawer
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.style.transition = 'opacity 0.15s ease';
+  pipingOverlay.classList.remove('visible');
+  document.getElementById('piping-confirm-bar').classList.remove('visible');
+
+  setTimeout(function() {
+    pipingOverlay.classList.remove('open');
+    pipingOverlay.style.transition = '';
+
+    // Instantly show fabric drawer — no slide animation
+    const fabricOverlay = document.getElementById('fabric-drawer');
+    const fabricDrawer = fabricOverlay.querySelector('.drawer');
+    if (fabricDrawer) fabricDrawer.style.animation = 'none';
+    fabricOverlay.classList.add('open');
+    document.getElementById('fabric-confirm-bar').classList.add('visible');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        if (fabricDrawer) fabricDrawer.style.animation = '';
+      });
+    });
+  }, 150);
+}
+
+function closePipingDrawer() {
+  const pipingOverlay = document.getElementById('piping-drawer');
+  pipingOverlay.classList.remove('visible');
+  // Wait for fade-out before hiding
+  setTimeout(function() {
+    pipingOverlay.classList.remove('open');
+    document.getElementById('piping-confirm-bar').classList.remove('visible');
+  }, 160);
+}
+
+function resetPipingState() {
+  currentPiping = 'same';
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  const sameCell = document.getElementById('piping-swatch-same');
+  if (sameCell) {
+    sameCell.classList.add('selected');
+    const tick = document.createElement('div');
+    tick.className = 'swatch-tick';
+    tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+    sameCell.appendChild(tick);
+  }
+}
+
+function restorePipingState(pipingKey) {
+  // Clear all selections
+  document.querySelectorAll('#piping-drawer .swatch-cell').forEach(function(c) {
+    c.classList.remove('selected');
+    const tick = c.querySelector('.swatch-tick');
+    if (tick) tick.remove();
+  });
+  currentPiping = pipingKey;
+  // Find the cell with this pipingKey and re-select it
+  const cells = document.querySelectorAll('#piping-drawer .swatch-cell');
+  cells.forEach(function(c) {
+    const onclick = c.getAttribute('onclick') || '';
+    if (onclick.indexOf("'" + pipingKey + "'") !== -1) {
+      c.classList.add('selected');
+      const tick = document.createElement('div');
+      tick.className = 'swatch-tick';
+      tick.innerHTML = '<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="25" height="25" rx="12.5" fill="white"/><path d="M8.75 12.5L11.875 15.625L17.5 10" stroke="black" stroke-width="1.25" stroke-linecap="round"/></svg>';
+      c.appendChild(tick);
+    }
+  });
+}
+
+function resetPiping() {
+  resetPipingState();
+  confirmedPiping = null;
+  currentPiping = 'same';
+  // Revert 3D to Stromboli (no piping)
+  const mainImg = document.getElementById('main-img');
+  if (mainImg) mainImg.src = get3dSrc();
+}
+
+function confirmSize() {
+  document.getElementById('size-confirm-bar').classList.remove('visible');
+  closeDrawerDirect('size-drawer');
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  const mainImg = document.getElementById('main-img');
+  if (mainImg) mainImg.src = mainLifestyleSrc;
+  // Activate second thumbnail (first lifestyle photo)
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[1]) thumbs[1].classList.add('active');
+
+  // Pre-select defaults: Large Sofa in size drawer, Dark Oak in foot drawer
+  // Size: find the size-cell whose name is 'Large Sofa'
+  const sizeCells = document.querySelectorAll('#size-drawer .size-cell');
+  sizeCells.forEach(cell => {
+    const nameEl = cell.querySelector('.size-cell-name');
+    if (nameEl && nameEl.textContent.trim() === 'Large Sofa') {
+      cell.classList.add('selected');
+    }
+  });
+
+  // Foot: find the size-cell whose name is 'Dark Oak'
+  const footCells = document.querySelectorAll('#foot-drawer .size-cell');
+  footCells.forEach(cell => {
+    const nameEl = cell.querySelector('.size-cell-name');
+    if (nameEl && nameEl.textContent.trim() === 'Dark Oak') {
+      cell.classList.add('selected');
+    }
+  });
+});
+
+// Fired the first time the user interacts with the 3d thumb or any config option
+let configured = false;
+function activateConfig() {
+  if (configured) return;
+  configured = true;
+  // Switch main image to Pearl 3d render
+  const mainImg = document.getElementById('main-img');
+  if (mainImg) {
+    mainImg.src = main3dSrc;
+    mainImg.parentElement.style.background = 'transparent';
+  }
+  // Activate 3d thumbnail
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[0]) thumbs[0].classList.add('active');
+  // Update caption
+  const caption = document.querySelector('.image-caption-text');
+  if (caption) caption.textContent = CAPTIONS.pearl;
+}
+
+function switchMain(type, el) {
+  // First interaction with 3d thumb triggers config mode
+  if (type === '3d') activateConfig();
+  const mainImg = document.getElementById('main-img');
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  mainImg.src = type === '3d' ? main3dSrc : mainLifestyleSrc;
+  mainImg.parentElement.style.background = 'transparent';
+}
+
+// ════════════════════════════════════════════════════════════
+// CAROUSEL — "More from this range"
+// ════════════════════════════════════════════════════════════
+(function() {
+  const track = document.getElementById('range-carousel');
+  const btnPrev = document.getElementById('carousel-prev');
+  const btnNext = document.getElementById('carousel-next');
+  if (!track || !btnPrev || !btnNext) return;
+
+  let index = 0;
+
+  function getVisibleCount() {
+    // Mirrors the --cards breakpoints in styles.css — returns the number of FULL cards
+    const w = window.innerWidth;
+    if (w < 800)  return 1;
+    if (w < 1220) return 2;
+    if (w < 1820) return 3;
+    if (w < 2640) return 4;
+    return 5;
+  }
+
+  function getCardWidth() {
+    const cards = track.querySelectorAll('.range-card');
+    if (!cards.length) return 0;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 20;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+
+  function totalCards() {
+    return track.querySelectorAll('.range-card').length;
+  }
+
+  function maxIndex() {
+    return Math.max(0, totalCards() - getVisibleCount());
+  }
+
+  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
+  const ICONS = {
+    prev: { active: BASE + 'Carosel_left(active).svg', deactive: BASE + 'Carosel_left(deactive).svg' },
+    next: { active: BASE + 'Carosel_right(active).svg', deactive: BASE + 'Carosel_right(deactive).svg' }
+  };
+
+  function update() {
+    const offset = index * getCardWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+    const atStart = index <= 0;
+    const atEnd = index >= maxIndex();
+    btnPrev.dataset.disabled = atStart ? 'true' : 'false';
+    btnNext.dataset.disabled = atEnd ? 'true' : 'false';
+    document.getElementById('carousel-prev-icon').src = atStart ? ICONS.prev.deactive : ICONS.prev.active;
+    document.getElementById('carousel-next-icon').src = atEnd ? ICONS.next.deactive : ICONS.next.active;
+  }
+
+  btnPrev.addEventListener('click', function() {
+    if (index > 0) { index--; update(); }
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (index < maxIndex()) { index++; update(); }
+  });
+
+  // Touch/swipe
+  let startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    const dx = startX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0 && index < maxIndex()) { index++; update(); }
+      else if (dx < 0 && index > 0) { index--; update(); }
+    }
+  });
+
+  window.addEventListener('resize', function() { index = Math.min(index, maxIndex()); update(); });
+
+  update();
+})();
+
+// ════════════════════════════════════════════════════════════
+// CAROUSEL — "Recently Viewed"  (duplicate of the range carousel; own element IDs)
+// ════════════════════════════════════════════════════════════
+(function() {
+  const track = document.getElementById('recently-viewed-carousel');
+  const btnPrev = document.getElementById('rv-carousel-prev');
+  const btnNext = document.getElementById('rv-carousel-next');
+  if (!track || !btnPrev || !btnNext) return;
+
+  let index = 0;
+
+  function getVisibleCount() {
+    // Mirrors the --cards breakpoints in styles.css — returns the number of FULL cards
+    const w = window.innerWidth;
+    if (w < 800)  return 1;
+    if (w < 1220) return 2;
+    if (w < 1820) return 3;
+    if (w < 2640) return 4;
+    return 5;
+  }
+
+  function getCardWidth() {
+    const cards = track.querySelectorAll('.range-card');
+    if (!cards.length) return 0;
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.gap) || 20;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+
+  function totalCards() {
+    return track.querySelectorAll('.range-card').length;
+  }
+
+  function maxIndex() {
+    return Math.max(0, totalCards() - getVisibleCount());
+  }
+
+  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
+  const ICONS = {
+    prev: { active: BASE + 'Carosel_left(active).svg', deactive: BASE + 'Carosel_left(deactive).svg' },
+    next: { active: BASE + 'Carosel_right(active).svg', deactive: BASE + 'Carosel_right(deactive).svg' }
+  };
+
+  function update() {
+    const offset = index * getCardWidth();
+    track.style.transform = `translateX(-${offset}px)`;
+    const atStart = index <= 0;
+    const atEnd = index >= maxIndex();
+    btnPrev.dataset.disabled = atStart ? 'true' : 'false';
+    btnNext.dataset.disabled = atEnd ? 'true' : 'false';
+    document.getElementById('rv-carousel-prev-icon').src = atStart ? ICONS.prev.deactive : ICONS.prev.active;
+    document.getElementById('rv-carousel-next-icon').src = atEnd ? ICONS.next.deactive : ICONS.next.active;
+  }
+
+  btnPrev.addEventListener('click', function() {
+    if (index > 0) { index--; update(); }
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (index < maxIndex()) { index++; update(); }
+  });
+
+  // Touch/swipe
+  let startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    const dx = startX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0 && index < maxIndex()) { index++; update(); }
+      else if (dx < 0 && index > 0) { index--; update(); }
+    }
+  });
+
+  window.addEventListener('resize', function() { index = Math.min(index, maxIndex()); update(); });
+
+  update();
+})();
+
+// ════════════════════════════════════════════════════════════
+// GALLERY — fullscreen image overlay
+// ════════════════════════════════════════════════════════════
+(function() {
+  const BASE = 'https://raw.githubusercontent.com/greenfees-assets/Darlings-Assets/main/';
+  const GALLERY_IMAGES = [
+    { src: BASE + 'image%20167.jpg', desc: 'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.' },
+    { src: BASE + 'image%20250.jpg', desc: 'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.' },
+    { src: BASE + 'image%20248.jpg', desc: 'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.' },
+    { src: BASE + 'image%20249.jpg', desc: 'The Large Knightsbridge w/ Stain Resistant Plush Velvet Stromboli, Linen Look Velvet Loch Contrast Piping and Dark Oak Feet.' },
+  ];
+
+  let currentGalleryIndex = 0;
+
+  // Preload images on init
+  GALLERY_IMAGES.forEach(function(item) {
+    var img = new Image();
+    img.src = item.src;
+  });
+
+  function updateGalleryUI() {
+    var total = GALLERY_IMAGES.length;
+    var item = GALLERY_IMAGES[currentGalleryIndex];
+    document.getElementById('gallery-img').src = item.src;
+    document.getElementById('gallery-desc').textContent = item.desc;
+    document.getElementById('gallery-counter').textContent = (currentGalleryIndex + 1) + '/' + total;
+
+    var prevIcon = document.getElementById('gallery-prev-icon');
+    var nextIcon = document.getElementById('gallery-next-icon');
+    prevIcon.src = currentGalleryIndex === 0
+      ? BASE + 'Carosel_left(deactive).svg'
+      : BASE + 'Carosel_left(active).svg';
+    nextIcon.src = currentGalleryIndex === total - 1
+      ? BASE + 'Carosel_right(deactive).svg'
+      : BASE + 'Carosel_right(active).svg';
+  }
+
+  window.openGallery = function() {
+    currentGalleryIndex = 0;
+    updateGalleryUI();
+    var overlay = document.getElementById('gallery-overlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  };
+
+  window.closeGallery = function() {
+    document.getElementById('gallery-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  };
+
+  window.galleryNav = function(dir) {
+    var total = GALLERY_IMAGES.length;
+    var next = currentGalleryIndex + dir;
+    if (next < 0 || next >= total) return;
+    currentGalleryIndex = next;
+    updateGalleryUI();
+  };
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    var overlay = document.getElementById('gallery-overlay');
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') window.closeGallery();
+    if (e.key === 'ArrowLeft') window.galleryNav(-1);
+    if (e.key === 'ArrowRight') window.galleryNav(1);
+  });
+})();
+
+// ════════════════════════════════════════════════════════════
+// LOCATION DRAWER
+// ════════════════════════════════════════════════════════════
+function openLocationDrawer() {
+  document.getElementById('location-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+}
+function closeLocationDrawer(event) {
+  if (event.target === event.currentTarget) closeLocationDrawerDirect();
+}
+function closeLocationDrawerDirect() {
+  const overlay = document.getElementById('location-drawer');
+  const drawer = overlay.querySelector('.location-drawer');
+  drawer.style.animation = 'locationSlideOut 0.29s ease forwards';
+  drawer.addEventListener('animationend', function handler() {
+    drawer.removeEventListener('animationend', handler);
+    drawer.style.animation = '';
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+  });
+}
+// ════════════════════════════════════════════════════════════
+// OUR FAVOURITE FABRICS — carousel (arrows step; one slide visible)
+// ════════════════════════════════════════════════════════════
+(function () {
+  const carousel = document.querySelector('.fav-carousel');
+  if (!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.fav-slide'));
+  if (slides.length < 2) return;
+  let idx = Math.max(0, slides.findIndex(s => s.classList.contains('is-active')));
+  function show(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+    const v = slides[idx].querySelector('video.fav-panel-media');
+    if (v) { try { v.play(); } catch (e) {} }
+  }
+  carousel.querySelectorAll('.fav-arrow--prev').forEach(b => b.addEventListener('click', () => show(idx - 1)));
+  carousel.querySelectorAll('.fav-arrow--next').forEach(b => b.addEventListener('click', () => show(idx + 1)));
+})();
+// ════════════════════════════════════════════════════════════
+// FINISHING TOUCHES — two-page extras drawer (#selector-finish)
+// ════════════════════════════════════════════════════════════
+let ftPage = 0;
+function ftPagesEls() { return document.querySelectorAll('#finish-drawer .finish-page'); }
+function openFinishDrawer() { openDrawer('finish-drawer'); ftShowPage(0); }
+function ftShowPage(n) {
+  const pages = ftPagesEls();
+  ftPage = Math.max(0, Math.min(pages.length - 1, n));
+  pages.forEach((p, i) => p.classList.toggle('is-active', i === ftPage));
+  const d = document.getElementById('finish-drawer');
+  const counter = d.querySelector('#finish-counter');
+  if (counter) counter.textContent = ftPage + 1;
+  d.querySelector('.finish-back').style.display = ftPage === 0 ? 'none' : '';
+  ftUpdateFooter();
+  const body = d.querySelector('.drawer-body'); if (body) body.scrollTop = 0;
+}
+function ftSelect(card) {
+  const group = card.closest('.finish-group');
+  group.querySelectorAll('.finish-card').forEach(c => c.classList.remove('is-selected'));
+  card.classList.add('is-selected');
+  group.classList.add('is-touched');   // any active choice reveals the tick
+  ftUpdateFooter();
+}
+function ftUpdateFooter() {
+  const pages = ftPagesEls();
+  const touched = !!pages[ftPage].querySelector('.finish-group.is-touched');
+  const btn = document.querySelector('#finish-drawer .finish-action');
+  btn.textContent = touched ? 'Add' : 'Skip';
+  btn.classList.toggle('is-add', touched);
+}
+function ftBack() { ftShowPage(ftPage - 1); }
+function ftAction() {
+  const pages = ftPagesEls();
+  if (ftPage < pages.length - 1) ftShowPage(ftPage + 1);
+  else { ftRenderSummary(); animateDrawerClose('finish-drawer'); }
+}
+function ftClose() { ftRenderSummary(); animateDrawerClose('finish-drawer'); }
+function ftBackdrop(e) { if (e.target === e.currentTarget) { ftRenderSummary(); animateDrawerClose('finish-drawer'); } }
+function ftRenderSummary() {
+  const host = document.querySelector('#selector-finish .finish-summary');
+  if (!host) return;
+  let html = '';
+  document.querySelectorAll('#finish-drawer .finish-group').forEach(group => {
+    const up = group.querySelector('.finish-card[data-opt="upgrade"]');
+    if (up && up.classList.contains('is-selected')) {
+      html += '<span class="finish-summary-item">'
+        + '<span class="finish-summary-name">' + group.dataset.summary + '</span>'
+        + '<span class="finish-summary-price">(' + group.dataset.price + ')</span>'
+        + '<svg class="finish-summary-tick" width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4l3 3 6-6" stroke="#1E1D1E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        + '</span>';
+    }
+  });
+  host.innerHTML = html;
+}
+// ════════════════════════════════════════════════════════════
+// MICRO-ANIMATIONS — main preview eases in when its image swaps
+// (3D toggle, fabric change, thumbnails). Load-triggered, so it
+// covers every swap with no edits to those handlers, and only
+// plays once the new image is ready — no "waiting" blank frame.
+// ════════════════════════════════════════════════════════════
+(function () {
+  const img = document.getElementById('main-img');
+  if (!img) return;
+  let armed = img.complete;                 // initial hero already painted? arm now
+  img.addEventListener('load', function () {
+    if (!armed) { armed = true; return; }   // skip the very first (initial) load
+    img.classList.remove('img-ease');
+    void img.offsetWidth;                    // restart the animation
+    img.classList.add('img-ease');
+  });
+})();
+
+// ════ WHY WE LOVE IT — scroll fade-in ════
+(function () {
+  const els = document.querySelectorAll('.wwl-fade');
+  if (!els.length) return;
+  const obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  els.forEach(function (el) { obs.observe(el); });
+})();
+</script>
+
+</body>
+</html>
